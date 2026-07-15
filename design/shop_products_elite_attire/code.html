@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ELITE ATTIRE | Luxury Collections</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#FFFFFF",
+                        "surface-tint": "#575e70",
+                        "tertiary-fixed": "#f9debf",
+                        "secondary": "#006e2d",
+                        "secondary-container": "#7cf994",
+                        "on-primary-fixed-variant": "#404758",
+                        "tertiary-container": "#261906",
+                        "border": "#E4E4E7",
+                        "on-background": "#1b1b1d",
+                        "on-primary-fixed": "#141b2b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1b1b1d",
+                        "text-primary": "#18181B",
+                        "inverse-primary": "#c0c6db",
+                        "outline": "#76777d",
+                        "primary-container": "#141b2b",
+                        "on-surface-variant": "#45464c",
+                        "on-secondary": "#ffffff",
+                        "luxury-gold": "#D4AF37",
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#dce2f7",
+                        "inverse-surface": "#303031",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#eae7e9",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "on-secondary-container": "#007230",
+                        "on-tertiary-fixed": "#261906",
+                        "secondary-fixed": "#7ffc97",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "on-secondary-fixed-variant": "#005320",
+                        "surface-bright": "#fcf8fa",
+                        "surface-dim": "#dcd9db",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2e3",
+                        "on-primary-container": "#7d8497",
+                        "surface-container-highest": "#e5e2e3",
+                        "primary": "#000000",
+                        "text-secondary": "#52525B",
+                        "surface-container": "#f0edee",
+                        "on-secondary-fixed": "#002109",
+                        "surface-container-low": "#f6f3f4",
+                        "inverse-on-surface": "#f3f0f1",
+                        "on-tertiary-container": "#968065",
+                        "background": "#FAFAF9",
+                        "outline-variant": "#c6c6cd",
+                        "secondary-fixed-dim": "#62df7d",
+                        "primary-fixed-dim": "#c0c6db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "2rem",
+                        "margin-mobile": "1rem",
+                        "gutter": "1.5rem",
+                        "unit-sm": "0.5rem",
+                        "unit-md": "1rem",
+                        "unit-xs": "0.25rem",
+                        "unit-xl": "2.5rem",
+                        "unit-lg": "1.5rem",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .product-card-shadow {
+            box-shadow: 0 6px 16px rgba(0,0,0,.08);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+        .product-card-shadow:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,.12);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        @keyframes subtle-fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-item {
+            animation: subtle-fade-in 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary selection:text-on-secondary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface dark:bg-on-background shadow-sm border-b border-border dark:border-on-surface-variant h-20">
+<div class="max-w-container-max mx-auto px-margin-desktop flex items-center justify-between h-full">
+<!-- Brand Logo -->
+<a class="font-display-lg text-display-lg font-black tracking-tighter text-primary dark:text-primary-fixed uppercase" href="#">ELITE ATTIRE</a>
+<!-- Navigation Links (Desktop) -->
+<div class="hidden md:flex items-center gap-unit-lg">
+<a class="font-label-md text-label-md uppercase tracking-wider text-secondary dark:text-secondary-fixed font-bold border-b-2 border-secondary transition-colors duration-200 cursor-pointer" href="#">Shop</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary dark:text-on-surface-variant hover:text-secondary transition-colors duration-200 cursor-pointer" href="#">About</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary dark:text-on-surface-variant hover:text-secondary transition-colors duration-200 cursor-pointer" href="#">Contact</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary dark:text-on-surface-variant hover:text-secondary transition-colors duration-200 cursor-pointer" href="#">My Orders</a>
+</div>
+<!-- Actions & Search -->
+<div class="flex items-center gap-unit-md">
+<div class="hidden lg:flex items-center bg-surface-container border border-border px-unit-sm py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-48" placeholder="Search collection..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer p-2 hover:bg-surface-variant rounded-full transition-all">shopping_bag</button>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer p-2 hover:bg-surface-variant rounded-full transition-all">person</button>
+<button class="md:hidden material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer">menu</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-unit-xl max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-28 space-y-unit-lg">
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-tighter border-b border-border pb-unit-sm mb-unit-md">Filters</h2>
+<!-- Category Filter -->
+<div class="space-y-unit-sm">
+<h3 class="font-label-md text-label-md font-bold uppercase tracking-widest text-text-secondary">Category</h3>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-border text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-secondary transition-colors">Outerwear</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="rounded border-border text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md font-bold text-secondary">Tailoring</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-border text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-secondary transition-colors">Knitwear</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-border text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-secondary transition-colors">Accessories</span>
+</label>
+</div>
+</div>
+<!-- Size Filter -->
+<div class="space-y-unit-sm">
+<h3 class="font-label-md text-label-md font-bold uppercase tracking-widest text-text-secondary">Size</h3>
+<div class="grid grid-cols-4 gap-2">
+<button class="h-10 flex items-center justify-center border border-border text-label-sm hover:border-secondary hover:text-secondary transition-all">XS</button>
+<button class="h-10 flex items-center justify-center border-2 border-secondary text-secondary font-bold text-label-sm">S</button>
+<button class="h-10 flex items-center justify-center border border-border text-label-sm hover:border-secondary hover:text-secondary transition-all">M</button>
+<button class="h-10 flex items-center justify-center border border-border text-label-sm hover:border-secondary hover:text-secondary transition-all">L</button>
+<button class="h-10 flex items-center justify-center border border-border text-label-sm hover:border-secondary hover:text-secondary transition-all">XL</button>
+</div>
+</div>
+<!-- Color Filter -->
+<div class="space-y-unit-sm">
+<h3 class="font-label-md text-label-md font-bold uppercase tracking-widest text-text-secondary">Color</h3>
+<div class="flex flex-wrap gap-3">
+<button class="w-6 h-6 rounded-full bg-primary border border-border ring-2 ring-offset-2 ring-secondary" title="Midnight Black"></button>
+<button class="w-6 h-6 rounded-full bg-secondary border border-border" title="Forest Green"></button>
+<button class="w-6 h-6 rounded-full bg-[#3B3B3B] border border-border" title="Charcoal"></button>
+<button class="w-6 h-6 rounded-full bg-[#E5E5E5] border border-border" title="Mist Grey"></button>
+<button class="w-6 h-6 rounded-full bg-[#8B4513] border border-border" title="Saddle Brown"></button>
+</div>
+</div>
+<!-- Price Range -->
+<div class="space-y-unit-sm">
+<h3 class="font-label-md text-label-md font-bold uppercase tracking-widest text-text-secondary">Price Range</h3>
+<input class="w-full accent-secondary" max="5000" min="100" step="100" type="range"/>
+<div class="flex justify-between text-label-sm text-text-secondary">
+<span>$100</span>
+<span>$5,000</span>
+</div>
+</div>
+<button class="w-full py-unit-sm bg-primary text-on-primary font-label-md uppercase tracking-widest hover:bg-zinc-800 transition-all rounded-lg mt-unit-lg">Apply Filters</button>
+</div>
+</aside>
+<!-- Main Product Grid -->
+<section class="flex-grow">
+<!-- Header & Sort -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-unit-lg gap-unit-md">
+<div>
+<h1 class="font-display-lg text-display-lg tracking-tighter uppercase mb-unit-xs">New Arrivals</h1>
+<p class="text-text-secondary font-body-md">Displaying 12 of 148 items in <span class="font-bold text-primary italic">Tailoring</span></p>
+</div>
+<div class="flex items-center gap-unit-md">
+<span class="text-label-md uppercase text-text-secondary">Sort By:</span>
+<select class="border-none bg-transparent font-bold text-label-md focus:ring-0 cursor-pointer">
+<option>Recommended</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest First</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group product-card-shadow bg-surface rounded-xl overflow-hidden animate-item" style="animation-delay: 0.1s;">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A sophisticated male model wearing a bespoke deep charcoal tailored blazer, standing against a minimalist off-white architectural background. The lighting is crisp and editorial, highlighting the premium fabric texture. The scene is elegant and high-end, reflecting the corporate luxury of Elite Attire with soft ambient shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcmVxt9jSnhEBq0T9SXF_JiFu25TbMmhdzDUbgXNYENBgzxC8ytsxY2FUwkv4hj7gyfDKtkYqryLl5PpL59tUgQxU6K9s1iiEIhrH959GWpmYtSY2FuSMcPT7jiEW9cRtNyKE0hd0XP_Hw5azW-X3CmPgEsjTcKV2BCB5gVVROL2EEsIrMCdEcrXIkFiVqsVTk2K6Gk6AyEEHv6hxyH-neiKfUX2e6EFYGkqs4g9-nNk3Nxuzw4xakFDzIS1VWeCRf_wq0LS-mEUk"/>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-unit-md translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-secondary text-on-secondary py-3 flex items-center justify-center gap-2 font-label-md uppercase tracking-widest rounded-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                                Quick Add
+                            </button>
+</div>
+<button class="absolute top-4 right-4 w-10 h-10 bg-surface rounded-full flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 transition-opacity hover:text-error">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="p-unit-lg space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm tracking-tight text-primary">Sculpted Charcoal Blazer</h3>
+<span class="font-bold text-secondary">$1,250</span>
+</div>
+<p class="text-text-secondary text-label-md uppercase">Bespoke Collection</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group product-card-shadow bg-surface rounded-xl overflow-hidden animate-item" style="animation-delay: 0.2s;">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A luxurious forest green wool overcoat displayed on a minimalist wooden hanger in a bright, modern studio setting. The lighting is soft and diffuse, emphasizing the rich color and high-quality wool fibers. The overall aesthetic is clean, professional, and reflects a modern luxury fashion brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYtpj3YOYppbPfoijxTFWZSGkFi5L4RDoz2J7AY5zQebm8DpM4-W8hQ1nCiUKYKoyZSj0vsakh45UwMnySaqDz0XeFF3nQy8DJ2g79xbV-MjV5JAKlNxqYA1biiYucInyPghY8ssb1F7SP9sFFvK8kbsRQMY9jkHVswm-8bvoDAGBcrJlsMVYSsaNOjz9kAJSq6hEJbExeILk6a8JxYrWHotH2H2vNdjasbrDMi6KbyvHVt96lQEfPzEXSIPcrh4Kg7LXHR7f_dd0"/>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 font-label-sm uppercase tracking-tighter rounded-full">New Arrival</div>
+<div class="absolute bottom-0 left-0 right-0 p-unit-md translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-secondary text-on-secondary py-3 flex items-center justify-center gap-2 font-label-md uppercase tracking-widest rounded-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                                Quick Add
+                            </button>
+</div>
+</div>
+<div class="p-unit-lg space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm tracking-tight text-primary">Signature Wool Overcoat</h3>
+<span class="font-bold text-secondary">$2,100</span>
+</div>
+<p class="text-text-secondary text-label-md uppercase">Outerwear</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group product-card-shadow bg-surface rounded-xl overflow-hidden animate-item" style="animation-delay: 0.3s;">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A pair of elegant, polished black leather derby shoes resting on a white marble surface. The background is a soft, out-of-focus boutique interior with warm lighting. Every detail of the leather stitching and the high-gloss finish is visible, evoking a sense of ultimate professional luxury and premium craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOfWgTpO2oSssU6tVhh7lSUcf1LwyfPagu0Ik9PTgdzqMGx4sMaHgI53hRYo1eTCcHiq_WMNsikHg-_THdXBV5WwalLHR6nbOMxISdFH1RmTbiP374pVAsBlkAHiEJnhBqkJ4rm4FfT8PJjMGB9hWTX540goGDQDWPcppU0xsfndIJOHR236MSrkFJcW3J94-R8xPuh8nWIX9nn7eJYs6t6WpcxLbrmLRb1O9sXNah4FT2sUGeIPn8skoHGC1Qiai5aipTgSn45KE"/>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-unit-md translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-secondary text-on-secondary py-3 flex items-center justify-center gap-2 font-label-md uppercase tracking-widest rounded-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                                Quick Add
+                            </button>
+</div>
+</div>
+<div class="p-unit-lg space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm tracking-tight text-primary">Polished Derby Shoes</h3>
+<span class="font-bold text-secondary">$850</span>
+</div>
+<p class="text-text-secondary text-label-md uppercase">Footwear</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group product-card-shadow bg-surface rounded-xl overflow-hidden animate-item" style="animation-delay: 0.4s;">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A high-quality close-up of a midnight navy cashmere turtleneck sweater worn by a female model with a confident, professional expression. The setting is a luxury office with floor-to-ceiling windows and soft, morning sunlight. The texture of the cashmere is palpable, suggesting high-end comfort and modern corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACG2L25adQJtkfLnL8xeXh17xZzq83HFgR8CEgYVDtYicEU0gjRtpsSkMdsO9l9EG0qnXOWrlLJ-H2DEWeKX0jR3p8so068vey_jVa64kclYtX7JoySSNxVWRudJNWSV1jTuYeO5SkKG-Qwt_cJ7Sn7JWtWdePWZB60TzdzMMWwasxoR3T-KStepqb35ppbG7b-40ZYLifHZF8JuWZnVYHLTHeKszhqqKmELSt2DdproQp4DcnnbtzuW0NNDoU98M12Y4ULf4wgRc"/>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-unit-md translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-secondary text-on-secondary py-3 flex items-center justify-center gap-2 font-label-md uppercase tracking-widest rounded-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                                Quick Add
+                            </button>
+</div>
+</div>
+<div class="p-unit-lg space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm tracking-tight text-primary">Cashmere Knit Turtleneck</h3>
+<span class="font-bold text-secondary">$540</span>
+</div>
+<p class="text-text-secondary text-label-md uppercase">Knitwear</p>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group product-card-shadow bg-surface rounded-xl overflow-hidden animate-item" style="animation-delay: 0.5s;">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A minimalist display of a luxury leather briefcase in rich tan brown, placed on a slate grey stone pedestal. The lighting is dramatic and focused, highlighting the premium leather grain and metallic hardware. The background is a clean, dark gallery space that emphasizes the product's exclusivity and professional status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAehcT1mLXbgSLJvgEWOUb9jg6x7RdXYqmP6alyi7ef709yxDJR1c0kqPCZi4GoI3C8UP1HAZfzEhCrTu_5tbpU-giChnxTNCxM7UgaKAQelbvp1FgwjiVEvZToqzyorvOOSGghkZgm6hPCPDOn38A1VynZJa4eu9XbPE-lznnlyb8NK5JDqUFe4BjNaGjjDB6dmYQ4-P-ssdEVlX1hhbp4Qu0P-abwN-obdjGa_ooZJDJSHzmOjD7GA_NJErbGP_36YHQwG3BuDY"/>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute top-4 right-4 bg-tertiary text-on-tertiary px-3 py-1 font-label-sm uppercase tracking-tighter rounded-full">Limited</div>
+<div class="absolute bottom-0 left-0 right-0 p-unit-md translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-secondary text-on-secondary py-3 flex items-center justify-center gap-2 font-label-md uppercase tracking-widest rounded-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                                Quick Add
+                            </button>
+</div>
+</div>
+<div class="p-unit-lg space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm tracking-tight text-primary">Executive Leather Briefcase</h3>
+<span class="font-bold text-secondary">$1,800</span>
+</div>
+<p class="text-text-secondary text-label-md uppercase">Accessories</p>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group product-card-shadow bg-surface rounded-xl overflow-hidden animate-item" style="animation-delay: 0.6s;">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A model wearing a crisp white cotton poplin dress shirt with a tailored slim fit. The background is a light-filled contemporary apartment with minimalist furniture. The lighting is natural and bright, highlighting the purity and sharp lines of the luxury garment, reflecting the premium corporate aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn5Y6KboerpznSy0toMq4g1n5qVf3M8pqnHcAc3KdyGHHtxnMCdc__XZQdjDXUHpMWz6fDfucFUeB4JbIuZBhI5-SEhJiZ_IoLeRREBHf_wxl_WcHuA2Tld1dTCZRpxfNSi1t_AWPSgqeLrfC5f8zgBrHiayGi_VUst5pScLY--5uOyGuNswlBbF84-ReGSBZPQUFB3Yfmx4xSRIhoxWEZVc59BiLpniCHzAKRTZUqgo-5ABzidO1JFToN1w85iao7fd_SGz9tpHs"/>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-unit-md translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-secondary text-on-secondary py-3 flex items-center justify-center gap-2 font-label-md uppercase tracking-widest rounded-lg">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                                Quick Add
+                            </button>
+</div>
+</div>
+<div class="p-unit-lg space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm tracking-tight text-primary">Premium Poplin Shirt</h3>
+<span class="font-bold text-secondary">$320</span>
+</div>
+<p class="text-text-secondary text-label-md uppercase">Basics</p>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-unit-xl flex items-center justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-border rounded-lg hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-border rounded-lg hover:bg-surface-container transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-border rounded-lg hover:bg-surface-container transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center border border-border rounded-lg hover:bg-surface-container transition-colors">12</button>
+<button class="w-10 h-10 flex items-center justify-center border border-border rounded-lg hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-primary dark:bg-tertiary-container">
+<div class="max-w-container-max mx-auto px-margin-desktop py-unit-xl flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-unit-sm">
+<div class="font-headline-sm text-headline-sm text-luxury-gold uppercase tracking-tighter font-bold">ELITE ATTIRE</div>
+<p class="font-body-md text-body-md text-on-primary-container text-center md:text-left">© 2024 ELITE ATTIRE Luxury Retail. All rights reserved.</p>
+</div>
+<div class="flex gap-unit-lg flex-wrap justify-center">
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Shipping Info</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Returns</a>
+</div>
+<div class="flex gap-unit-md">
+<button class="w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-full text-on-primary hover:bg-luxury-gold hover:text-primary transition-all">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-full text-on-primary hover:bg-luxury-gold hover:text-primary transition-all">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</button>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and subtle state management
+        document.querySelectorAll('.animate-item').forEach((item, index) => {
+            item.style.opacity = '0';
+        });
+
+        // Simple Intersection Observer to trigger entrance animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-item');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Quick add interaction simulation
+        document.querySelectorAll('button:has(span:contains("Quick Add"))').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Adding...';
+                btn.disabled = true;
+                btn.classList.add('opacity-80');
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Added';
+                    btn.classList.remove('bg-secondary');
+                    btn.classList.add('bg-luxury-gold');
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalContent;
+                        btn.classList.add('bg-secondary');
+                        btn.classList.remove('bg-luxury-gold', 'opacity-80');
+                        btn.disabled = false;
+                    }, 2000);
+                }, 800);
+            });
+        });
+
+        // Polyfill for :contains selector in JS as it's not standard CSS
+        function contains(selector, text) {
+            var elements = document.querySelectorAll(selector);
+            return Array.prototype.filter.call(elements, function(element){
+                return RegExp(text).test(element.textContent);
+            });
+        }
+    </script>
+</body></html>

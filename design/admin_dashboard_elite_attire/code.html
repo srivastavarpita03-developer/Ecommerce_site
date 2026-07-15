@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ELITE ATTIRE | Admin Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#FFFFFF",
+                        "surface-tint": "#575e70",
+                        "tertiary-fixed": "#f9debf",
+                        "secondary": "#006e2d",
+                        "secondary-container": "#7cf994",
+                        "on-primary-fixed-variant": "#404758",
+                        "tertiary-container": "#261906",
+                        "border": "#E4E4E7",
+                        "on-background": "#1b1b1d",
+                        "on-primary-fixed": "#141b2b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1b1b1d",
+                        "text-primary": "#18181B",
+                        "inverse-primary": "#c0c6db",
+                        "outline": "#76777d",
+                        "primary-container": "#141b2b",
+                        "on-surface-variant": "#45464c",
+                        "on-secondary": "#ffffff",
+                        "luxury-gold": "#D4AF37",
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#dce2f7",
+                        "inverse-surface": "#303031",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#eae7e9",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "on-secondary-container": "#007230",
+                        "on-tertiary-fixed": "#261906",
+                        "secondary-fixed": "#7ffc97",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "on-secondary-fixed-variant": "#005320",
+                        "surface-bright": "#fcf8fa",
+                        "surface-dim": "#dcd9db",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2e3",
+                        "on-primary-container": "#7d8497",
+                        "surface-container-highest": "#e5e2e3",
+                        "primary": "#000000",
+                        "text-secondary": "#52525B",
+                        "surface-container": "#f0edee",
+                        "on-secondary-fixed": "#002109",
+                        "surface-container-low": "#f6f3f4",
+                        "inverse-on-surface": "#f3f0f1",
+                        "on-tertiary-container": "#968065",
+                        "background": "#FAFAF9",
+                        "outline-variant": "#c6c6cd",
+                        "secondary-fixed-dim": "#62df7d",
+                        "primary-fixed-dim": "#c0c6db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "2rem",
+                        "margin-mobile": "1rem",
+                        "gutter": "1.5rem",
+                        "unit-sm": "0.5rem",
+                        "unit-md": "1rem",
+                        "unit-xs": "0.25rem",
+                        "unit-xl": "2.5rem",
+                        "unit-lg": "1.5rem",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .chart-container { position: relative; height: 300px; width: 100%; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e2e3; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- Predicted Component: SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container dark:bg-surface-container-lowest shadow-md flex flex-col py-unit-lg z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-secondary">Admin Console</h1>
+<p class="font-label-sm text-on-surface-variant opacity-70">Management Portal</p>
+</div>
+<nav class="flex-grow">
+<!-- Dashboard (Active) -->
+<a class="bg-secondary text-on-secondary rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 cursor-pointer transition-all scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Inventory -->
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<!-- Orders -->
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<!-- Settings -->
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-opacity-90 transition-colors">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-md">Add New Product</span>
+</button>
+<div class="mt-6 flex items-center gap-3 p-2 rounded-xl bg-surface shadow-sm">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a high-end fashion administrator with a minimalist, clean background. The individual is wearing a charcoal-colored tailored blazer, embodying the ELITE ATTIRE luxury brand aesthetic. Soft, professional lighting highlights the texture of the fabric and the sophisticated tone of the office environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzMl8sZqhUNQ2WZuPqm3JZqngLvbStz30HZ3Ncwo_b2mMoY7FTmGzCTq9W4sK0Pw7RVFphZqv4SQCBZ7gBFCZoMFtmvuL2I7tI7w8B82cCB9vEsjmGWFiTyszaeP5Nbwzt4Z17r2ph9P0V_Vp2rn6fowlUaXfp4bvVSaBztSKIDc8AXy-77voWR85OHin9RLEif1_D6LoBe7I2JpiS2IFgNfUoZP9LG1oMxuTx-nkqcCK8nre2vrDVKoNvcWTmCLwLwbzJFUF83Ys"/>
+</div>
+<div class="flex-grow overflow-hidden">
+<p class="font-label-md text-primary truncate">Admin User</p>
+<p class="text-xs text-on-surface-variant truncate">Master Account</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 h-screen overflow-y-auto custom-scrollbar p-margin-desktop">
+<!-- Top Bar -->
+<header class="flex justify-between items-center mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Overview</h2>
+<p class="font-body-md text-text-secondary">Welcome back, here is what's happening today.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all w-64" placeholder="Search orders..." type="text"/>
+</div>
+<button class="p-2 bg-surface border border-border rounded-lg hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<!-- Bento Grid Stats -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-gutter">
+<!-- Total Sales -->
+<div class="bg-surface p-6 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-secondary-container text-on-secondary-container rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-secondary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12.5%
+                    </span>
+</div>
+<p class="font-label-md text-text-secondary uppercase tracking-wider">Total Sales</p>
+<h3 class="font-display-lg text-display-lg text-primary mt-1">$124,592.00</h3>
+<div class="mt-4 h-1 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4"></div>
+</div>
+</div>
+<!-- Orders Count -->
+<div class="bg-surface p-6 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-primary-container text-on-primary-fixed rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<span class="text-secondary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +8.2%
+                    </span>
+</div>
+<p class="font-label-md text-text-secondary uppercase tracking-wider">Orders Count</p>
+<h3 class="font-display-lg text-display-lg text-primary mt-1">1,284</h3>
+<p class="text-xs text-on-surface-variant mt-2">Avg. 42 orders/day</p>
+</div>
+<!-- Active Customers -->
+<div class="bg-surface p-6 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-error font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -2.4%
+                    </span>
+</div>
+<p class="font-label-md text-text-secondary uppercase tracking-wider">Active Customers</p>
+<h3 class="font-display-lg text-display-lg text-primary mt-1">8,492</h3>
+<p class="text-xs text-on-surface-variant mt-2">Loyalty members: 1,102</p>
+</div>
+</section>
+<!-- Main Chart & Insights -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-gutter">
+<!-- Line Chart Section -->
+<section class="lg:col-span-2 bg-surface p-6 rounded-xl border border-border shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-sm text-headline-sm text-primary">Sales Trends</h4>
+<select class="bg-surface-variant border-none rounded-lg px-3 py-1 font-label-sm outline-none cursor-pointer">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>This Year</option>
+</select>
+</div>
+<div class="chart-container flex items-end justify-between gap-2 px-2">
+<!-- Simple CSS/Div Chart Representation -->
+<div class="w-full flex items-end gap-4 h-64 border-b border-border relative">
+<!-- Simulated Line Trace -->
+<div class="absolute inset-0 flex items-center justify-center opacity-10">
+<span class="material-symbols-outlined text-[120px] text-secondary">show_chart</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-secondary-container/30 rounded-t-lg h-24 group-hover:bg-secondary-container transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">$12k</div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Mon</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-secondary-container/30 rounded-t-lg h-40 group-hover:bg-secondary-container transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">$18k</div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Tue</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-secondary-container/30 rounded-t-lg h-32 group-hover:bg-secondary-container transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">$15k</div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Wed</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-secondary-container/30 rounded-t-lg h-56 group-hover:bg-secondary-container transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">$24k</div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Thu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-secondary-container/30 rounded-t-lg h-48 group-hover:bg-secondary-container transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">$21k</div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Fri</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-secondary-container/30 rounded-t-lg h-28 group-hover:bg-secondary-container transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">$13k</div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Sat</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-secondary-container/30 rounded-t-lg h-20 group-hover:bg-secondary-container transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">$10k</div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Sun</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Selling -->
+<section class="bg-surface p-6 rounded-xl border border-border shadow-sm">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-6">Top Selling</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-3 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+<div class="w-12 h-12 bg-surface-variant rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of a premium silk black evening dress draped over a minimalist white mannequin, showcasing fine tailoring and high-quality fabric under soft studio lighting, representing ELITE ATTIRE luxury fashion collection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIJPxAEva2YjZ2kEpxo469Pb5b5TU--GVQfWoXxq18eiqZjTMrdNkb4a0UaEcv2fBtEIYaP7C3ay6zLDJ9N7Q9qPfHiRaaV429rWhLToYOUzYpfilhqUp4ZjPY3oivGJjxFN2z1jAgOxHjWbi1Zv3HHf4Z8qFpSm5Vowb_H7RTA7eczQtNxxdgXFXXXujrMmmW6484jywkgFKaoZT0kr2in5Su-6lRjWv3h8Ksjhq9jrFApZKN8OUk39MytQInr7eafKO9VjmgOnA"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-primary">Silk Evening Gown</p>
+<p class="text-xs text-on-surface-variant">Luxury Collection</p>
+</div>
+<div class="text-right">
+<p class="font-label-md text-secondary">$840.00</p>
+<p class="text-xs text-on-surface-variant">42 sold</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+<div class="w-12 h-12 bg-surface-variant rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A pair of Italian leather loafers in deep mahogany, positioned on a sleek white reflective surface. The lighting is crisp and modern, emphasizing the luxury and professional aesthetic of ELITE ATTIRE men's accessories." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB_c5l5sCFwlQ7rgldPoTCYT5BPTSum0OOjnOYfzc6POhpTnKmN2ckjxfWeo3Q-JDaQspAS90PWOa1hTQmG_CgzD3pn_7eEkNLLapSLJyiyo1YA0Mtl1aK82fMpY7VsiPwtmxDNyBrTM1bYiqdBRJIUcFzcKQULirIwblkuH3ITC2_z5mFf9_Z2_CM6etw2gxTAZ_5rPmFgNl8L6XBHh90kEwc8dXpIwty5Xr7UxH0TK_qleLkVf62xUY_1qCZQzM6tb_WkUHVgyY"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-primary">Italian Loafers</p>
+<p class="text-xs text-on-surface-variant">Handcrafted</p>
+</div>
+<div class="text-right">
+<p class="font-label-md text-secondary">$320.00</p>
+<p class="text-xs text-on-surface-variant">38 sold</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+<div class="w-12 h-12 bg-surface-variant rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A designer cashmere coat in camel beige, hanging on a minimalist wooden hanger against a neutral, high-end boutique backdrop. The soft lighting highlights the premium texture and sophisticated design typical of ELITE ATTIRE." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVjPWC_N-OlvvAHh3sb2l4zTz3_r6pTnG2PSgPqIc3Ufo3g6dhTq-KsVxktcUIRKNHaHenCSgr3nDI4aqr2CqIt2vYrsGr9qvT_bWT0o8alTU3T60gsd5WXwVSfv7sNwLWmmn6_CWXnaJf9797LG2wOB2_8SvC7FLEDlVbi2b9Qr5xjDrpNHHevtBdHeUTsgq5LMrNj2N_C1I6ViuunxlGJV7c6gOAB53kIwH-NFbn1XqLcVo0HvVVIjUh3FgZqMzJyIxoG64kHdw"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-primary">Cashmere Coat</p>
+<p class="text-xs text-on-surface-variant">Winter Series</p>
+</div>
+<div class="text-right">
+<p class="font-label-md text-secondary">$1,200.00</p>
+<p class="text-xs text-on-surface-variant">12 sold</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-secondary font-label-md border border-secondary rounded-lg hover:bg-secondary hover:text-on-secondary transition-all">
+                    View Inventory
+                </button>
+</section>
+</div>
+<!-- Recent Orders Table -->
+<section class="bg-surface rounded-xl border border-border shadow-sm overflow-hidden mb-margin-desktop">
+<div class="p-6 border-b border-border flex justify-between items-center">
+<h4 class="font-headline-sm text-headline-sm text-primary">Recent Orders</h4>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface border border-border rounded-lg text-label-sm hover:bg-surface-container-low transition-all">Filter</button>
+<button class="px-4 py-2 bg-surface border border-border rounded-lg text-label-sm hover:bg-surface-container-low transition-all">Export</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low font-label-md text-on-surface-variant border-b border-border">
+<tr>
+<th class="px-6 py-4">Order ID</th>
+<th class="px-6 py-4">Customer</th>
+<th class="px-6 py-4">Date</th>
+<th class="px-6 py-4">Total</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="hover:bg-background transition-colors group">
+<td class="px-6 py-4 font-label-md text-primary">#EA-92834</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">JS</div>
+<span class="text-body-md">Julian Smith</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Oct 24, 2024</td>
+<td class="px-6 py-4 font-bold text-primary">$1,240.00</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">Delivered</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-variant rounded text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-background transition-colors group">
+<td class="px-6 py-4 font-label-md text-primary">#EA-92835</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-primary-fixed flex items-center justify-center font-bold text-xs">EM</div>
+<span class="text-body-md">Elena Martinez</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Oct 24, 2024</td>
+<td class="px-6 py-4 font-bold text-primary">$450.00</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-xs font-bold rounded-full">Shipped</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-variant rounded text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-background transition-colors group">
+<td class="px-6 py-4 font-label-md text-primary">#EA-92836</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-bold text-xs">AW</div>
+<span class="text-body-md">Arthur Wright</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Oct 23, 2024</td>
+<td class="px-6 py-4 font-bold text-primary">$2,100.00</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant text-xs font-bold rounded-full">Processing</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-variant rounded text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-background transition-colors group">
+<td class="px-6 py-4 font-label-md text-primary">#EA-92837</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-xs">LH</div>
+<span class="text-body-md">Linda Hsu</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Oct 23, 2024</td>
+<td class="px-6 py-4 font-bold text-primary">$89.00</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant text-xs font-bold rounded-full">Processing</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-surface-variant rounded text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low border-t border-border flex justify-between items-center">
+<p class="text-label-sm text-on-surface-variant">Showing 4 of 128 orders</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-border rounded hover:bg-surface transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="px-3 py-1 border border-border rounded bg-secondary text-on-secondary">1</button>
+<button class="px-3 py-1 border border-border rounded hover:bg-surface transition-colors">2</button>
+<button class="px-3 py-1 border border-border rounded hover:bg-surface transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Integrated in Sidebar/Main Logic as per guidelines -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-256px)] bg-primary text-on-primary py-4 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter z-40">
+<p class="font-body-md text-body-md opacity-80">© 2024 ELITE ATTIRE Luxury Retail. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="font-label-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Terms of Service</a>
+<a class="font-label-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Admin Support</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for dashboard elements
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Subtle lift already handled by Tailwind transition
+            });
+        });
+
+        // Search highlight logic
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-secondary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-secondary/20');
+        });
+
+        // Simple mock navigation highlight
+        const navItems = document.querySelectorAll('aside nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(i => {
+                    i.classList.remove('bg-secondary', 'text-on-secondary', 'scale-95');
+                    i.classList.add('text-on-surface-variant', 'hover:bg-surface-variant');
+                    const icon = i.querySelector('.material-symbols-outlined');
+                    if(icon) icon.style.variationSettings = "'FILL' 0";
+                });
+                item.classList.add('bg-secondary', 'text-on-secondary', 'scale-95');
+                item.classList.remove('text-on-surface-variant', 'hover:bg-surface-variant');
+                const activeIcon = item.querySelector('.material-symbols-outlined');
+                if(activeIcon) activeIcon.style.variationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+</body></html>

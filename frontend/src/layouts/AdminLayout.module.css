@@ -1,0 +1,36 @@
+.adminLayout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    height: 100vh;
+}
+
+.adminSidebar {
+    background-color: var(--surface);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 40px 20px;
+}
+
+.adminLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.adminLinks>a {
+    font-size: 25px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 10px;
+    border: 2px solid var(--text-primary);
+    border-left: 10px solid var(--warning);
+    border-radius: 10px;
+    background-color: #252529;
+}
+
+.adminLinks>a:hover {
+    transform: scale(1.03);
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ELITE ATTIRE | Luxury Fashion &amp; Modern Elegance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#FFFFFF",
+                    "surface-tint": "#575e70",
+                    "tertiary-fixed": "#f9debf",
+                    "secondary": "#006e2d",
+                    "secondary-container": "#7cf994",
+                    "on-primary-fixed-variant": "#404758",
+                    "tertiary-container": "#261906",
+                    "border": "#E4E4E7",
+                    "on-background": "#1b1b1d",
+                    "on-primary-fixed": "#141b2b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1b1d",
+                    "text-primary": "#18181B",
+                    "inverse-primary": "#c0c6db",
+                    "outline": "#76777d",
+                    "primary-container": "#141b2b",
+                    "on-surface-variant": "#45464c",
+                    "on-secondary": "#ffffff",
+                    "luxury-gold": "#D4AF37",
+                    "tertiary": "#000000",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#dce2f7",
+                    "inverse-surface": "#303031",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#eae7e9",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-secondary-container": "#007230",
+                    "on-tertiary-fixed": "#261906",
+                    "secondary-fixed": "#7ffc97",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "on-secondary-fixed-variant": "#005320",
+                    "surface-bright": "#fcf8fa",
+                    "surface-dim": "#dcd9db",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e5e2e3",
+                    "on-primary-container": "#7d8497",
+                    "surface-container-highest": "#e5e2e3",
+                    "primary": "#000000",
+                    "text-secondary": "#52525B",
+                    "surface-container": "#f0edee",
+                    "on-secondary-fixed": "#002109",
+                    "surface-container-low": "#f6f3f4",
+                    "inverse-on-surface": "#f3f0f1",
+                    "on-tertiary-container": "#968065",
+                    "background": "#FAFAF9",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed-dim": "#62df7d",
+                    "primary-fixed-dim": "#c0c6db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "2rem",
+                    "margin-mobile": "1rem",
+                    "gutter": "1.5rem",
+                    "unit-sm": "0.5rem",
+                    "unit-md": "1rem",
+                    "unit-xs": "0.25rem",
+                    "unit-xl": "2.5rem",
+                    "unit-lg": "1.5rem",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm border-b border-border h-20">
+<div class="max-w-container-max mx-auto px-margin-desktop flex items-center justify-between h-full">
+<div class="flex items-center gap-8">
+<a class="font-display-lg text-display-lg font-black tracking-tighter text-primary" href="#">ELITE ATTIRE</a>
+<nav class="hidden md:flex gap-6">
+<a class="font-label-md text-label-md uppercase tracking-wider text-secondary font-bold border-b-2 border-secondary cursor-pointer active:opacity-80 transition-colors duration-200" href="#">Shop</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary hover:text-secondary cursor-pointer active:opacity-80 transition-colors duration-200" href="#">About</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary hover:text-secondary cursor-pointer active:opacity-80 transition-colors duration-200" href="#">Contact</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary hover:text-secondary cursor-pointer active:opacity-80 transition-colors duration-200" href="#">My Orders</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-lg border border-border">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-48 placeholder:text-on-surface-variant" placeholder="Search elite collections..." type="text"/>
+</div>
+<div class="flex gap-4">
+<button class="relative p-2 text-primary hover:text-secondary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="relative p-2 text-primary hover:text-secondary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-0 right-0 bg-secondary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Carousel Section -->
+<section class="relative w-full h-[870px] overflow-hidden group">
+<div class="carousel-track h-full" id="hero-carousel">
+<!-- Slide 1 -->
+<div class="min-w-full h-full relative">
+<div class="absolute inset-0 bg-black/30 z-10"></div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-10000" data-alt="A high-fashion editorial photograph of a model wearing a structured emerald green silk coat standing in a minimalist charcoal-toned architectural space. The lighting is dramatic, high-contrast, casting elegant shadows that emphasize the premium fabric texture. The overall aesthetic is ultra-modern, elite, and professionally polished, adhering to a luxury retail palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIKQM6vtrknJutyWCcB00tnimY0T9hL9x8OQzyBa1e4WxldE-lZRVbpGYsuaewCmxzLJr4aAr61R3dt4sxurSDte4QRcRmwzXQ2np-4rfeTvjV7q9tns_e-CVIUYejZ-ZbPWCBZC2GfQnflYcKtatreKEdv0BzFXXckVCewHrtvSi1Q7ZT8ornH_ZXlq9_34lPtZIOGxvM4mtwjM6NIA9gSio1mGZwGMwPCbV_i824ww3W3c1awWk9gMDRIl3t9N92KseBHHDYlvQ')"></div>
+<div class="absolute inset-0 z-20 flex items-center px-margin-desktop max-w-container-max mx-auto">
+<div class="max-w-2xl text-white">
+<span class="font-label-md text-label-md uppercase tracking-widest mb-4 block text-secondary-fixed">Autumn/Winter 2024</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">The Emerald <br/>Statement</h1>
+<p class="font-body-lg text-body-lg mb-8 text-white/90">Experience the intersection of architectural precision and liquid silk. Hand-tailored for the modern visionary.</p>
+<button class="bg-secondary hover:bg-secondary/90 text-on-secondary px-8 py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg">Shop Collection</button>
+</div>
+</div>
+</div>
+<!-- Slide 2 -->
+<div class="min-w-full h-full relative">
+<div class="absolute inset-0 bg-black/40 z-10"></div>
+<div class="w-full h-full bg-cover bg-center" data-alt="A sophisticated close-up of a masculine silhouette wearing a charcoal grey tailored wool suit and a deep emerald silk tie. The setting is a dimly lit, high-end lounge with mahogany and polished stone textures. Soft ambient lighting highlights the sharp lapel edges and the premium material quality of the luxury fashion brand ELITE ATTIRE." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_0Qja3_sVJ3RZvhT1XS2sT4oAKUqrdVdcMxWAZh-1PP8n5NXdV6vyjmHe-BOPBG9ccwNYZiY6AzEkETn4cqBi_TqN3SF8CzTkzdHeUPdr-bUbFEs31gNwhy4F8GT0b1V0RP9T3SyDIzRN9Fvc6XdeWfyQhw49TSrmeCtFGuFEMp9U1drbz1VvQdwYH5IOR76TtvS_7u_PokkbOKINzB8cm4n3tbiyvHS8bxf6ybMUo0_e79Th6UyAtndxgL2jasYRTORJRpCQVAQ')"></div>
+<div class="absolute inset-0 z-20 flex items-center px-margin-desktop max-w-container-max mx-auto">
+<div class="max-w-2xl text-white">
+<span class="font-label-md text-label-md uppercase tracking-widest mb-4 block text-secondary-fixed">Exquisite Tailoring</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">Charcoal <br/>Authority</h1>
+<p class="font-body-lg text-body-lg mb-8 text-white/90">Defining the standard of professional elegance with our signature deep-tone wool collection.</p>
+<button class="bg-secondary hover:bg-secondary/90 text-on-secondary px-8 py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg">Explore Suits</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Carousel Controls -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+<button class="w-12 h-1 bg-white/30 rounded-full transition-all" id="dot-0" onclick="slideHero(0)"></button>
+<button class="w-12 h-1 bg-white/30 rounded-full transition-all" id="dot-1" onclick="slideHero(1)"></button>
+</div>
+</section>
+<!-- Category Bento Grid -->
+<section class="py-unit-xl max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-gutter h-[600px]">
+<div class="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-xl group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A dynamic wide shot of a woman in avant-garde emerald luxury attire walking through a modern glass corridor. Bright, clean light-mode environment with deep forest green accents. High-fashion composition focusing on movement and premium textures of ELITE ATTIRE brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCO8stmNvu5KWS_mur4Ds2XwlStHdpVQg4rKkjiXZL-JMtV8SyG945DX0TOdA_7OAvsWsT6SpuRXb7Et7O64-VNZ2nOfuDiP7qNPMJrlzOyVT1b-3xQhgaN7tsNWR9C7n2ar3RBIZzfMf_xRZZb7f75P7y20AlIbfz8j4M8olRQW2lm5NgrtpgcAky9u5lxEPepoMlI52Jz8ZCSni7Ymfu3dnhV2_RnsnZwlqZsaB8iw3Vd6zT5BM_rVCHjG2xMy41py-WxOJ7DIlU')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<h3 class="text-white font-headline-md text-headline-md mb-2">Women's Elite</h3>
+<p class="text-white/70 font-label-md">Curated Avant-Garde</p>
+</div>
+</div>
+<div class="md:col-span-2 md:row-span-1 relative overflow-hidden rounded-xl group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A flat lay composition of luxury men's accessories: a charcoal leather watch, an emerald green silk pocket square, and polished black leather shoes. Arranged on a minimalist white stone surface with soft professional lighting. The mood is precise, expensive, and corporate-modern." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJ1yYj95ZF3SEfSTDOh_y6ASP4Z0Wt6GVnbpYqTIbRQwc5JepTJNwJJvK17vymw4OIyb1-yQALG6Opzsnnyvjk9T_ucyyfYJX0KD0XNqCPBssArrqxLfO3RfWijTUClqnlXrTEBmo5mLzKjWtgEvVVOpXMMq7piBhKZelT_y-O1urPFV24RCFzbLJViAaLldNYiS5Qij65zrKjZH60BJhcc2SGm-O-XtnGqv9gAypS4fqRbTstAv_22oto9ximgc9wqPfNueOKrCU')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<h3 class="text-white font-headline-md text-headline-md mb-2">Accessories</h3>
+<p class="text-white/70 font-label-md">Final Touches</p>
+</div>
+</div>
+<div class="md:col-span-1 md:row-span-1 relative overflow-hidden rounded-xl group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Close up of a premium charcoal cashmere sweater fabric texture being held by a hand. Soft, warm lighting emphasizing the luxury weave quality. Clean, minimalist studio setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCqqEqYBtKDsFihOoHiK267FkAnAJvTiC803mxruWdDSLkYCYvU6As9hn8lE67cZ8bjQcO_eKxbSfN-naVbwcSGcOm0bmV33M9V1SR9dQFocmJP5zF1m9Rohr1nwTtfqO1LW3-2K-Ris54l9ty8qMrWnOczhTDW_Xk4BnXB_iHTSa-gSZBgaSScyEkgFzQlDrAk82jnDu-_fFerlcatUuKz3JzNBfdMJ5RolKQDp6EGvkjIVkR3goT6q4g_8JZ4YybJl9lsvL0Ysk')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-white font-headline-sm text-headline-sm">Knitwear</h3>
+</div>
+</div>
+<div class="md:col-span-1 md:row-span-1 relative overflow-hidden rounded-xl group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Stylized portrait of a model wearing minimalist charcoal eyewear in a bright, modern architectural setting. High-end luxury feel, sharp focus, neutral tones with a hint of emerald in the background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmsYtexMCPS-sw7rYS1FB7pEI7_uQQCa25ZH7qjW6MDtld4eBUUjLxTkuuOySxnHg2nBkhNpfzvoqeF0hs1CzvIgfkbtFPDqSoDBeVgpmi_ZFdPl1Z3o5olJUnnGTVrPa1n7ACUXKbUcU4MFwG-GbmJPN677WWpMLMC29oybCZemxlMr0W0aNO-9TXJqz1kCzatsefKANxtfyG0aRux9cOb7GqmrV9YRImhp2M1MYY3JBhppMSLUnkNXF06fA7sjpP0PhtsJWE5HU')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-white font-headline-sm text-headline-sm">Eyewear</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products -->
+<section class="py-unit-xl bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-unit-xl gap-4">
+<div>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-[0.2em] mb-2 block">The Essentials</span>
+<h2 class="font-headline-md text-headline-md text-primary">Featured Arrivals</h2>
+</div>
+<a class="font-label-md text-label-md text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-all" href="#">View All Products</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Product 1 -->
+<div class="group">
+<div class="relative aspect-[3/4] overflow-hidden bg-white mb-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-secondary text-on-secondary px-3 py-1 rounded text-label-sm font-label-sm">New Arrival</span>
+</div>
+<div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary hover:text-secondary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="A professional studio shot of a tailored emerald green blazer on a minimalist charcoal background. Perfect symmetry, soft lighting highlighting the premium fabric texture and precise stitching. High-end product photography for ELITE ATTIRE luxury brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAy5lk5XJpGW9XFJgd9iQNnQJygm4DVD0Z7nN-stshqdU3pjnjFUVQqaei2jTdZJi1CfbTQ1jetDdwFpsEHyna97mM1UdvIkAoW11N0liHEGXCbFhMaOTG-_ECOsJ_OaUJi1vVHMi5CXPkdcj8X9YbKZqlhUQ70WqJs1zsmyZT1mEndytZK7GptIT1rov4Nr7AF0G1A0zgvEaLfaUNwhQ_CKMYnCpg2soKZ1R3wkL6F9VPMKDAP0oVq7oxBCs5fQO2rgceyOdpQVxs')"></div>
+<button class="absolute bottom-0 left-0 w-full bg-primary text-on-primary py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 font-label-md uppercase tracking-wider flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+<h4 class="font-label-md text-label-md text-text-primary mb-1">Architectural Blazer</h4>
+<p class="text-text-secondary font-body-md">$890.00</p>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="relative aspect-[3/4] overflow-hidden bg-white mb-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="High-fashion product photo of charcoal grey tapered wool trousers displayed against a clean, off-white architectural background. Sharp creases, invisible hem details, and luxurious material feel are evident. Minimalist and corporate aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAQOVu64Kpm_WJxuLPynQIGoDMeDTW3dreBToYqYgfI1zCuiqtOGxC5cRXATnD3-1v4AttcX1yuCQ3fAJmANZ-UsOsPfFC7TYKLboux-yTIDUpNzUvSR5-QBjTKe539RfW8Cu03boqUK74hj9jWVy27CzXQ1EzJfLHzrmPwqlCpUo0_Bd_xpESrmMKHjyBbHb806-72jcQ6z9pi9_sAXHsC-AFbhJl_JP4katjmiB_cSSuUDH5pWQKa7Sr1gx-9s-AzC6kzlRVDmM')"></div>
+<button class="absolute bottom-0 left-0 w-full bg-primary text-on-primary py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 font-label-md uppercase tracking-wider flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+<h4 class="font-label-md text-label-md text-text-primary mb-1">Tapered Wool Trouser</h4>
+<p class="text-text-secondary font-body-md">$450.00</p>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="relative aspect-[3/4] overflow-hidden bg-white mb-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-secondary text-on-secondary px-3 py-1 rounded text-label-sm font-label-sm">New Arrival</span>
+</div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="A stunning product image of a deep emerald silk midi dress with elegant draping details, photographed in a professional studio with soft, diffused lighting. The background is a sophisticated charcoal grey. The garment looks luxurious, flowing, and high-fashion." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDn1bNXtIFZXSX7DylKSUU41Wm-9vaqkuUT5DQWe2XJSenJs0XbhHihBI40RhEQ6uYmwBNRO0yJ188Moek3rzCQrCW41p0btxsJc0upC68_vVOS16_DaP_oMBUpD4H13b0QCl_j9EqIjnRI16Rv-Tbrr0Xcx9wFE3TW9pQ8DZ-88j0jrc7dQ-l9OBpHLNydzK5-q0cLB1ef4OggneS50gKaANtz38p3CfMqu0-yTW0REtxlPkXuPL3YcZ5sAFUpC2J0AwGotP37OwM')"></div>
+<button class="absolute bottom-0 left-0 w-full bg-primary text-on-primary py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 font-label-md uppercase tracking-wider flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+<h4 class="font-label-md text-label-md text-text-primary mb-1">Liquid Silk Midi Dress</h4>
+<p class="text-text-secondary font-body-md">$1,200.00</p>
+</div>
+<!-- Product 4 -->
+<div class="group">
+<div class="relative aspect-[3/4] overflow-hidden bg-white mb-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Luxury charcoal leather tote bag with subtle emerald lining, featured on a minimalist pedestal. Soft top-down lighting creating elegant gradients on the leather surface. Sophisticated fashion accessory photography for a high-end e-commerce site." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZsPbu8If4RTt3NEwdXQ-2oacd1M0O1LX7syAxe3GzUxdxLWjeKgHFw6TDdY3WCAskS4OyC5O74FvnxjhMKJ8XIQRBI8YBvYGNMy2Di8HBtsBVCJnrAgz9-N47sr_f05zkgeSbmvPuc3JleM6qZ88o9uZOpOuKtx01P_ewDx0K707uux28lZlvNAad3VNpuih4cCtcI2at5u-lPGR-ksHgQZ5GkpTcrUgl7b5ym14yWRIoELGaEQTPQ0sg0rhT5VEzEJQvt08vgXc')"></div>
+<button class="absolute bottom-0 left-0 w-full bg-primary text-on-primary py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 font-label-md uppercase tracking-wider flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+<h4 class="font-label-md text-label-md text-text-primary mb-1">Structured Leather Tote</h4>
+<p class="text-text-secondary font-body-md">$680.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Interactive Section -->
+<section class="py-unit-xl relative">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div class="relative h-[400px] rounded-2xl overflow-hidden shadow-xl">
+
+<div class="absolute inset-0 flex items-center justify-center bg-primary/20 backdrop-blur-[2px]">
+<div class="text-center p-unit-lg">
+<h3 class="font-display-lg text-display-lg-mobile text-white mb-4">Elite Membership</h3>
+<p class="text-white/80 font-body-lg max-w-md mx-auto">Join the inner circle for early access to limited drops and bespoke tailoring services.</p>
+</div>
+</div>
+</div>
+<div class="lg:pl-unit-xl">
+<h2 class="font-headline-md text-headline-md mb-6">Stay ahead of the curve</h2>
+<p class="text-text-secondary font-body-md mb-8">Sign up for our exclusive newsletter to receive private collection previews and editorial insights from our creative directors.</p>
+<form class="space-y-4" onsubmit="event.preventDefault(); alert('Subscribed to the elite list.');">
+<div class="relative">
+<input class="w-full bg-white border border-border px-6 py-4 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" placeholder="Enter your email address" type="email"/>
+<button class="absolute right-2 top-2 bg-primary text-white px-6 py-2 rounded-md hover:bg-secondary transition-colors font-label-md" type="submit">Join</button>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">By joining, you agree to our Privacy Policy and Terms of Service.</p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto px-margin-desktop py-unit-xl flex flex-col md:flex-row justify-between items-start gap-gutter">
+<div class="max-w-sm">
+<a class="font-headline-sm text-headline-sm text-luxury-gold mb-4 block" href="#">ELITE ATTIRE</a>
+<p class="font-body-md text-body-md text-on-primary-container mb-6 opacity-80">Redefining modern luxury through architectural precision and ethical craftsmanship. Based in London, shipping globally.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-on-primary/20 flex items-center justify-center hover:bg-secondary transition-all" href="#"><span class="material-symbols-outlined text-[20px]">share</span></a>
+<a class="w-10 h-10 rounded-full border border-on-primary/20 flex items-center justify-center hover:bg-secondary transition-all" href="#"><span class="material-symbols-outlined text-[20px]">public</span></a>
+<a class="w-10 h-10 rounded-full border border-on-primary/20 flex items-center justify-center hover:bg-secondary transition-all" href="#"><span class="material-symbols-outlined text-[20px]">contact_page</span></a>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+<div>
+<h5 class="font-label-md text-label-md uppercase tracking-widest mb-6">Collections</h5>
+<ul class="space-y-4 text-on-primary-container font-body-md">
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Women's Elite</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Men's Tailoring</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Accessories</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">New Arrivals</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md uppercase tracking-widest mb-6">Company</h5>
+<ul class="space-y-4 text-on-primary-container font-body-md">
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Craftsmanship</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Sustainability</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md uppercase tracking-widest mb-6">Support</h5>
+<ul class="space-y-4 text-on-primary-container font-body-md">
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Shipping Info</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Returns</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-luxury-gold transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="border-t border-white/10 py-8 max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-body-md text-on-primary-container opacity-60">© 2024 ELITE ATTIRE Luxury Retail. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined opacity-50">payments</span>
+<span class="material-symbols-outlined opacity-50">credit_card</span>
+<span class="material-symbols-outlined opacity-50">account_balance_wallet</span>
+</div>
+</div>
+</footer>
+<script>
+        let currentSlide = 0;
+        const totalSlides = 2;
+        const track = document.getElementById('hero-carousel');
+        const dots = [document.getElementById('dot-0'), document.getElementById('dot-1')];
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.classList.remove('bg-white/30');
+                    dot.classList.add('bg-secondary', 'w-16');
+                } else {
+                    dot.classList.remove('bg-secondary', 'w-16');
+                    dot.classList.add('bg-white/30');
+                }
+            });
+        }
+
+        function slideHero(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }, 6000);
+
+        // Initialize dots
+        updateCarousel();
+    </script>
+</body></html>

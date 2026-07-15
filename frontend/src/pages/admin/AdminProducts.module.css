@@ -1,0 +1,192 @@
+.productDeleteBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #252529;
+}
+
+.adminProducts {
+    padding: 40px 0px;
+    padding-right: 40px;
+}
+
+.adminProductsHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.adminProductsHeader>button {
+    width: 150px;
+    background-color: #252529;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.addProductOverlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.addProductForm {
+    height: 70%;
+    width: 60%;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    overflow: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.addProductHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.closeButton {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+.formBody {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formRow>input {
+    height: 30px;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+/* Label */
+
+.formRow label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Common Inputs */
+
+.formRow input,
+.formRow textarea,
+.formRow select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: .3s;
+    box-sizing: border-box;
+}
+
+.formRow textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.formRow input:focus,
+.formRow textarea:focus,
+.formRow select:focus {
+    border-color: #252529;
+}
+
+/* File Input */
+
+.formRow input[type="file"] {
+    padding: 8px;
+    border: 1px dashed #aaa;
+    cursor: pointer;
+}
+
+/* Section */
+
+.section {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+
+.section h3 {
+    margin-bottom: 15px;
+    color: #252529;
+}
+
+/* Feature Row */
+
+.featureRow,
+.variantRow {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.featureRow input,
+.variantRow input {
+    flex: 1;
+}
+
+/* Add Button */
+
+.featureRow button,
+.variantRow button {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    background: #252529;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.featureRow button:hover,
+.variantRow button:hover {
+    background: #444;
+}
+
+/* Submit Button */
+
+.submitBtn {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: #252529;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.submitBtn:hover {
+    background: #111;
+}

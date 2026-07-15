@@ -1,0 +1,108 @@
+.adminOrders {
+    padding: 40px;
+}
+
+.ordersHeader {
+    margin-bottom: 25px;
+}
+
+.ordersHeader h1 {
+    font-size: 30px;
+}
+
+.tableWrapper {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f5f5f5;
+}
+
+th {
+    padding: 18px;
+    text-align: left;
+    font-size: 15px;
+    color: #666;
+}
+
+td {
+    padding: 18px;
+    border-top: 1px solid #eee;
+    font-size: 15px;
+}
+
+tbody tr:hover {
+    background: #fafafa;
+}
+
+/* Status */
+
+.status {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.pending {
+    background: #fff4d6;
+    color: #d48806;
+}
+
+.shipped {
+    background: #e6f4ff;
+    color: #1677ff;
+}
+
+.delivered {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.cancelled {
+    background: #ffe4e6;
+    color: #dc2626;
+}
+
+.returned {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+/* Button */
+
+.viewBtn {
+    border: none;
+    background: #252529;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.viewBtn:hover {
+    background: black;
+}
+
+/* Responsive */
+
+@media(max-width:1000px) {
+
+    .tableWrapper {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 900px;
+    }
+
+}

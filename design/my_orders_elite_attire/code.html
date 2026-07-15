@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Orders | ELITE ATTIRE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#FFFFFF",
+                    "surface-tint": "#575e70",
+                    "tertiary-fixed": "#f9debf",
+                    "secondary": "#006e2d",
+                    "secondary-container": "#7cf994",
+                    "on-primary-fixed-variant": "#404758",
+                    "tertiary-container": "#261906",
+                    "border": "#E4E4E7",
+                    "on-background": "#1b1b1d",
+                    "on-primary-fixed": "#141b2b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1b1d",
+                    "text-primary": "#18181B",
+                    "inverse-primary": "#c0c6db",
+                    "outline": "#76777d",
+                    "primary-container": "#141b2b",
+                    "on-surface-variant": "#45464c",
+                    "on-secondary": "#ffffff",
+                    "luxury-gold": "#D4AF37",
+                    "tertiary": "#000000",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#dce2f7",
+                    "inverse-surface": "#303031",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#eae7e9",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-secondary-container": "#007230",
+                    "on-tertiary-fixed": "#261906",
+                    "secondary-fixed": "#7ffc97",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "on-secondary-fixed-variant": "#005320",
+                    "surface-bright": "#fcf8fa",
+                    "surface-dim": "#dcd9db",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e5e2e3",
+                    "on-primary-container": "#7d8497",
+                    "surface-container-highest": "#e5e2e3",
+                    "primary": "#000000",
+                    "text-secondary": "#52525B",
+                    "surface-container": "#f0edee",
+                    "on-secondary-fixed": "#002109",
+                    "surface-container-low": "#f6f3f4",
+                    "inverse-on-surface": "#f3f0f1",
+                    "on-tertiary-container": "#968065",
+                    "background": "#FAFAF9",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed-dim": "#62df7d",
+                    "primary-fixed-dim": "#c0c6db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "2rem",
+                    "margin-mobile": "1rem",
+                    "gutter": "1.5rem",
+                    "unit-sm": "0.5rem",
+                    "unit-md": "1rem",
+                    "unit-xs": "0.25rem",
+                    "unit-xl": "2.5rem",
+                    "unit-lg": "1.5rem",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .order-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+        .status-dot-active {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 110, 45, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 110, 45, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 110, 45, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-background border-b border-border dark:border-on-surface-variant shadow-sm h-20">
+<nav class="max-w-container-max mx-auto px-margin-desktop flex items-center justify-between h-full">
+<div class="font-display-lg text-display-lg font-black tracking-tighter text-primary dark:text-primary-fixed">
+                ELITE ATTIRE
+            </div>
+<div class="hidden md:flex gap-unit-lg items-center">
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary dark:text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Shop</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary dark:text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">About</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-text-secondary dark:text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Contact</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-secondary dark:text-secondary-fixed font-bold border-b-2 border-secondary" href="#">My Orders</a>
+</div>
+<div class="flex items-center gap-unit-md">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer active:opacity-80 p-2" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer active:opacity-80 p-2" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</button>
+</div>
+</nav>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-unit-xl">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<!-- Page Header -->
+<div class="mb-unit-xl">
+<h1 class="font-display-lg text-display-lg text-primary mb-unit-xs">My Orders</h1>
+<p class="font-body-lg text-body-lg text-text-secondary">View and track your luxury purchases from the last 12 months.</p>
+</div>
+<!-- Dashboard Layout (Bento Grid Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Summary Stats -->
+<div class="lg:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-unit-md mb-unit-md">
+<div class="bg-surface p-unit-lg rounded-xl shadow-sm border border-border">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase block mb-1">Total Orders</span>
+<span class="font-headline-md text-headline-md">12</span>
+</div>
+<div class="bg-surface p-unit-lg rounded-xl shadow-sm border border-border">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase block mb-1">In Transit</span>
+<span class="font-headline-md text-headline-md text-secondary">02</span>
+</div>
+<div class="bg-surface p-unit-lg rounded-xl shadow-sm border border-border">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase block mb-1">Points Earned</span>
+<span class="font-headline-md text-headline-md text-luxury-gold">4,850</span>
+</div>
+<div class="bg-surface p-unit-lg rounded-xl shadow-sm border border-border">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase block mb-1">Member Since</span>
+<span class="font-headline-md text-headline-md">Oct 2023</span>
+</div>
+</div>
+<!-- Active Order (In Transit) -->
+<div class="lg:col-span-8 space-y-gutter">
+<h2 class="font-headline-sm text-headline-sm text-primary">Recent Orders</h2>
+<!-- Order Card 1: In Transit -->
+<div class="bg-surface rounded-xl shadow-sm border border-border overflow-hidden transition-all duration-300 order-card-hover">
+<div class="p-unit-lg border-b border-border flex flex-wrap justify-between items-center bg-surface-container-low gap-unit-md">
+<div class="flex gap-unit-xl">
+<div>
+<p class="font-label-sm text-label-sm text-text-secondary uppercase">Order Placed</p>
+<p class="font-label-md text-label-md text-primary">Nov 14, 2024</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-secondary uppercase">Total</p>
+<p class="font-label-md text-label-md text-primary">$1,240.00</p>
+</div>
+<div class="hidden sm:block">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase">Ship To</p>
+<p class="font-label-md text-label-md text-primary">Alex Sterling</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase">Order #</p>
+<p class="font-label-md text-label-md text-primary">EA-49201-92</p>
+</div>
+</div>
+<div class="p-unit-lg">
+<div class="flex flex-col md:flex-row gap-unit-lg">
+<!-- Order Items -->
+<div class="flex-grow space-y-unit-md">
+<div class="flex gap-unit-md items-center">
+<div class="w-20 h-24 bg-surface-variant flex-shrink-0 rounded-lg overflow-hidden border border-border">
+<img class="w-full h-full object-cover" data-alt="A high-end charcoal gray cashmere overcoat displayed on a minimalist white background. The studio lighting is soft and professional, highlighting the rich texture of the fabric. The overall mood is sophisticated and exclusive, adhering to a premium corporate luxury aesthetic with neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWPM9HM2rUI4_jHmnPIqaA26GKy23RSlOUpbRhRoP46yER7x1OqGO4wtre6hxnciBkzrwbicrlbAAugevwMEEz8DP1ep5ZOoUYHI2Z1uWPuaNO2uXuwdw7cJrQQjx0LZoDbMa1rNNpxcC-r3h7wi6AB6ceipTwVdztD3KSr4x7VzbGHEYxJu72GwahIf1tHV2jiB2ldtoIs1RYkN0L8o9Z7KfDjDX7rWc8D2HWB_jTIimen8sJRXt9Srb4cjR0TZmbwE0rxEC3-io"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-primary">Signature Cashmere Overcoat</h4>
+<p class="font-label-sm text-label-sm text-text-secondary">Size: 42L | Color: Midnight Charcoal</p>
+<p class="font-label-md text-label-md text-secondary mt-1">$890.00</p>
+</div>
+</div>
+<div class="flex gap-unit-md items-center">
+<div class="w-20 h-24 bg-surface-variant flex-shrink-0 rounded-lg overflow-hidden border border-border">
+<img class="w-full h-full object-cover" data-alt="A pair of Italian leather loafers in a deep forest green color, shot in a high-key studio setting with sharp focus on the meticulous stitching. The lighting emphasizes the glossy finish and premium quality of the leather. The background is a clean, neutral stone texture, maintaining a luxury retail atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd9eOxtrfmHIopFmQjnLSefaRWberHJ2vFWktluzEWi0l4Zx5fx7PmxijymFDBzshVABoRoxYCPxNNU_cFA6ugNxxJXKqg2_Xivw8-YHcnjRkruRaDbaSBxSf8F1OZ4_tv-NV_KVt6OS9peDXzt1RBa5qPQbhLfaSdmaRXmcotmdKfFdO_l9EnLi8UeHvxKtsrEe026wskaU9droqnzqbf4gLRPYBzZmr3liJJof8-UfaE8rGg91LJi7t1kTyqgxvDOP8EiFqzWCU"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-primary">Heritage Italian Leather Loafers</h4>
+<p class="font-label-sm text-label-sm text-text-secondary">Size: 11 | Color: Forest Green</p>
+<p class="font-label-md text-label-md text-secondary mt-1">$350.00</p>
+</div>
+</div>
+</div>
+<!-- Order Timeline -->
+<div class="md:w-64 border-t md:border-t-0 md:border-l border-border pt-unit-lg md:pt-0 md:pl-unit-lg">
+<div class="flex items-center gap-unit-xs mb-unit-md">
+<span class="w-2 h-2 rounded-full bg-secondary status-dot-active"></span>
+<p class="font-label-sm text-label-sm font-bold text-secondary uppercase">Shipped - Out for Delivery</p>
+</div>
+<div class="relative space-y-6 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border">
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<p class="font-label-sm text-label-sm font-bold">Ordered</p>
+<p class="text-[12px] text-text-secondary">Nov 14, 10:24 AM</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+</div>
+<p class="font-label-sm text-label-sm font-bold">Shipped</p>
+<p class="text-[12px] text-text-secondary">Nov 15, 02:45 PM</p>
+</div>
+<div class="relative pl-8 opacity-40">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-border flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">inventory_2</span>
+</div>
+<p class="font-label-sm text-label-sm font-bold">Delivered</p>
+<p class="text-[12px] text-text-secondary">Estimated Nov 18</p>
+</div>
+</div>
+<div class="mt-8 flex flex-col gap-2">
+<button class="bg-primary text-on-primary px-unit-md py-2 text-label-sm font-bold rounded-lg hover:bg-secondary transition-colors uppercase tracking-tight">Track Package</button>
+<button class="border border-border text-primary px-unit-md py-2 text-label-sm font-bold rounded-lg hover:bg-surface-container transition-colors uppercase tracking-tight">Order Details</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Card 2: Delivered -->
+<div class="bg-surface rounded-xl shadow-sm border border-border overflow-hidden transition-all duration-300 order-card-hover opacity-80 hover:opacity-100">
+<div class="p-unit-lg border-b border-border flex flex-wrap justify-between items-center bg-surface-container-low gap-unit-md">
+<div class="flex gap-unit-xl">
+<div>
+<p class="font-label-sm text-label-sm text-text-secondary uppercase">Order Placed</p>
+<p class="font-label-md text-label-md text-primary">Oct 22, 2024</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-secondary uppercase">Total</p>
+<p class="font-label-md text-label-md text-primary">$420.00</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase">Order #</p>
+<p class="font-label-md text-label-md text-primary">EA-38115-08</p>
+</div>
+</div>
+<div class="p-unit-lg flex flex-col md:flex-row gap-unit-lg">
+<div class="flex-grow flex gap-unit-md items-center">
+<div class="w-20 h-24 bg-surface-variant flex-shrink-0 rounded-lg overflow-hidden border border-border">
+<img class="w-full h-full object-cover" data-alt="A pair of minimalist tailored chinos in a sophisticated sand beige color, laid flat on a pristine white marble surface. The lighting is bright and airy, accentuating the clean lines and premium fabric quality. The scene captures a high-end fashion catalog aesthetic with balanced composition and luxury appeal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcOFo1vEEGyMo5Q3APntBmfnLRXRDE5J80BeRzJS66B-BwzLEhoS2SHu0sklD8i_UTCk2tl5C9BuMGXZQTAZiJ-2JhN1LRaKFvx-08zdTbH84nZ0LI_-OyxF9N8BWxZhid0YkgRyhfHUj3wLfB_FBVOfNq5XqeQSSaw6W8hYYe6RrOUMHht-OW2Xi5_NFqlqPUOMCXec3iupTAz5O2jBDIprPUjz5HFoWjJXLpbV75wlVMmZpsuoFyvUaO4RYAlFXx01zHsnc1rE8"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-primary">Tailored Cotton Chinos</h4>
+<p class="font-label-sm text-label-sm text-text-secondary">Qty: 2 | Color: Sand Beige</p>
+<p class="font-label-md text-label-md text-secondary mt-1">Delivered Oct 26</p>
+</div>
+</div>
+<div class="flex md:flex-col gap-2 items-center justify-center">
+<button class="bg-secondary text-on-secondary px-unit-lg py-2 text-label-sm font-bold rounded-lg hover:opacity-90 transition-all uppercase tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">refresh</span> Re-order
+                                </button>
+<button class="text-primary px-unit-md py-2 text-label-sm font-bold hover:underline transition-all uppercase tracking-tight">Write Review</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Content -->
+<aside class="lg:col-span-4 space-y-gutter">
+<!-- Search & Filter -->
+<div class="bg-primary text-on-primary p-unit-lg rounded-xl shadow-md">
+<h3 class="font-headline-sm text-headline-sm mb-unit-md">Find an Order</h3>
+<div class="relative mb-unit-md">
+<input class="w-full bg-white/10 border border-white/20 rounded-lg py-3 pl-10 pr-4 text-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none" placeholder="Search orders..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-3 text-white/50">search</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-white/20 px-3 py-1 rounded-full text-label-sm cursor-pointer hover:bg-white/30 transition-colors">Last 3 Months</span>
+<span class="bg-secondary px-3 py-1 rounded-full text-label-sm cursor-pointer">2024</span>
+<span class="bg-white/20 px-3 py-1 rounded-full text-label-sm cursor-pointer hover:bg-white/30 transition-colors">Returns</span>
+</div>
+</div>
+<!-- Recommended Items -->
+<div class="bg-surface p-unit-lg rounded-xl shadow-sm border border-border">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-unit-lg">Complete the Look</h3>
+<div class="space-y-unit-lg">
+<div class="flex gap-unit-md group cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A premium black leather belt with a minimalist brushed gold buckle, styled against a deep charcoal textured background. The lighting is dramatic and focused, highlighting the leather grain and the metallic sheen of the buckle. The image exudes a sense of luxury and attention to detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN59Bc89vhoZ8e5ppXOECZkoloVFdBTFoiH2LpRudUWaO_s8s9TqjnITKbZunE7wSMYgSiVjz_9leDDbymkxCFJXeocI8owTX5AfIEfqC1nyNLe1f_Cfps5vIahzJteR3dyKpInvkNR0y-IVCDH_YRM_9Jactz08nyDtwEGpcBk12JfIP-MI7Ic-jigBWikMleLlGwvZOiboANG65t0FIgIoka_Z93k-6QbdyGhmP9okwZa_cFRg46FkOVYK9ynHSoniLBxbNCNMc"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-primary group-hover:text-secondary transition-colors">Fine Grain Leather Belt</p>
+<p class="font-label-sm text-label-sm text-text-secondary">$125.00</p>
+<button class="text-secondary text-label-sm font-bold uppercase mt-1">Quick Add</button>
+</div>
+</div>
+<div class="flex gap-unit-md group cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Silk pocket square with an intricate paisley pattern in shades of emerald green and gold, neatly folded. The lighting is soft and flattering, showcasing the lustrous sheen of the silk fabric. The aesthetic is ultra-premium and editorial, perfect for a luxury menswear accessory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChBDPlQIkWhV2TQaAvvXL-dwvMkxNkxgREWdFL4UCm8gBlGuJbK-Cu6uM-uhqaXneqUhxOcTXSbbQrd8DmGwpRmwuxxrbw4PHMHjXG4Rv1jRc_MiA2spQMe0qSgU_pyviCMt_jpnINS55G7qr4KMwr0__uELckRWo1eDbeDnzKPM8rfhjxyugyeQm8D3nPMXDeOLuLb8EV6bRXvbnIuWpVnLeSU_OohFF3gmNh4ieJR84VtOBqNcnJXqjeM3hsCAqm7tmB3YG5ROU"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-primary group-hover:text-secondary transition-colors">Silk Paisley Pocket Square</p>
+<p class="font-label-sm text-label-sm text-text-secondary">$65.00</p>
+<button class="text-secondary text-label-sm font-bold uppercase mt-1">Quick Add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Need Help? -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-unit-lg rounded-xl border border-tertiary-fixed-dim">
+<h3 class="font-headline-sm text-headline-sm mb-unit-sm">Need Assistance?</h3>
+<p class="font-body-md text-body-md mb-unit-md">Our personal shopping assistants are available 24/7 to help with your orders or returns.</p>
+<div class="flex flex-col gap-unit-sm">
+<a class="flex items-center gap-unit-md font-label-md text-label-md font-bold hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">chat_bubble</span> Live Concierge
+                            </a>
+<a class="flex items-center gap-unit-md font-label-md text-label-md font-bold hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">help_center</span> Visit Help Center
+                            </a>
+</div>
+</div>
+</aside></div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-primary dark:bg-tertiary-container">
+<div class="max-w-container-max mx-auto px-margin-desktop py-unit-xl flex flex-col md:flex-row justify-between items-center gap-gutter text-on-primary dark:text-on-tertiary-container">
+<div class="text-center md:text-left">
+<div class="font-headline-sm text-headline-sm text-luxury-gold mb-2">ELITE ATTIRE</div>
+<p class="font-body-md text-body-md max-w-sm opacity-80">Redefining luxury retail through editorial excellence and technological precision.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-unit-lg">
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Shipping Info</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Returns</a>
+</div>
+<div class="text-center md:text-right">
+<p class="font-body-md text-body-md opacity-60">© 2024 ELITE ATTIRE Luxury Retail. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for hover states and potentially dynamic loading
+        document.querySelectorAll('.order-card-hover').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = 'var(--secondary)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = 'var(--border)';
+            });
+        });
+    </script>
+</body></html>

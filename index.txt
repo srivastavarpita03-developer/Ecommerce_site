@@ -1,0 +1,124 @@
+Single Vendor Clothing Store Ecommerce website
+
+users:
+1 Admin:Product add,Product Update,Delte,Manage orders,change settings of website
+2. users: search product,order pro, manage cart ,return cart ,return order,pagination ,filter
+
+others:
+
+Authentication + Role based Access control
+notification : Nodemailer, Payment Module
+
+Search: Tshirt
+
+AI: Mujhe shirt dikhayiye party wear
+output:products
+
+Backend Folder structure:
+backend
+|
+src-----|
+        server.js(Main Entry Point of backend)
+        routes(folder that will contain all routes files)
+        controllers(folder that will contain handler functions)
+        modeks(folder that will contain all DB models/tables)
+        config(folder that will contain all configuration files)
+
+.env(file that conatins all environment variables),it contains variables which
+ we cannot share to other users
+
+ Backend Libraries:
+ mongoose (For dealing with database)
+ express (for making server)
+ dotenv (for accessing variables of .env file)
+ cors (for allowing backend to accept request from out frontend)
+nodemon (for restaring server whenever code changes)
+bcrypt:(for password hashing) 
+jsonwebtoken(for generating token)
+cookie-parser(for handling cookies related  work)
+
+command:
+    npm i express mongoose cors dotenv nodemon  jsonwebtoken cookie-parser multer
+
+
+    3/6/
+
+    Models:database tables
+    Schema
+
+    user:
+    {
+        name:string,
+        email:string,password:string,
+        role:["user","admin"],
+        cart:[],
+        whishlist:[],
+        address:string,
+        contactdetail:number,
+    }
+
+    product:
+    {
+        title:string,
+        description:string,
+        price:number,
+        images:[],
+        category:String,
+        subcategory:string,
+        discount:Number,
+        features:[{ key: "Brand",value:"b1"},
+        {key: "Material",value:"cotton" }],
+        variants:[]
+
+    }
+
+    orders:{
+        userId:String,
+        items:[
+                {productId: String,quantity:number,variant:{}}],
+                orderstatus:["pending","shipped",delivered","cancelled","returned"],
+                shippingAddress:string,
+                PaymentStatus:["pending","completed"],
+                totalOrderedValue:Number,
+                paymentMode:string,
+                delivered:date,
+    }
+
+
+
+    Routes:
+
+    authroutes:all routes related to authenetication
+        OAuth2
+    POST:/register
+    POST:/login
+    Get:/me
+    GET:/Logout
+
+    categoryRoutes:
+        All rotes related to manageging categoryRoutes
+        Get:/(get all category)
+        Post:/(add new category)
+        Put:/(updated old category,or add subcategpry inside it)
+        delete:/(delete category)
+
+
+    product category:
+    All rotes related to product Routes
+
+    Get:/all(get all products)
+    get:/:productedId:(get asingle product)
+    Post:/:(add a single product)
+    put:/:(updated product)
+    delete:/:(delete product)
+
+    OrderRoutes:all routes related to orders
+
+    get:/all:get all orders of a cutomer/user.(only access to admin)
+    get:/all:get all orders of current login users.(user must be login)
+    Post:/create:used to created order.(user must be login)
+    Put:/update-status:used to update order status (only access by admin).
+    
+
+    Frontend Libraries:
+react-roter-dom (For managing routes in react)

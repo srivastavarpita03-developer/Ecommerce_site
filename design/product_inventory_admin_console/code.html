@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elite Attire Admin - Inventory Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface": "#FFFFFF",
+                "surface-tint": "#575e70",
+                "tertiary-fixed": "#f9debf",
+                "secondary": "#006e2d",
+                "secondary-container": "#7cf994",
+                "on-primary-fixed-variant": "#404758",
+                "tertiary-container": "#261906",
+                "border": "#E4E4E7",
+                "on-background": "#1b1b1d",
+                "on-primary-fixed": "#141b2b",
+                "surface-container-lowest": "#ffffff",
+                "on-surface": "#1b1b1d",
+                "text-primary": "#18181B",
+                "inverse-primary": "#c0c6db",
+                "outline": "#76777d",
+                "primary-container": "#141b2b",
+                "on-surface-variant": "#45464c",
+                "on-secondary": "#ffffff",
+                "luxury-gold": "#D4AF37",
+                "tertiary": "#000000",
+                "on-primary": "#ffffff",
+                "primary-fixed": "#dce2f7",
+                "inverse-surface": "#303031",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#eae7e9",
+                "on-error": "#ffffff",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#55442d",
+                "on-secondary-container": "#007230",
+                "on-tertiary-fixed": "#261906",
+                "secondary-fixed": "#7ffc97",
+                "on-tertiary": "#ffffff",
+                "tertiary-fixed-dim": "#dcc2a4",
+                "on-secondary-fixed-variant": "#005320",
+                "surface-bright": "#fcf8fa",
+                "surface-dim": "#dcd9db",
+                "on-error-container": "#93000a",
+                "surface-variant": "#e5e2e3",
+                "on-primary-container": "#7d8497",
+                "surface-container-highest": "#e5e2e3",
+                "primary": "#000000",
+                "text-secondary": "#52525B",
+                "surface-container": "#f0edee",
+                "on-secondary-fixed": "#002109",
+                "surface-container-low": "#f6f3f4",
+                "inverse-on-surface": "#f3f0f1",
+                "on-tertiary-container": "#968065",
+                "background": "#FAFAF9",
+                "outline-variant": "#c6c6cd",
+                "secondary-fixed-dim": "#62df7d",
+                "primary-fixed-dim": "#c0c6db"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "margin-desktop": "2rem",
+                "margin-mobile": "1rem",
+                "gutter": "1.5rem",
+                "unit-sm": "0.5rem",
+                "unit-md": "1rem",
+                "unit-xs": "0.25rem",
+                "unit-xl": "2.5rem",
+                "unit-lg": "1.5rem",
+                "container-max": "1280px"
+            },
+            "fontFamily": {
+                "label-md": ["Hanken Grotesk"],
+                "headline-sm": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"],
+                "display-lg": ["Hanken Grotesk"],
+                "label-sm": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #FAFAF9;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .luxury-shadow {
+            box-shadow: 0 6px 16px rgba(0,0,0,.08);
+        }
+        .product-card:hover {
+            box-shadow: 0 12px 24px rgba(0,0,0,.12);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container flex flex-col py-unit-lg shadow-md z-40 border-r border-border">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-secondary">Admin Console</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Management Portal</p>
+</div>
+<nav class="flex-grow">
+<!-- Dashboard -->
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Inventory (Active) -->
+<a class="bg-secondary text-on-secondary rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 shadow-sm transition-all scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<!-- Orders -->
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<!-- Settings -->
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-label-md text-label-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Add New Product
+            </button>
+<div class="mt-6 flex items-center gap-3 px-2">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed text-sm" data-icon="person">person</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold">Admin User</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Chief Editor</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen p-margin-desktop">
+<!-- Header Actions -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-gutter mb-10">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary tracking-tighter">Inventory Control</h2>
+<p class="text-text-secondary font-body-md text-body-md mt-2">Manage your catalog, stock levels, and product availability across all regions.</p>
+</div>
+<div class="flex gap-unit-md">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-secondary focus:outline-none transition-all w-64 font-body-md text-body-md" placeholder="Search inventory..." type="text"/>
+</div>
+<button class="bg-surface border border-border text-primary px-4 py-2 rounded-lg flex items-center gap-2 font-label-md text-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                    Filter
+                </button>
+</div>
+</header>
+<!-- Stats Overview Bento Section -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-10">
+<div class="bg-surface p-6 rounded-xl border border-border luxury-shadow">
+<span class="text-text-secondary font-label-sm text-label-sm uppercase tracking-widest block mb-2">Total Products</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md">1,248</span>
+<span class="text-secondary font-label-sm text-label-sm flex items-center"><span class="material-symbols-outlined text-sm" data-icon="arrow_upward">arrow_upward</span> 12%</span>
+</div>
+</div>
+<div class="bg-surface p-6 rounded-xl border border-border luxury-shadow">
+<span class="text-text-secondary font-label-sm text-label-sm uppercase tracking-widest block mb-2">Low Stock Items</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md text-error">24</span>
+<span class="text-error font-label-sm text-label-sm">Requires Action</span>
+</div>
+</div>
+<div class="bg-surface p-6 rounded-xl border border-border luxury-shadow">
+<span class="text-text-secondary font-label-sm text-label-sm uppercase tracking-widest block mb-2">Categories</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md">18</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Active Sectors</span>
+</div>
+</div>
+<div class="bg-surface p-6 rounded-xl border border-border luxury-shadow">
+<span class="text-text-secondary font-label-sm text-label-sm uppercase tracking-widest block mb-2">Inventory Value</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md">$142.5K</span>
+<span class="text-luxury-gold font-label-sm text-label-sm">Premium Stock</span>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="product-card bg-surface rounded-xl overflow-hidden border border-border transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A high-end studio photograph of a tailored charcoal wool blazer displayed on a minimalist mannequin. The lighting is dramatic with soft shadows, highlighting the fine textile texture. The background is a clean, neutral grey to maintain a luxury retail aesthetic consistent with the brand colors of charcoal and white." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjN-d4vUmSeT7jwafesWYMZrtwqL47rDXwykJL3oD0wgwItDa29DSykOmjDRrIuhJWhDmhahumtckJ4qUmkuxmOvjYE4uOAbWbBcdyzq-3cfFkxnCmhE8vJRjGBnEOFW-ezp1wg6Qc8ZK918AXy3xW79mAsNq-xe9OIhkXBOZYOg1UFPQI0sUpWHDEp6V_XVyh30qw7Aco8qkd-TPdCJ45G6R_ldr6j3rLsI15-RdXGF-cUZZHthxX7sCHgl9CFAKUFaqXHigqJFc')"></div>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 rounded-lg font-label-sm text-label-sm uppercase">Autumn Collection</div>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm p-2 rounded-full shadow-md cursor-pointer hover:bg-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Wool Archive Blazer</h3>
+<p class="text-text-secondary font-label-sm text-label-sm">SKU: EA-2940-BL</p>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary">$540.00</span>
+</div>
+<div class="flex items-center gap-4 py-4 border-y border-border my-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Stock Level</span>
+<span class="font-label-md text-label-md text-primary">42 Units</span>
+</div>
+<div class="w-px h-8 bg-border"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Category</span>
+<span class="font-label-md text-label-md text-primary">Outerwear</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface border border-primary text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                            Edit
+                        </button>
+<button class="px-3 bg-surface-container-high text-error rounded-lg hover:bg-error hover:text-on-error transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 (Low Stock Warning) -->
+<div class="product-card bg-surface rounded-xl overflow-hidden border border-border transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A macro shot of a premium silk necktie with an intricate geometric pattern in forest green and gold. The fabric shimmer and fine stitching are clearly visible under bright gallery lighting. The composition is elegant and professional, suitable for a luxury fashion admin panel with a focus on product detail." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCfcjGL5FP6_aN4fEv-RB-V2Z8wGSCG6eLxxH5KZWsjXv-7xze2-NH5iipsVcWNyyLWSrVm0KYUsdUcty8ImR0HOgl_Ziw9k2fUL47eY-Kam3Q9y587D0XRcRyxkwFKDqmGBL-KWYhZO37EMYUzONlLnVa1In80pWlSlR-xgpAqLMsmGMeGEX6jF1k7DmC4At93Z01Oc2KnGr0VLcJKjIWiNQiMrGCObmwzpm3DO6AeGT_rUlzvUuUn__PmXA5ipNTXekOdA63cEVc')"></div>
+<div class="absolute top-4 left-4 bg-error text-on-error px-3 py-1 rounded-lg font-label-sm text-label-sm uppercase">Low Stock</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Heritage Silk Tie</h3>
+<p class="text-text-secondary font-label-sm text-label-sm">SKU: EA-1102-GT</p>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary">$120.00</span>
+</div>
+<div class="flex items-center gap-4 py-4 border-y border-border my-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Stock Level</span>
+<span class="font-label-md text-label-md text-error font-bold">4 Units</span>
+</div>
+<div class="w-px h-8 bg-border"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Category</span>
+<span class="font-label-md text-label-md text-primary">Accessories</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface border border-primary text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                            Edit
+                        </button>
+<button class="px-3 bg-surface-container-high text-error rounded-lg hover:bg-error hover:text-on-error transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card bg-surface rounded-xl overflow-hidden border border-border transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A pair of handcrafted Italian leather loafers in deep mahogany brown. The shoes are placed on a reflective white surface with a minimalist aesthetic. Lighting is bright and even, casting soft ambient shadows that define the elegant silhouette. This visual represents the high-end footwear section of a luxury boutique management system." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQQBl8vvkjwmwG0jQTEzNWZnuG495dDwwkB5sRihAU70nuC4Oej3M-D78c_r0m0BDCGaoHhSFtmApG0M7dzxg2hBsI8TNkfEygf7EWiA7crLHy86c1wpmCThBG9mwSieZURjbJrvwMqGhk836a-rhY-zNv8lAoF0W7NtNZR4kBXf2jlnL1-NXzgQq6G8AMsXqo2sfO-_ptru6resO18o4RhGT_VNHSHGO_GR6YIcvyVOBMmGkhdjmfeKpGEA6uQ49VUhpyBdulIig')"></div>
+<div class="absolute top-4 left-4 bg-luxury-gold text-white px-3 py-1 rounded-lg font-label-sm text-label-sm uppercase">Best Seller</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Milano Loafers</h3>
+<p class="text-text-secondary font-label-sm text-label-sm">SKU: EA-5582-FW</p>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary">$480.00</span>
+</div>
+<div class="flex items-center gap-4 py-4 border-y border-border my-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Stock Level</span>
+<span class="font-label-md text-label-md text-primary">128 Units</span>
+</div>
+<div class="w-px h-8 bg-border"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Category</span>
+<span class="font-label-md text-label-md text-primary">Footwear</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface border border-primary text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                            Edit
+                        </button>
+<button class="px-3 bg-surface-container-high text-error rounded-lg hover:bg-error hover:text-on-error transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card bg-surface rounded-xl overflow-hidden border border-border transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A folded crisp white poplin dress shirt with mother-of-pearl buttons. The shirt is displayed in a minimalist boutique setting, emphasizing the clean lines and premium fabric. The lighting is bright and modern, creating a professional environment for an e-commerce inventory management dashboard. The color palette is dominated by pure white and soft shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCc-6O-hGFq2ZRjMjbnkhPZvXxNtJ4Ee1E4gF9RVA0548QHWi1o2QfwziNMgl9jucG3IQwVQP8ssuc9efetGtmjm3S0xwFx5SGMvH8UhvAFsMvBQzPn-5ptABH8pjX2h7dtAIbVexJ03S5giyHDMlFud_-R4bdabtUmzatilhAuJsFMq7shyKnJdUIDbSrh9KopOYTCm4Wz4P35a2DHUYOQS2EgF0a6RRkTfFLznBzdfviExOg1P69laDv4NtpuY1hGNujkABr5jgg')"></div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Poplin Dress Shirt</h3>
+<p class="text-text-secondary font-label-sm text-label-sm">SKU: EA-8821-SH</p>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary">$185.00</span>
+</div>
+<div class="flex items-center gap-4 py-4 border-y border-border my-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Stock Level</span>
+<span class="font-label-md text-label-md text-primary">85 Units</span>
+</div>
+<div class="w-px h-8 bg-border"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-text-secondary tracking-widest">Category</span>
+<span class="font-label-md text-label-md text-primary">Shirting</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface border border-primary text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                            Edit
+                        </button>
+<button class="px-3 bg-surface-container-high text-error rounded-lg hover:bg-error hover:text-on-error transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-12 flex justify-center">
+<button class="bg-surface border border-border text-primary font-label-md text-label-md px-10 py-3 rounded-lg hover:bg-surface-container transition-colors luxury-shadow">
+                Load More Inventory
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="ml-64 w-[calc(100%-16rem)] bg-primary text-on-primary mt-auto py-unit-xl border-t border-on-surface-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col gap-2">
+<span class="font-headline-sm text-headline-sm text-luxury-gold">ELITE ATTIRE</span>
+<p class="font-body-md text-body-md text-on-primary-container">© 2024 ELITE ATTIRE Luxury Retail. All rights reserved.</p>
+</div>
+<div class="flex gap-unit-lg">
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Shipping Info</a>
+<a class="font-body-md text-body-md text-on-primary-container hover:text-luxury-gold transition-colors" href="#">Returns</a>
+</div>
+</div>
+</footer>
+<!-- Simple Interactivity -->
+<script>
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const img = card.querySelector('div[style*="background-image"]');
+                if (img) img.style.transform = 'scale(1.05)';
+                if (img) img.style.transition = 'transform 0.5s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                const img = card.querySelector('div[style*="background-image"]');
+                if (img) img.style.transform = 'scale(1)';
+            });
+        });
+
+        // Search Bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-secondary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-secondary');
+        });
+    </script>
+</body></html>
