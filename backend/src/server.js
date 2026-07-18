@@ -21,6 +21,8 @@ app.use(
   }),
 );
 
+app.use("/uploads",express.static("uploads/"))
+
 app.get("/health", (req, res) => {
   res.send("Server Is Running Perfectly...");
 });

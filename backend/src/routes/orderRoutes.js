@@ -4,24 +4,40 @@ const {
   getUserOrders,
   createOrder,
   updateOrder,
+  getSingleOrder,
 } = require("../controllers/orderControllers");
 const asyncHandler = require("../utils/asyncHandler");
 const authMiddleware = require("../middlewares/authMiddleware");
 const checkAdminMiddleware = require("../middlewares/checkAdminMiddleware");
 
 const router = express.Router();
+
 router.get(
   "/all",
   asyncHandler(authMiddleware),
   asyncHandler(checkAdminMiddleware),
   asyncHandler(getAllOrders),
 );
+
+router.get(
+  "/:id",
+  asyncHandler(authMiddleware),
+  asyncHandler(checkAdminMiddleware),
+  asyncHandler(getSingleOrder),
+);
+
 router.get(
   "/user-orders",
   asyncHandler(authMiddleware),
   asyncHandler(getUserOrders),
 );
-router.post("/create", asyncHandler(authMiddleware), asyncHandler(createOrder));
+
+router.post(
+  "/create",
+  asyncHandler(authMiddleware),
+  asyncHandler(createOrder)
+);
+
 router.put(
   "/update",
   asyncHandler(authMiddleware),

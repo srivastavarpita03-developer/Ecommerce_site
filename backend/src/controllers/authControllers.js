@@ -73,6 +73,7 @@ async function login(req, res) {
   return res.send({
     success: true,
     message: "Login Successfully",
+    data: userData
   });
 }
 

@@ -1,0 +1,179 @@
+.checkout {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 40px 20px;
+}
+
+.checkoutContainer {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.checkoutLeft,
+.checkoutRight {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.checkoutLeft {
+  flex: 2;
+}
+
+.checkoutRight {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+}
+
+.checkoutLeft h2,
+.checkoutRight h2 {
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 28px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #000;
+}
+
+.formGroup textarea {
+  resize: none;
+}
+
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.paymentOptions label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.summaryItem:last-child {
+  border-bottom: none;
+}
+
+.summaryItem h4 {
+  margin: 0;
+  color: #222;
+}
+
+.summaryItem p {
+  margin-top: 5px;
+  color: #666;
+  font-size: 14px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.total h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.placeOrderBtn {
+  width: 100%;
+  padding: 14px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.placeOrderBtn:hover {
+  background: #333;
+}
+
+@media (max-width: 992px) {
+  .checkoutContainer {
+    flex-direction: column;
+  }
+
+  .checkoutRight {
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .checkout {
+    padding: 20px 10px;
+  }
+
+  .checkoutLeft,
+  .checkoutRight {
+    padding: 18px;
+  }
+
+  .checkoutLeft h2,
+  .checkoutRight h2 {
+    font-size: 22px;
+  }
+
+  .summaryItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .total h3 {
+    font-size: 18px;
+  }
+
+  .placeOrderBtn {
+    font-size: 16px;
+  }
+}

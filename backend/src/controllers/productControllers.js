@@ -116,6 +116,7 @@ async function updateProduct(req, res) {
 
 async function deleteProduct(req, res) {
   const data = req.body;
+  console.log(data,res.body)
   const { productId } = data;
   await Product.findByIdAndDelete(productId);
   return res.send({ success: true, message: "Product Delete Successfully" });

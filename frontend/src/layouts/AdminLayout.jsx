@@ -6,9 +6,9 @@ function AdminLayout() {
       <div className={style.adminSidebar}>
         <h1>Admin Sidebar</h1>
         <div className={style.adminLinks}>
-          <Link to="#">Products</Link>
-          <Link to="#">Orders</Link>
-          <Link to="#">Category</Link>
+          <Link to="/admin/products">Products</Link>
+          <Link to="/admin/orders">Orders</Link>
+          <Link to="/admin/category">Category</Link>
         </div>
       </div>
       <Outlet />

@@ -1,7 +1,11 @@
 const Order = require("../models/ordersModel");
 
 async function getAllOrders(req, res) {
-  const allOrders = await Order.find({});
+  const allOrders = await Order.find({}).populate([
+    { path: "userId" },
+    { path: "items.productId" },
+  ]);
+  
   return res.send({
     success: true,
     message: "Success",
@@ -65,10 +69,31 @@ async function updateOrder(req, res) {
     data: updatedOrderData,
   });
 }
+async function getSingleOrder(req, res) {
+  const { id } = req.params;
 
+  const order = await Order.findById(id).populate([
+    { path: "userId" },
+    { path: "items.productId" },
+  ]);
+
+  if (!order) {
+    return res.status(404).send({
+      success: false,
+      message: "Order not found",
+    });
+  }
+
+  return res.send({
+    success: true,
+    message: "Success",
+    data: order,
+  });
+}
 module.exports = {
   getAllOrders,
   getUserOrders,
   createOrder,
   updateOrder,
+  getSingleOrder,
 };
