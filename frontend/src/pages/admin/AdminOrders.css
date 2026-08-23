@@ -1,108 +1,132 @@
 .adminOrders {
-    padding: 40px;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 .ordersHeader {
-    margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .ordersHeader h1 {
-    font-size: 30px;
+  margin: 0;
+  font-size: 30px;
 }
 
 .tableWrapper {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.tableWrapper table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
 }
 
-thead {
-    background: #f5f5f5;
+.tableWrapper th,
+.tableWrapper td {
+  padding: 15px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid #eee;
 }
 
-th {
-    padding: 18px;
-    text-align: left;
-    font-size: 15px;
-    color: #666;
+.tableWrapper th {
+  background: #f5f5f5;
+  font-weight: 600;
 }
-
-td {
-    padding: 18px;
-    border-top: 1px solid #eee;
-    font-size: 15px;
-}
-
-tbody tr:hover {
-    background: #fafafa;
-}
-
-/* Status */
 
 .status {
-    padding: 6px 14px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: capitalize;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
-.pending {
-    background: #fff4d6;
-    color: #d48806;
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
 }
 
-.shipped {
-    background: #e6f4ff;
-    color: #1677ff;
+.status.shipped {
+  background: #cfe2ff;
+  color: #084298;
 }
 
-.delivered {
-    background: #dcfce7;
-    color: #15803d;
+.status.delivered {
+  background: #d1e7dd;
+  color: #0f5132;
 }
 
-.cancelled {
-    background: #ffe4e6;
-    color: #dc2626;
+.status.cancelled {
+  background: #f8d7da;
+  color: #842029;
 }
 
-.returned {
-    background: #f3e8ff;
-    color: #9333ea;
+.status.returned {
+  background: #e2e3e5;
+  color: #41464b;
 }
-
-/* Button */
 
 .viewBtn {
-    border: none;
-    background: #252529;
-    color: white;
-    padding: 8px 18px;
-    border-radius: 8px;
-    cursor: pointer;
+  border: none;
+  background: #111;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .viewBtn:hover {
-    background: black;
+  background: #333;
 }
 
-/* Responsive */
+/* Tablet */
+@media (max-width: 992px) {
+  .adminOrders {
+    padding: 20px;
+  }
 
-@media(max-width:1000px) {
+  .ordersHeader h1 {
+    font-size: 26px;
+  }
+}
 
-    .tableWrapper {
-        overflow-x: auto;
-    }
+/* Mobile */
+@media (max-width: 600px) {
+  .adminOrders {
+    padding: 15px 10px;
+  }
 
-    table {
-        min-width: 900px;
-    }
+  .ordersHeader {
+    margin-bottom: 15px;
+  }
 
+  .ordersHeader h1 {
+    font-size: 23px;
+  }
+
+  .tableWrapper {
+    border-radius: 8px;
+  }
+
+  .tableWrapper th,
+  .tableWrapper td {
+    padding: 11px;
+    font-size: 13px;
+  }
+
+  .viewBtn {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
 }

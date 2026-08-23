@@ -2,21 +2,47 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
 async function authMiddleware(req, res, next) {
-  const { token } = req.cookies;
-  
-  if (!token) {
-    return res
-      .status(400)
-      .send({ success: false, message: "Unauthorized Access" });
+  try {
+    const token = req.cookies?.token;
+
+    console.log("Auth Token:", token ? "Token Present" : "Token Missing");
+
+    if (!token) {
+      return res.status(401).send({
+        success: false,
+        message: "Unauthorized Access",
+      });
+    }
+
+    const tokenData = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
+
+    const userId = tokenData.userId;
+
+    const userData = await User.findById(userId)
+      .select("-password");
+
+    if (!userData) {
+      return res.status(401).send({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    req.user = userData;
+
+    next();
+
+  } catch (error) {
+    console.log("Auth Middleware Error:", error.message);
+
+    return res.status(401).send({
+      success: false,
+      message: "Unauthorized Access",
+    });
   }
-  const tokenData = jwt.verify(token, process.env.JWT_SECRET);
-  const userId = tokenData.userId;
-  const userData = await User.findById(userId).select("-password");
-  req.user = userData;
-  next();
 }
 
 module.exports = authMiddleware;
-
-// Accessing user info: req.user
-// Select * from <>

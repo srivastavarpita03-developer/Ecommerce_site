@@ -21,7 +21,7 @@ src-----|
         server.js(Main Entry Point of backend)
         routes(folder that will contain all routes files)
         controllers(folder that will contain handler functions)
-        modeks(folder that will contain all DB models/tables)
+        models(folder that will contain all DB models/tables)
         config(folder that will contain all configuration files)
 
 .env(file that conatins all environment variables),it contains variables which

@@ -1,23 +1,62 @@
+
 import { Link, useNavigate } from "react-router-dom";
-import { FaSearch, FaUserCircle, FaUserShield } from "react-icons/fa";
+
+import {
+  FaSearch,
+  FaUserCircle,
+  FaUserShield,
+  FaShoppingCart,
+  FaBoxOpen,
+} from "react-icons/fa";
+
 import "./Header.css";
 import { useUser } from "../context/UserContext";
 
 function Header() {
   const { user, logout } = useUser();
   const navigate = useNavigate();
+
+  // ======================================
+  // LOGOUT
+  // ======================================
+
   async function handleLogout() {
-    const isSuccess = await logout();
-    if (isSuccess) {
-      alert("Logout Successfully");
-      navigate("/login")
+    try {
+      const isSuccess = await logout();
+
+      if (isSuccess) {
+        alert("Logout Successfully");
+
+        navigate("/login", {
+          replace: true,
+        });
+      } else {
+        alert("Logout Failed");
+      }
+    } catch (error) {
+      console.log("Header Logout Error:", error);
+      alert("Logout Failed");
     }
   }
+
   return (
     <header>
-      {/* Left Side */}
+      {/* ======================================
+          LEFT SIDE
+      ====================================== */}
+
       <div className="header-left">
-        <h1 className="header-logo">Elite Attire</h1>
+        {/* LOGO */}
+
+        <h1
+          className="header-logo"
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }}
+        >
+          Elite Attire
+        </h1>
+
+        {/* NAVIGATION */}
 
         <nav>
           <ul>
@@ -40,39 +79,99 @@ function Header() {
         </nav>
       </div>
 
-      {/* Right Side */}
+      {/* ======================================
+          RIGHT SIDE
+      ====================================== */}
+
       <div className="header-right">
+        {/* SEARCH */}
+
         <div className="search">
           <FaSearch className="search-icon" />
-          <input type="text" placeholder="Search elite collections..." />
+
+          <input
+            type="text"
+            placeholder="Search elite collections..."
+          />
         </div>
 
+        {/* CART */}
+
+        <button
+          type="button"
+          className="cart-btn"
+          onClick={() => navigate("/cart")}
+        >
+          <FaShoppingCart />
+
+          <span>Cart</span>
+        </button>
+
+        {/* USER NOT LOGGED IN */}
+
         {!user ? (
-          <button className="login-btn" onClick={() => navigate("/login")}>
+          <button
+            type="button"
+            className="login-btn"
+            onClick={() => navigate("/login")}
+          >
             Login
           </button>
         ) : (
           <>
+            {/* ADMIN OR USER PROFILE */}
+
             {user.role === "admin" ? (
-              <button className="admin-btn" onClick={() => navigate("/admin")}>
+              <button
+                type="button"
+                className="admin-btn"
+                onClick={() => navigate("/admin")}
+              >
                 <FaUserShield />
+
                 <span>Admin Panel</span>
               </button>
             ) : (
-              <div className="profile-box" onClick={() => navigate("/profile")}>
+              <button
+                type="button"
+                className="profile-btn"
+                onClick={() => navigate("/profile")}
+              >
                 {user.profilePic ? (
                   <img
                     src={user.profilePic}
-                    alt="profile"
+                    alt="Profile"
                     className="profile-img"
                   />
                 ) : (
                   <FaUserCircle className="profile-icon" />
                 )}
-              </div>
+
+                <span>Profile</span>
+              </button>
             )}
 
-            <button className="logout-btn" onClick={handleLogout}>
+            {/* MY ORDERS */}
+
+            {user.role !== "admin" && (
+              <button
+                type="button"
+                className="orders-btn"
+                onClick={() => navigate("/orders")}
+              >
+                <FaBoxOpen />
+
+                <span>Orders</span>
+              </button>
+            )}
+
+            {/* LOGOUT */}
+
+            <button
+              type="button"
+              className="logout-btn"
+              onClick={handleLogout}
+            >
               Logout
             </button>
           </>
@@ -83,3 +182,4 @@ function Header() {
 }
 
 export default Header;
+

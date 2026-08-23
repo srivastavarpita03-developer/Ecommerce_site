@@ -3,72 +3,131 @@ import { useNavigate } from "react-router-dom";
 import "./AdminOrders.css";
 import api from "../../utils/api";
 
-const orders = [
-  {
-    _id: "ORD-1001",
-    customer: "User 1",
-    totalOrderValue: 24500,
-    paymentStatus: "completed",
-    payementMode: "UPI",
-    orderStatus: "pending",
-    createdAt: "14 Jul 2026",
-  },
-  {
-    _id: "ORD-1002",
-    customer: "Rahul Sharma",
-    totalOrderValue: 18999,
-    paymentStatus: "completed",
-    payementMode: "COD",
-    orderStatus: "shipped",
-    createdAt: "13 Jul 2026",
-  },
-  {
-    _id: "ORD-1003",
-    customer: "Priya Singh",
-    totalOrderValue: 32000,
-    paymentStatus: "pending",
-    payementMode: "Card",
-    orderStatus: "pending",
-    createdAt: "12 Jul 2026",
-  },
-  {
-    _id: "ORD-1004",
-    customer: "Ankit Verma",
-    totalOrderValue: 54000,
-    paymentStatus: "completed",
-    payementMode: "UPI",
-    orderStatus: "delivered",
-    createdAt: "10 Jul 2026",
-  },
-];
-
 function AdminOrders() {
   const navigate = useNavigate();
 
-  const [ordersData, setOrderData] = useState([]);
+  const [ordersData, setOrdersData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  async function getData() {
-    const response = await api.get("/orders/all");
-    const res = response.data;
+  // ==============================
+  // GET ALL ORDERS
+  // ==============================
 
-    if (res?.success) {
-      console.log(res);
-      setOrderData(res.data);
+  async function getOrders() {
+    try {
+      setLoading(true);
+
+      const response = await api.get("/orders/all");
+
+      const res = response.data;
+
+      console.log("Admin Orders:", res);
+
+      if (res.success) {
+        setOrdersData(res.data || []);
+      } else {
+        setOrdersData([]);
+      }
+    } catch (error) {
+      console.log("Get Admin Orders Error:", error);
+
+      if (error.response?.status === 401) {
+        alert("Please login as admin first");
+      } else {
+        alert(
+          error.response?.data?.message ||
+            "Failed to load orders"
+        );
+      }
+    } finally {
+      setLoading(false);
     }
   }
 
   useEffect(() => {
-    getData();
+    getOrders();
   }, []);
+
+  // ==============================
+  // CALCULATE ORDER TOTAL
+  // ==============================
+
+  function calculateOrderTotal(order) {
+    if (order.totalOrderValue) {
+      return Number(order.totalOrderValue);
+    }
+
+    return (
+      order.items?.reduce((total, item) => {
+        const price = Number(
+          item.productId?.price || 0
+        );
+
+        const quantity = Number(
+          item.quantity || 0
+        );
+
+        return total + price * quantity;
+      }, 0) || 0
+    );
+  }
+
+  // ==============================
+  // LOADING
+  // ==============================
+
+  if (loading) {
+    return (
+      <section className="adminOrders">
+        <div className="ordersLoading">
+          Loading Orders...
+        </div>
+      </section>
+    );
+  }
+
+  // ==============================
+  // NO ORDERS
+  // ==============================
+
+  if (ordersData.length === 0) {
+    return (
+      <section className="adminOrders">
+        <div className="ordersHeader">
+          <h1>Orders</h1>
+        </div>
+
+        <div className="noOrders">
+          <h2>No Orders Found</h2>
+          <p>
+            There are no customer orders yet.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  // ==============================
+  // UI
+  // ==============================
 
   return (
     <section className="adminOrders">
+
       <div className="ordersHeader">
-        <h1>Orders</h1>
+        <div>
+          <h1>Orders</h1>
+
+          <p>
+            Total Orders: {ordersData.length}
+          </p>
+        </div>
       </div>
 
       <div className="tableWrapper">
+
         <table>
+
           <thead>
             <tr>
               <th>Order ID</th>
@@ -83,39 +142,127 @@ function AdminOrders() {
           </thead>
 
           <tbody>
-            {ordersData.map((order) => (
-              <tr key={order?._id}>
-                <td>{order?._id}</td>
 
-                <td>{order?.createdAt}</td>
+            {ordersData.map((order) => {
 
-                <td>{order?.userId?.name}</td>
+              const total =
+                calculateOrderTotal(order);
 
-                <td>₹ {order?.items?.[0]?.productId?.price}</td>
+              return (
+                <tr key={order._id}>
 
-                <td>{order?.paymentStatus || "Pending"}</td>
+                  {/* ORDER ID */}
 
-                <td>{order?.payementMode || "N/A"}</td>
+                  <td>
+                    <span className="orderId">
+                      #{order._id.slice(-8)}
+                    </span>
+                  </td>
 
-                <td>
-                  <span className={`status ${order?.orderStatus}`}>
-                    {order?.orderStatus}
-                  </span>
-                </td>
+                  {/* DATE */}
 
-                <td>
-                  <button
-                    className="viewBtn"
-                    onClick={() => navigate(`/admin/orders/${order._id}`)}
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td>
+                    {order.createdAt
+                      ? new Date(
+                          order.createdAt
+                        ).toLocaleDateString(
+                          "en-IN"
+                        )
+                      : "N/A"}
+                  </td>
+
+                  {/* CUSTOMER */}
+
+                  <td>
+                    <div className="customerInfo">
+
+                      <strong>
+                        {order.userId?.name ||
+                          "Unknown User"}
+                      </strong>
+
+                      <small>
+                        {order.userId?.email ||
+                          "N/A"}
+                      </small>
+
+                    </div>
+                  </td>
+
+                  {/* TOTAL */}
+
+                  <td>
+                    <strong>
+                      ₹{" "}
+                      {total.toLocaleString(
+                        "en-IN"
+                      )}
+                    </strong>
+                  </td>
+
+                  {/* PAYMENT */}
+
+                  <td>
+                    <span
+                      className={`paymentStatus ${
+                        order.paymentStatus ||
+                        "pending"
+                      }`}
+                    >
+                      {order.paymentStatus ||
+                        "pending"}
+                    </span>
+                  </td>
+
+                  {/* PAYMENT MODE */}
+
+                  <td>
+                    {order.paymentMode ||
+                      "N/A"}
+                  </td>
+
+                  {/* ORDER STATUS */}
+
+                  <td>
+                    <span
+                      className={`status ${
+                        order.orderStatus ||
+                        "pending"
+                      }`}
+                    >
+                      {order.orderStatus ||
+                        "pending"}
+                    </span>
+                  </td>
+
+                  {/* VIEW */}
+
+                  <td>
+
+                    <button
+                      type="button"
+                      className="viewBtn"
+                      onClick={() =>
+                        navigate(
+                          `/admin/orders/${order._id}`
+                        )
+                      }
+                    >
+                      View
+                    </button>
+
+                  </td>
+
+                </tr>
+              );
+            })}
+
           </tbody>
+
         </table>
+
       </div>
+
     </section>
   );
 }

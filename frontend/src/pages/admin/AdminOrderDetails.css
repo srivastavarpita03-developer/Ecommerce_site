@@ -1,7 +1,7 @@
 .adminOrderDetails {
+  width: 100%;
   padding: 30px;
-  background: #f8f9fa;
-  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .orderDetailsHeader {
@@ -12,138 +12,148 @@
 }
 
 .orderDetailsHeader h2 {
-  font-size: 28px;
-  color: #222;
   margin: 0;
+  font-size: 28px;
+}
+
+.backBtn {
+  border: none;
+  background: #111;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 7px;
+  cursor: pointer;
 }
 
 .detailsCard {
-  background: #fff;
+  width: 100%;
+  background: white;
   padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   margin-bottom: 25px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .detailsCard h3 {
+  margin-top: 0;
   margin-bottom: 20px;
-  color: #333;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
 }
 
 .detailRow {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-bottom: 20px;
 }
 
 .detailItem {
-  flex: 1;
+  min-width: 0;
 }
 
 .detailItem label {
   display: block;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 5px;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 6px;
 }
 
 .detailItem p {
   margin: 0;
-  color: #222;
   font-size: 15px;
+  font-weight: 500;
+  word-break: break-word;
 }
 
 .productTable {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
 }
 
 .productTable th,
 .productTable td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
 }
 
 .productTable th {
-  background: #222;
-  color: white;
+  background: #f5f5f5;
 }
 
 .productImage {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   object-fit: cover;
-  border-radius: 6px;
-}
-
-.status {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 20px;
-  color: white;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.status.pending {
-  background: #f39c12;
-}
-
-.status.processing {
-  background: #3498db;
-}
-
-.status.shipped {
-  background: #9b59b6;
-}
-
-.status.delivered {
-  background: #27ae60;
+  border-radius: 8px;
 }
 
 .paymentCompleted {
-  color: #27ae60;
+  color: green;
   font-weight: 600;
 }
 
 .paymentPending {
-  color: #e74c3c;
+  color: #d39e00;
   font-weight: 600;
 }
 
-.backBtn {
-  padding: 10px 20px;
-  border: none;
-  background: #222;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.backBtn:hover {
-  background: #000;
-}
-
+/* Tablet */
 @media (max-width: 768px) {
+  .adminOrderDetails {
+    padding: 20px;
+  }
+
   .detailRow {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .productTable {
-    display: block;
-    overflow-x: auto;
+    min-width: 700px;
   }
 
-  .orderDetailsHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+  .detailsCard {
+    overflow-x: auto;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .adminOrderDetails {
+    padding: 15px 10px;
+  }
+
+  .orderDetailsHeader h2 {
+    font-size: 22px;
+  }
+
+  .backBtn {
+    padding: 8px 13px;
+    font-size: 13px;
+  }
+
+  .detailsCard {
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .detailsCard h3 {
+    font-size: 18px;
+  }
+
+  .detailItem p {
+    font-size: 14px;
+  }
+
+  .productTable th,
+  .productTable td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .productImage {
+    width: 50px;
+    height: 50px;
   }
 }

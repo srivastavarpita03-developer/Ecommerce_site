@@ -16,14 +16,22 @@ function UserContext({ children }) {
   }, []);
 
   async function logout() {
-    const response = await api.get("/auth/logout");
-    const res = response.data;
-    if (res?.success) {
+  try {
+    const response = await api.post("/auth/logout");
+
+    console.log("Logout Response:", response.data);
+
+    if (response.data.success) {
       setUser(null);
       return true;
     }
+
+    return false;
+  } catch (error) {
+    console.log("Logout Error:", error);
     return false;
   }
+}
   return (
     <UserContextProvider.Provider value={{ user, setUser, logout }}>
       {children}

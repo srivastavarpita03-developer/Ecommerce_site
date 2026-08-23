@@ -1,179 +1,299 @@
+/* ==============================
+   CHECKOUT PAGE
+============================== */
+
 .checkout {
   width: 100%;
-  min-height: 100vh;
-  background: #f5f5f5;
-  padding: 40px 20px;
+  min-height: 80vh;
+  padding: 50px 20px;
+  background: #f7f7f7;
+  box-sizing: border-box;
 }
 
 .checkoutContainer {
   max-width: 1200px;
-  margin: auto;
-  display: flex;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
   gap: 30px;
-  align-items: flex-start;
+  align-items: start;
 }
 
-.checkoutLeft,
-.checkoutRight {
-  background: #fff;
-  border-radius: 10px;
-  padding: 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
+/* ==============================
+   LEFT SIDE
+============================== */
 
 .checkoutLeft {
-  flex: 2;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
-.checkoutRight {
-  flex: 1;
-  position: sticky;
-  top: 20px;
-}
-
-.checkoutLeft h2,
-.checkoutRight h2 {
-  margin-bottom: 20px;
-  color: #222;
+.checkoutLeft h2 {
+  margin: 0 0 30px;
   font-size: 28px;
+  color: #111;
 }
+
+/* ==============================
+   FORM
+============================== */
 
 .formGroup {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .formGroup label {
+  display: block;
   margin-bottom: 8px;
+  font-size: 15px;
   font-weight: 600;
-  color: #333;
+  color: #222;
 }
 
 .formGroup input,
 .formGroup textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #dcdcdc;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
   border-radius: 6px;
+  padding: 13px 14px;
   font-size: 15px;
   outline: none;
-  transition: 0.3s;
+  background: #fff;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.formGroup input {
+  height: 48px;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 110px;
 }
 
 .formGroup input:focus,
 .formGroup textarea:focus {
-  border-color: #000;
+  border-color: #111;
 }
 
-.formGroup textarea {
-  resize: none;
-}
+/* ==============================
+   PAYMENT OPTIONS
+============================== */
 
 .paymentOptions {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .paymentOptions label {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-weight: 400;
   cursor: pointer;
-  font-weight: 500;
+  margin: 0;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
 }
+
+.paymentOptions label:hover {
+  border-color: #111;
+}
+
+.paymentOptions input[type="radio"] {
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+/* ==============================
+   RIGHT SIDE
+============================== */
+
+.checkoutRight {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+
+.checkoutRight h2 {
+  margin: 0 0 25px;
+  font-size: 24px;
+  color: #111;
+}
+
+/* ==============================
+   SUMMARY ITEM
+============================== */
 
 .summaryItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
   padding: 15px 0;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.summaryItem:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #eee;
 }
 
 .summaryItem h4 {
   margin: 0;
+  font-size: 16px;
   color: #222;
 }
 
 .summaryItem p {
-  margin-top: 5px;
+  margin: 6px 0 0;
   color: #666;
   font-size: 14px;
+}
+
+/* ==============================
+   TOTAL
+============================== */
+
+.checkoutRight hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
 }
 
 .total {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 25px 0;
 }
 
 .total h3 {
   margin: 0;
-  font-size: 22px;
+  font-size: 20px;
+  color: #111;
 }
+
+/* ==============================
+   PLACE ORDER BUTTON
+============================== */
 
 .placeOrderBtn {
   width: 100%;
   padding: 14px;
-  background: #000;
-  color: #fff;
+  margin-top: 25px;
   border: none;
   border-radius: 6px;
-  font-size: 17px;
+  background: #111;
+  color: #fff;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .placeOrderBtn:hover {
   background: #333;
 }
 
-@media (max-width: 992px) {
-  .checkoutContainer {
-    flex-direction: column;
+.placeOrderBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==============================
+   LOADING
+============================== */
+
+.checkoutLoading {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+/* ==============================
+   ERROR
+============================== */
+
+.checkoutError {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.checkoutError h2 {
+  margin-bottom: 15px;
+}
+
+.checkoutError button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 768px) {
+  .checkout {
+    padding: 30px 15px;
   }
 
+  .checkoutContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .checkoutLeft,
   .checkoutRight {
-    position: static;
-    width: 100%;
+    padding: 20px;
+  }
+
+  .checkoutLeft h2 {
+    font-size: 24px;
+  }
+
+  .checkoutRight h2 {
+    font-size: 22px;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
   .checkout {
     padding: 20px 10px;
   }
 
   .checkoutLeft,
   .checkoutRight {
-    padding: 18px;
-  }
-
-  .checkoutLeft h2,
-  .checkoutRight h2 {
-    font-size: 22px;
+    padding: 15px;
   }
 
   .summaryItem {
-    flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+  }
+
+  .summaryItem h4 {
+    font-size: 14px;
   }
 
   .total h3 {
     font-size: 18px;
-  }
-
-  .placeOrderBtn {
-    font-size: 16px;
   }
 }

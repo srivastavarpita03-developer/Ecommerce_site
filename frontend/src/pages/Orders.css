@@ -1,0 +1,312 @@
+/* =========================================
+   ORDERS PAGE
+========================================= */
+
+.ordersPage {
+  width: 100%;
+  min-height: 80vh;
+  padding: 50px 20px;
+  background: #f7f7f7;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.ordersContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
+
+.ordersContainer > h1 {
+  margin: 0 0 30px;
+  font-size: 32px;
+  color: #111;
+}
+
+
+/* =========================================
+   ORDER CARD
+========================================= */
+
+.orderCard {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   ORDER HEADER
+========================================= */
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+
+.orderHeader h3 {
+  margin: 0 0 7px;
+  font-size: 15px;
+  color: #666;
+  font-weight: 500;
+}
+
+
+.orderHeader p {
+  margin: 0;
+  font-size: 14px;
+  color: #111;
+  word-break: break-all;
+}
+
+
+/* =========================================
+   HORIZONTAL LINE
+========================================= */
+
+.orderCard hr {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 20px 0;
+}
+
+
+/* =========================================
+   ORDER PRODUCTS
+========================================= */
+
+.orderProducts {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+.orderProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+
+.orderProduct h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #222;
+}
+
+
+.orderProduct p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+
+.orderProduct strong {
+  font-size: 16px;
+  color: #111;
+}
+
+
+/* =========================================
+   ORDER INFORMATION
+========================================= */
+
+.orderInfo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+
+.orderInfo > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+
+.orderInfo span {
+  font-size: 13px;
+  color: #777;
+}
+
+
+.orderInfo strong {
+  font-size: 15px;
+  color: #111;
+  text-transform: capitalize;
+}
+
+
+/* =========================================
+   SHIPPING INFORMATION
+========================================= */
+
+.shippingInfo {
+  margin-top: 25px;
+  padding: 18px;
+  background: #f8f8f8;
+  border-radius: 7px;
+}
+
+
+.shippingInfo h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #333;
+}
+
+
+.shippingInfo p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+
+/* =========================================
+   EMPTY ORDERS
+========================================= */
+
+.emptyOrders {
+  background: #fff;
+  padding: 60px 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+.emptyOrders h2 {
+  margin: 0 0 10px;
+  font-size: 25px;
+  color: #111;
+}
+
+
+.emptyOrders p {
+  margin: 0;
+  color: #666;
+  font-size: 15px;
+}
+
+
+.emptyOrders button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+.emptyOrders button:hover {
+  background: #333;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.ordersContainer > h2 {
+  text-align: center;
+  padding: 50px 0;
+  color: #555;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .ordersPage {
+    padding: 35px 15px;
+  }
+
+
+  .ordersContainer > h1 {
+    font-size: 27px;
+  }
+
+
+  .orderCard {
+    padding: 18px;
+  }
+
+
+  .orderHeader {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+
+  .orderInfo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .orderProduct {
+    gap: 15px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .ordersPage {
+    padding: 25px 10px;
+  }
+
+
+  .orderCard {
+    padding: 15px;
+  }
+
+
+  .orderInfo {
+    grid-template-columns: 1fr;
+  }
+
+
+  .orderProduct h4 {
+    font-size: 14px;
+  }
+
+
+  .orderProduct strong {
+    font-size: 14px;
+  }
+
+
+  .shippingInfo {
+    padding: 14px;
+  }
+
+}
