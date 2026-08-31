@@ -59,7 +59,7 @@ function AdminOrderDetails() {
     try {
       setUpdating(true);
 
-      const response = await api.put("/orders/update", {
+      const response = await api.put("/orders/status", {
         orderId: id,
         status: status,
       });

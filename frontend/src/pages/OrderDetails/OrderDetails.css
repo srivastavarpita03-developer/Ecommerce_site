@@ -1,0 +1,512 @@
+/* =========================================
+   ORDER DETAILS PAGE
+========================================= */
+
+.orderDetailsPage {
+  min-height: 100vh;
+  background: #f6f6f6;
+  padding: 110px 30px 50px;
+}
+
+.orderDetailsContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.orderDetailsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.orderDetailsHeader h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #111;
+}
+
+.backBtn {
+  border: none;
+  background: #111;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.backBtn:hover {
+  background: #333;
+}
+
+
+/* =========================================
+   ORDER SUMMARY CARD
+========================================= */
+
+.orderSummaryCard {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.orderSummaryTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.orderSummaryTop h2 {
+  margin: 0 0 7px;
+  font-size: 21px;
+  color: #111;
+}
+
+.orderDate {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* =========================================
+   ORDER STATUS
+========================================= */
+
+.orderStatus {
+  display: inline-block;
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+
+/* Pending */
+
+.orderStatus.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+
+/* Shipped */
+
+.orderStatus.shipped {
+  background: #cfe2ff;
+  color: #084298;
+}
+
+
+/* Delivered */
+
+.orderStatus.delivered {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+
+/* Cancelled */
+
+.orderStatus.cancelled {
+  background: #f8d7da;
+  color: #842029;
+}
+
+
+/* Returned */
+
+.orderStatus.returned {
+  background: #e2e3e5;
+  color: #41464b;
+}
+
+
+/* =========================================
+   ORDER INFORMATION
+========================================= */
+
+.orderInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.orderInfoBox {
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.orderInfoBox span {
+  display: block;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.orderInfoBox strong {
+  display: block;
+  color: #222;
+  font-size: 15px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+
+/* =========================================
+   PRODUCTS CARD
+========================================= */
+
+.orderProductsCard {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.orderProductsCard h2 {
+  margin: 0 0 20px;
+  font-size: 21px;
+  color: #111;
+}
+
+
+/* =========================================
+   PRODUCT ITEM
+========================================= */
+
+.orderProductItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.orderProductItem:last-child {
+  border-bottom: none;
+}
+
+
+/* Product Image */
+
+.orderProductImage {
+  width: 100px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+}
+
+
+/* Product Details */
+
+.orderProductInfo {
+  flex: 1;
+}
+
+.orderProductInfo h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: #111;
+}
+
+.orderProductInfo p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+
+/* Product Price */
+
+.orderProductPrice {
+  text-align: right;
+  min-width: 130px;
+}
+
+.orderProductPrice span {
+  display: block;
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.orderProductPrice strong {
+  color: #111;
+  font-size: 17px;
+}
+
+
+/* =========================================
+   PAYMENT CARD
+========================================= */
+
+.paymentCard {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.paymentCard h2 {
+  margin: 0 0 20px;
+  font-size: 21px;
+}
+
+.paymentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.paymentBox {
+  padding: 15px;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.paymentBox span {
+  display: block;
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.paymentBox strong {
+  color: #222;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+
+/* =========================================
+   TOTAL CARD
+========================================= */
+
+.orderTotalCard {
+  background: #111;
+  color: white;
+  border-radius: 12px;
+  padding: 22px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderTotalCard span {
+  font-size: 17px;
+}
+
+.orderTotalCard strong {
+  font-size: 24px;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.orderDetailsLoading {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderDetailsLoading h2 {
+  color: #555;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.orderDetailsError {
+  max-width: 600px;
+  margin: 150px auto 0;
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.orderDetailsError h2 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.orderDetailsError p {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .orderDetailsPage {
+    padding: 100px 20px 40px;
+  }
+
+  .orderDetailsHeader h1 {
+    font-size: 27px;
+  }
+
+  .orderInfoGrid,
+  .paymentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .orderProductItem {
+    gap: 15px;
+  }
+
+  .orderProductImage {
+    width: 85px;
+    height: 105px;
+  }
+
+}
+
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .orderDetailsPage {
+    padding: 95px 12px 30px;
+  }
+
+  .orderDetailsHeader {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .orderDetailsHeader h1 {
+    font-size: 24px;
+  }
+
+  .backBtn {
+    width: 100%;
+  }
+
+  .orderSummaryCard,
+  .orderProductsCard,
+  .paymentCard {
+    padding: 18px;
+  }
+
+  .orderSummaryTop {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .orderSummaryTop h2 {
+    font-size: 18px;
+  }
+
+  .orderInfoGrid,
+  .paymentGrid {
+    gap: 12px;
+  }
+
+  .orderProductItem {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .orderProductImage {
+    width: 75px;
+    height: 90px;
+  }
+
+  .orderProductInfo {
+    min-width: 0;
+  }
+
+  .orderProductInfo h3 {
+    font-size: 15px;
+  }
+
+  .orderProductPrice {
+    width: 100%;
+    text-align: left;
+    padding-left: 90px;
+  }
+
+  .orderTotalCard {
+    padding: 18px;
+  }
+
+  .orderTotalCard span {
+    font-size: 15px;
+  }
+
+  .orderTotalCard strong {
+    font-size: 20px;
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .orderDetailsHeader h1 {
+    font-size: 21px;
+  }
+
+  .orderSummaryCard,
+  .orderProductsCard,
+  .paymentCard {
+    padding: 15px;
+  }
+
+  .orderProductImage {
+    width: 65px;
+    height: 80px;
+  }
+
+  .orderProductPrice {
+    padding-left: 80px;
+  }
+
+  .orderTotalCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+}

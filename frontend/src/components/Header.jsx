@@ -11,11 +11,13 @@ import {
 
 import "./Header.css";
 import { useUser } from "../context/UserContext";
+import { useState } from "react";
+import api from "../utils/api";
 
 function Header() {
   const { user, logout } = useUser();
   const navigate = useNavigate();
-
+  const [userQuery, setUserQuery] = useState("");
   // ======================================
   // LOGOUT
   // ======================================
@@ -39,6 +41,14 @@ function Header() {
     }
   }
 
+  async function handleSearch() {
+    const respose = await api.post("/ai/search-ai", {
+      userQuery: userQuery
+    });
+
+    console.log(respose.data)
+  }
+
   return (
     <header>
       {/* ======================================
@@ -53,7 +63,7 @@ function Header() {
           onClick={() => navigate("/")}
           style={{ cursor: "pointer" }}
         >
-          Elite Attire
+        VestiQ Nexus
         </h1>
 
         {/* NAVIGATION */}
@@ -92,20 +102,27 @@ function Header() {
           <input
             type="text"
             placeholder="Search elite collections..."
+            value={userQuery}
+            onChange={(e) => { setUserQuery(e.target.value) }}
           />
+
+          <button onClick={handleSearch}>Search</button>
         </div>
 
         {/* CART */}
 
-        <button
-          type="button"
-          className="cart-btn"
-          onClick={() => navigate("/cart")}
-        >
-          <FaShoppingCart />
+       {/* CART - ONLY LOGGED IN USERS */}
 
-          <span>Cart</span>
-        </button>
+{user && (
+  <button
+    type="button"
+    className="cart-btn"
+    onClick={() => navigate("/cart")}
+  >
+    <FaShoppingCart />
+    <span>Cart</span>
+  </button>
+)}
 
         {/* USER NOT LOGGED IN */}
 

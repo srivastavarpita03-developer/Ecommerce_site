@@ -28,6 +28,7 @@ async function getAllProducts(req, res) {
   }
 
   const data = await Product.find(filter)
+    .populate("category")
     .skip((page - 1) * limit)
     .limit(limit);
 
@@ -60,7 +61,8 @@ async function getAllProducts(req, res) {
 async function getSingleProduct(req, res) {
   const productId = req.params.productId;
 
-  const productData = await Product.findById(productId);
+  const productData = await Product.findById(productId)
+    .populate("category");
 
   if (!productData) {
     return res.status(404).send({
@@ -82,42 +84,108 @@ async function getSingleProduct(req, res) {
 // ======================================
 
 async function addProduct(req, res) {
-  const data = req.body;
+  try {
+    const data = req.body;
 
-  const {
-    title,
-    description,
-    price,
-    category,
-    subcategory,
-    discount,
-    stock,
-    features,
-    variant,
-  } = data;
+    const {
+      title,
+      description,
+      price,
+      category,
+      subcategory,
+      discount,
+      stock,
+      features,
+      variant,
+    } = data;
 
-  const images = req?.files?.map((file) => file.filename);
+    // ======================================
+    // PARSE FEATURES
+    // ======================================
 
-  const productData = new Product({
-    title,
-    description,
-    price,
-    category,
-    subcategory,
-    discount,
-    stock,
-    features,
-    variant,
-    images,
-  });
+    let parsedFeatures = [];
 
-  const newProductData = await productData.save();
+    if (features) {
+      try {
+        parsedFeatures =
+          typeof features === "string"
+            ? JSON.parse(features)
+            : features;
+      } catch (error) {
+        return res.status(400).send({
+          success: false,
+          message: "Invalid features format",
+        });
+      }
+    }
 
-  return res.send({
-    success: true,
-    message: "Product Added Successfully",
-    data: newProductData,
-  });
+    // ======================================
+    // PARSE VARIANT
+    // ======================================
+
+    let parsedVariant = [];
+
+    if (variant) {
+      try {
+        parsedVariant =
+          typeof variant === "string"
+            ? JSON.parse(variant)
+            : variant;
+      } catch (error) {
+        return res.status(400).send({
+          success: false,
+          message: "Invalid variant format",
+        });
+      }
+    }
+
+    // ======================================
+    // IMAGES
+    // ======================================
+
+    const images =
+      req?.files?.map(
+        (file) => file.filename
+      ) || [];
+
+    // ======================================
+    // CREATE PRODUCT
+    // ======================================
+
+    const productData = new Product({
+      title,
+      description,
+      price: Number(price),
+      category,
+      subcategory,
+      discount: Number(discount || 0),
+      stock: Number(stock),
+      features: parsedFeatures,
+      variant: parsedVariant,
+      images,
+    });
+
+    const newProductData =
+      await productData.save();
+
+    return res.send({
+      success: true,
+      message: "Product Added Successfully",
+      data: newProductData,
+    });
+
+  } catch (error) {
+    console.log(
+      "Add Product Error:",
+      error
+    );
+
+    return res.status(500).send({
+      success: false,
+      message: "Failed To Add Product",
+      error: error.message,
+    });
+  }
 }
 
 
@@ -126,44 +194,144 @@ async function addProduct(req, res) {
 // ======================================
 
 async function updateProduct(req, res) {
-  const data = req.body;
+  try {
+    const data = req.body;
 
-  const {
-    title,
-    description,
-    price,
-    category,
-    subcategory,
-    discount,
-    stock,
-    features,
-    variant,
-    productId,
-    oldImages,
-  } = data;
+    const {
+      title,
+      description,
+      price,
+      category,
+      subcategory,
+      discount,
+      stock,
+      features,
+      variant,
+      productId,
+      oldImages,
+    } = data;
 
-  const newImages = req?.files?.map((file) => file.filename) || [];
+    // ======================================
+    // PARSE FEATURES
+    // ======================================
 
-  const images = [...(oldImages || []), ...newImages];
+    let parsedFeatures = [];
 
-  const updatedProductData = await Product.findByIdAndUpdate(productId, {
-    title,
-    description,
-    price,
-    category,
-    subcategory,
-    discount,
-    stock,
-    features,
-    variant,
-    images,
-  });
+    if (features) {
+      try {
+        parsedFeatures =
+          typeof features === "string"
+            ? JSON.parse(features)
+            : features;
+      } catch (error) {
+        return res.status(400).send({
+          success: false,
+          message: "Invalid features format",
+        });
+      }
+    }
 
-  return res.send({
-    success: true,
-    message: "Product Updated Successfully",
-    data: updatedProductData,
-  });
+    // ======================================
+    // PARSE VARIANT
+    // ======================================
+
+    let parsedVariant = [];
+
+    if (variant) {
+      try {
+        parsedVariant =
+          typeof variant === "string"
+            ? JSON.parse(variant)
+            : variant;
+      } catch (error) {
+        return res.status(400).send({
+          success: false,
+          message: "Invalid variant format",
+        });
+      }
+    }
+
+    // ======================================
+    // OLD IMAGES
+    // ======================================
+
+    let parsedOldImages = [];
+
+    if (oldImages) {
+      try {
+        parsedOldImages =
+          typeof oldImages === "string"
+            ? JSON.parse(oldImages)
+            : oldImages;
+      } catch (error) {
+        parsedOldImages = [];
+      }
+    }
+
+    // ======================================
+    // NEW IMAGES
+    // ======================================
+
+    const newImages =
+      req?.files?.map(
+        (file) => file.filename
+      ) || [];
+
+    const images = [
+      ...parsedOldImages,
+      ...newImages,
+    ];
+
+    // ======================================
+    // UPDATE PRODUCT
+    // ======================================
+
+    const updatedProductData =
+      await Product.findByIdAndUpdate(
+        productId,
+        {
+          title,
+          description,
+          price: Number(price),
+          category,
+          subcategory,
+          discount: Number(discount || 0),
+          stock: Number(stock),
+          features: parsedFeatures,
+          variant: parsedVariant,
+          images,
+        },
+        {
+          new: true,
+        }
+      );
+
+    if (!updatedProductData) {
+      return res.status(404).send({
+        success: false,
+        message: "Product Not Found",
+      });
+    }
+
+    return res.send({
+      success: true,
+      message:
+        "Product Updated Successfully",
+      data: updatedProductData,
+    });
+
+  } catch (error) {
+    console.log(
+      "Update Product Error:",
+      error
+    );
+
+    return res.status(500).send({
+      success: false,
+      message: "Failed To Update Product",
+      error: error.message,
+    });
+  }
 }
 
 
@@ -172,16 +340,30 @@ async function updateProduct(req, res) {
 // ======================================
 
 async function deleteProduct(req, res) {
-  const data = req.body;
+  try {
+    const data = req.body;
 
-  const { productId } = data;
+    const { productId } = data;
 
-  await Product.findByIdAndDelete(productId);
+    await Product.findByIdAndDelete(productId);
 
-  return res.send({
-    success: true,
-    message: "Product Delete Successfully",
-  });
+    return res.send({
+      success: true,
+      message: "Product Delete Successfully",
+    });
+
+  } catch (error) {
+    console.log(
+      "Delete Product Error:",
+      error
+    );
+
+    return res.status(500).send({
+      success: false,
+      message: "Failed To Delete Product",
+      error: error.message,
+    });
+  }
 }
 
 
@@ -199,7 +381,6 @@ async function addToCart(req, res) {
       variant = {},
     } = req.body;
 
-    // Product ID check
     if (!productId) {
       return res.status(400).send({
         success: false,
@@ -207,8 +388,8 @@ async function addToCart(req, res) {
       });
     }
 
-    // Check product exists
-    const product = await Product.findById(productId);
+    const product =
+      await Product.findById(productId);
 
     if (!product) {
       return res.status(404).send({
@@ -217,8 +398,8 @@ async function addToCart(req, res) {
       });
     }
 
-    // Check user exists
-    const user = await User.findById(userId);
+    const user =
+      await User.findById(userId);
 
     if (!user) {
       return res.status(404).send({
@@ -227,23 +408,21 @@ async function addToCart(req, res) {
       });
     }
 
-    // Check if product already exists in cart
-    const existingItem = user.cart.find(
-      (item) =>
-        item.productId?.toString() === productId
-    );
+    const existingItem =
+      user.cart.find(
+        (item) =>
+          item.productId?.toString() ===
+          productId
+      );
 
-    // Product already exists
     if (existingItem) {
-      existingItem.quantity += Number(quantity);
-    }
-
-    // Product does not exist
-    else {
+      existingItem.quantity +=
+        Number(quantity);
+    } else {
       user.cart.push({
-        productId: productId,
+        productId,
         quantity: Number(quantity),
-        variant: variant,
+        variant,
       });
     }
 
@@ -256,11 +435,15 @@ async function addToCart(req, res) {
     });
 
   } catch (error) {
-    console.log("Add To Cart Error:", error);
+    console.log(
+      "Add To Cart Error:",
+      error
+    );
 
     return res.status(500).send({
       success: false,
-      message: "Failed To Add Product To Cart",
+      message:
+        "Failed To Add Product To Cart",
       error: error.message,
     });
   }
@@ -275,9 +458,9 @@ async function getCart(req, res) {
   try {
     const userId = req.user._id;
 
-    const user = await User.findById(userId).populate(
-      "cart.productId"
-    );
+    const user =
+      await User.findById(userId)
+        .populate("cart.productId");
 
     if (!user) {
       return res.status(404).send({
@@ -293,7 +476,10 @@ async function getCart(req, res) {
     });
 
   } catch (error) {
-    console.log("Get Cart Error:", error);
+    console.log(
+      "Get Cart Error:",
+      error
+    );
 
     return res.status(500).send({
       success: false,
@@ -311,16 +497,25 @@ async function getCart(req, res) {
 async function updateCartQuantity(req, res) {
   try {
     const userId = req.user._id;
-    const { productId, quantity } = req.body;
 
-    if (!productId || quantity === undefined) {
+    const {
+      productId,
+      quantity,
+    } = req.body;
+
+    if (
+      !productId ||
+      quantity === undefined
+    ) {
       return res.status(400).send({
         success: false,
-        message: "Product ID and quantity are required",
+        message:
+          "Product ID and quantity are required",
       });
     }
 
-    const user = await User.findById(userId);
+    const user =
+      await User.findById(userId);
 
     if (!user) {
       return res.status(404).send({
@@ -329,47 +524,61 @@ async function updateCartQuantity(req, res) {
       });
     }
 
-    const cartItem = user.cart.find(
-      (item) => item.productId.toString() === productId
-    );
+    const cartItem =
+      user.cart.find(
+        (item) =>
+          item.productId.toString() ===
+          productId
+      );
 
     if (!cartItem) {
       return res.status(404).send({
         success: false,
-        message: "Product not found in cart",
+        message:
+          "Product not found in cart",
       });
     }
 
     if (Number(quantity) < 1) {
       return res.status(400).send({
         success: false,
-        message: "Quantity must be at least 1",
+        message:
+          "Quantity must be at least 1",
       });
     }
 
-    cartItem.quantity = Number(quantity);
+    cartItem.quantity =
+      Number(quantity);
 
     await user.save();
 
-    const updatedUser = await User.findById(userId).populate(
-      "cart.productId"
-    );
+    const updatedUser =
+      await User.findById(userId)
+        .populate("cart.productId");
 
     return res.send({
       success: true,
-      message: "Cart quantity updated",
+      message:
+        "Cart quantity updated",
       data: updatedUser.cart,
     });
+
   } catch (error) {
-    console.log("Update Cart Quantity Error:", error);
+    console.log(
+      "Update Cart Quantity Error:",
+      error
+    );
 
     return res.status(500).send({
       success: false,
-      message: "Failed to update quantity",
+      message:
+        "Failed to update quantity",
       error: error.message,
     });
   }
 }
+
+
 // ======================================
 // REMOVE FROM CART
 // ======================================
@@ -377,9 +586,13 @@ async function updateCartQuantity(req, res) {
 async function removeFromCart(req, res) {
   try {
     const userId = req.user._id;
-    const { productId } = req.params;
 
-    const user = await User.findById(userId);
+    const {
+      productId,
+    } = req.params;
+
+    const user =
+      await User.findById(userId);
 
     if (!user) {
       return res.status(404).send({
@@ -388,25 +601,32 @@ async function removeFromCart(req, res) {
       });
     }
 
-    user.cart = user.cart.filter(
-      (item) =>
-        item.productId?.toString() !== productId
-    );
+    user.cart =
+      user.cart.filter(
+        (item) =>
+          item.productId?.toString() !==
+          productId
+      );
 
     await user.save();
 
     return res.send({
       success: true,
-      message: "Product Removed From Cart",
+      message:
+        "Product Removed From Cart",
       data: user.cart,
     });
 
   } catch (error) {
-    console.log("Remove Cart Error:", error);
+    console.log(
+      "Remove Cart Error:",
+      error
+    );
 
     return res.status(500).send({
       success: false,
-      message: "Failed To Remove Product",
+      message:
+        "Failed To Remove Product",
       error: error.message,
     });
   }

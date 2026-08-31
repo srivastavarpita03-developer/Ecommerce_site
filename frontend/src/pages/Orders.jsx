@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/api";
@@ -8,6 +9,10 @@ function Orders() {
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // ======================================
+  // GET USER ORDERS
+  // ======================================
 
   async function getOrders() {
     try {
@@ -55,17 +60,22 @@ function Orders() {
       );
     } finally {
       setLoading(false);
+
       console.log("4. Loading finished");
     }
   }
+
+  // ======================================
+  // LOAD ORDERS
+  // ======================================
 
   useEffect(() => {
     getOrders();
   }, []);
 
-  // ==============================
+  // ======================================
   // LOADING
-  // ==============================
+  // ======================================
 
   if (loading) {
     return (
@@ -77,15 +87,14 @@ function Orders() {
     );
   }
 
-  // ==============================
+  // ======================================
   // NO ORDERS
-  // ==============================
+  // ======================================
 
   if (orders.length === 0) {
     return (
       <section className="ordersPage">
         <div className="ordersContainer emptyOrders">
-
           <h2>No Orders Found</h2>
 
           <p>
@@ -98,31 +107,30 @@ function Orders() {
           >
             Start Shopping
           </button>
-
         </div>
       </section>
     );
   }
 
-  // ==============================
+  // ======================================
   // ORDERS
-  // ==============================
+  // ======================================
 
   return (
     <section className="ordersPage">
-
       <div className="ordersContainer">
 
         <h1>My Orders</h1>
 
         {orders.map((order) => (
-
           <div
             className="orderCard"
             key={order._id}
           >
 
-            {/* HEADER */}
+            {/* ======================================
+                ORDER HEADER
+            ====================================== */}
 
             <div className="orderHeader">
 
@@ -147,14 +155,15 @@ function Orders() {
 
             </div>
 
-            {/* ITEMS */}
+            {/* ======================================
+                ORDER ITEMS
+            ====================================== */}
 
             <div className="orderItems">
 
               {order.items?.map((item, index) => {
 
-                const product =
-                  item.productId;
+                const product = item.productId;
 
                 if (!product) {
                   return (
@@ -202,7 +211,9 @@ function Orders() {
 
             </div>
 
-            {/* ORDER DETAILS */}
+            {/* ======================================
+                ORDER DETAILS
+            ====================================== */}
 
             <div className="orderDetails">
 
@@ -212,7 +223,7 @@ function Orders() {
                 </span>
 
                 <strong>
-                  {order.shippingAddress}
+                  {order.shippingAddress || "N/A"}
                 </strong>
               </div>
 
@@ -222,7 +233,7 @@ function Orders() {
                 </span>
 
                 <strong>
-                  {order.contactNumber}
+                  {order.contactNumber || "N/A"}
                 </strong>
               </div>
 
@@ -232,7 +243,7 @@ function Orders() {
                 </span>
 
                 <strong>
-                  {order.paymentMode}
+                  {order.paymentMode || "N/A"}
                 </strong>
               </div>
 
@@ -242,13 +253,15 @@ function Orders() {
                 </span>
 
                 <strong>
-                  {order.paymentStatus}
+                  {order.paymentStatus || "pending"}
                 </strong>
               </div>
 
             </div>
 
-            {/* TOTAL */}
+            {/* ======================================
+                TOTAL
+            ====================================== */}
 
             <div className="orderTotal">
 
@@ -265,14 +278,33 @@ function Orders() {
 
             </div>
 
-          </div>
+            {/* ======================================
+                VIEW DETAILS BUTTON
+            ====================================== */}
 
+            <div className="viewOrderButtonContainer">
+
+              <button
+                type="button"
+                className="viewOrderButton"
+                onClick={() =>
+                  navigate(
+                    `/orders/${order._id}`
+                  )
+                }
+              >
+                View Details
+              </button>
+
+            </div>
+
+          </div>
         ))}
 
       </div>
-
     </section>
   );
 }
 
 export default Orders;
+

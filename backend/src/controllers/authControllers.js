@@ -1,12 +1,26 @@
-const User = require("../models/userModel");
-const bcrypt = require("bcrypt");
+const userModel = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // ======================================
-// REGISTER
+// GENERATE JWT TOKEN
 // ======================================
 
-async function register(req, res) {
+const generateToken = (userId) => {
+  return jwt.sign(
+    { userId: userId },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_EXPIRE || "7d",
+    }
+  );
+};
+
+// ======================================
+// REGISTER USER
+// ======================================
+
+const register = async (req, res) => {
   try {
     const {
       name,
@@ -16,474 +30,351 @@ async function register(req, res) {
       contactNumber,
     } = req.body;
 
-    // ==============================
-    // VALIDATION
-    // ==============================
-
-    if (
-      !name ||
-      !email ||
-      !password ||
-      !address ||
-      !contactNumber
-    ) {
-      return res.status(400).send({
+    // Check required fields
+    if (!name || !email || !password) {
+      return res.status(400).json({
         success: false,
-        message: "Required Fields are missing",
+        message: "Name, email and password are required",
       });
     }
 
-    // ==============================
-    // CHECK EMAIL
-    // ==============================
-
-    const userData = await User.findOne({
-      email: email,
+    // Check if user already exists
+    const existingUser = await userModel.findOne({
+      email: email.toLowerCase(),
     });
 
-    if (userData) {
-      return res.status(400).send({
+    if (existingUser) {
+      return res.status(409).json({
         success: false,
-        message: "Email Already Registered",
+        message: "User already exists with this email",
       });
     }
 
-    // ==============================
-    // HASH PASSWORD
-    // ==============================
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const hashPassword = await bcrypt.hash(
-      password,
-      10
-    );
-
-    // ==============================
-    // CREATE USER
-    // ==============================
-
-    const newUserData = new User({
+    // Create user
+    const user = await userModel.create({
       name,
-      email,
+      email: email.toLowerCase(),
+      password: hashedPassword,
       address,
       contactNumber,
-      password: hashPassword,
     });
 
-    const newUser = await newUserData.save();
-
-    return res.status(201).send({
+    return res.status(201).json({
       success: true,
-      message: "Registered Successfully",
-      data: {
-        _id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-        address: newUser.address,
-        contactNumber: newUser.contactNumber,
-        role: newUser.role,
-        profilePic: newUser.profilePic,
-      },
+      message: "Registration successful",
+      user: user,
     });
   } catch (error) {
-    console.log("Register Error:", error);
+    console.error("Register Error:", error);
 
-    return res.status(500).send({
+    return res.status(500).json({
       success: false,
-      message: "Registration Failed",
+      message: "Registration failed",
       error: error.message,
     });
   }
-}
+};
 
 // ======================================
-// LOGIN
+// LOGIN USER
 // ======================================
 
-async function login(req, res) {
+const login = async (req, res) => {
   try {
-    const {
-      email,
-      password,
-    } = req.body;
+    const { email, password } = req.body;
 
-    // ==============================
-    // VALIDATION
-    // ==============================
-
+    // Check required fields
     if (!email || !password) {
-      return res.status(400).send({
+      return res.status(400).json({
         success: false,
-        message: "All Required Fields Not Found",
+        message: "Email and password are required",
       });
     }
 
-    // ==============================
-    // FIND USER
-    // ==============================
+    // Find user
+    const user = await userModel
+      .findOne({
+        email: email.toLowerCase(),
+      })
+      .select("+password");
 
-    const userData = await User.findOne({
-      email: email,
-    });
-
-    if (!userData) {
-      return res.status(400).send({
+    if (!user) {
+      return res.status(401).json({
         success: false,
-        message: "Email Or Password is Invalid",
+        message: "Invalid email or password",
       });
     }
 
-    // ==============================
-    // CHECK PASSWORD
-    // ==============================
-
-    const isPasswordMatch =
-      await bcrypt.compare(
-        password,
-        userData.password
-      );
-
-    if (!isPasswordMatch) {
-      return res.status(400).send({
-        success: false,
-        message: "Email Or Password is Invalid",
-      });
-    }
-
-    // ==============================
-    // JWT SECRET
-    // ==============================
-
-    const JWT_SECRET =
-      process.env.JWT_SECRET;
-
-    if (!JWT_SECRET) {
-      return res.status(500).send({
-        success: false,
-        message: "JWT_SECRET is not configured",
-      });
-    }
-
-    // ==============================
-    // CREATE TOKEN
-    // ==============================
-
-    const token = jwt.sign(
-      {
-        userId: userData._id,
-      },
-      JWT_SECRET,
-      {
-        expiresIn: "7d",
-      }
+    // Compare password
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      user.password
     );
 
-    // ==============================
-    // SAVE TOKEN IN COOKIE
-    // ==============================
+    if (!isPasswordCorrect) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
 
+    // Generate token
+    const token = generateToken(user._id);
+
+    // Store token in cookie
     res.cookie("token", token, {
       httpOnly: true,
-
-      secure:
-        process.env.MODE === "production",
-
-      sameSite:
-        process.env.MODE === "production"
-          ? "none"
-          : "lax",
-
-      maxAge:
-        7 *
-        24 *
-        60 *
-        60 *
-        1000,
+      secure: process.env.MODE === "production",
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    // ==============================
-    // USER RESPONSE
-    // DO NOT SEND PASSWORD
-    // ==============================
+    // Remove password from response
+    const userResponse = user.toObject();
+    delete userResponse.password;
 
-    const userResponse = {
-      _id: userData._id,
-      name: userData.name,
-      email: userData.email,
-      address: userData.address,
-      contactNumber:
-        userData.contactNumber,
-      role: userData.role,
-      profilePic:
-        userData.profilePic,
-    };
-
-    return res.status(200).send({
+    return res.status(200).json({
       success: true,
-      message: "Login Successfully",
-      data: userResponse,
+      message: "Login successful",
+      user: userResponse,
+      token,
     });
   } catch (error) {
-    console.log("Login Error:", error);
+    console.error("Login Error:", error);
 
-    return res.status(500).send({
+    return res.status(500).json({
       success: false,
-      message: "Login Failed",
+      message: "Login failed",
       error: error.message,
     });
   }
-}
+};
 
 // ======================================
 // GET CURRENT USER
 // ======================================
 
-async function getMe(req, res) {
+const getMe = async (req, res) => {
   try {
     const user = req.user;
-
-    if (!user) {
-      return res.status(404).send({
-        success: false,
-        message: "User Not Found!",
-      });
-    }
-
-    return res.status(200).send({
+    return res.status(200).json({
       success: true,
-      message: "User Found",
       data: user,
     });
   } catch (error) {
-    console.log("Get Me Error:", error);
+    console.error("Get Me Error:", error);
 
-    return res.status(500).send({
+    return res.status(500).json({
       success: false,
-      message: "Failed To Get User",
+      message: "Unable to get user details",
       error: error.message,
     });
   }
-}
+};
 
 // ======================================
 // UPDATE PROFILE
 // ======================================
 
-async function updateProfile(req, res) {
+const updateProfile = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user?.id || req.user?._id;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Not authenticated",
+      });
+    }
 
     const {
       name,
+      email,
       address,
       contactNumber,
     } = req.body;
 
-    // ==============================
-    // VALIDATION
-    // ==============================
+    // Find current user
+    const user = await userModel.findById(userId);
 
-    if (
-      !name ||
-      !address ||
-      !contactNumber
-    ) {
-      return res.status(400).send({
+    if (!user) {
+      return res.status(404).json({
         success: false,
-        message:
-          "Name, address and contact number are required",
+        message: "User not found",
       });
     }
 
-    // ==============================
-    // UPDATE USER
-    // ==============================
-
-    const updatedUser =
-      await User.findByIdAndUpdate(
-        userId,
-        {
-          name,
-          address,
-          contactNumber,
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      ).select("-password");
-
-    if (!updatedUser) {
-      return res.status(404).send({
-        success: false,
-        message: "User Not Found",
+    // Check if email is being changed
+    if (email && email.toLowerCase() !== user.email) {
+      const emailExists = await userModel.findOne({
+        email: email.toLowerCase(),
+        _id: { $ne: userId },
       });
+
+      if (emailExists) {
+        return res.status(409).json({
+          success: false,
+          message: "Email is already registered",
+        });
+      }
+
+      user.email = email.toLowerCase();
     }
 
-    return res.status(200).send({
+    // Update fields
+    if (name !== undefined) {
+      user.name = name;
+    }
+
+    if (address !== undefined) {
+      user.address = address;
+    }
+
+    if (contactNumber !== undefined) {
+      user.contactNumber = contactNumber;
+    }
+
+    await user.save();
+
+    // Remove password
+    const userResponse = user.toObject();
+    delete userResponse.password;
+
+    return res.status(200).json({
       success: true,
-      message:
-        "Profile Updated Successfully",
-      data: updatedUser,
+      message: "Profile updated successfully",
+      user: userResponse,
     });
   } catch (error) {
-    console.log(
-      "Update Profile Error:",
-      error
-    );
+    console.error("Update Profile Error:", error);
 
-    return res.status(500).send({
+    return res.status(500).json({
       success: false,
-      message: "Profile Update Failed",
+      message: "Profile update failed",
       error: error.message,
     });
   }
-}
+};
 
 // ======================================
 // CHANGE PASSWORD
 // ======================================
 
-async function changePassword(req, res) {
+const changePassword = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user?.id || req.user?._id;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Not authenticated",
+      });
+    }
 
     const {
       currentPassword,
       newPassword,
     } = req.body;
 
-    // ==============================
-    // VALIDATION
-    // ==============================
-
-    if (
-      !currentPassword ||
-      !newPassword
-    ) {
-      return res.status(400).send({
+    // Validate fields
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
         success: false,
-        message:
-          "Current password and new password are required",
+        message: "Current password and new password are required",
       });
     }
 
+    // Password length validation
     if (newPassword.length < 6) {
-      return res.status(400).send({
+      return res.status(400).json({
         success: false,
-        message:
-          "New password must be at least 6 characters",
+        message: "New password must be at least 6 characters",
       });
     }
 
-    // ==============================
-    // FIND USER
-    // ==============================
-
-    const user = await User.findById(
-      userId
-    );
+    // Find user with password
+    const user = await userModel
+      .findById(userId)
+      .select("+password");
 
     if (!user) {
-      return res.status(404).send({
+      return res.status(404).json({
         success: false,
-        message: "User Not Found",
+        message: "User not found",
       });
     }
 
-    // ==============================
-    // CHECK CURRENT PASSWORD
-    // ==============================
+    // Check current password
+    const isPasswordCorrect = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
 
-    const isPasswordMatch =
-      await bcrypt.compare(
-        currentPassword,
-        user.password
-      );
-
-    if (!isPasswordMatch) {
-      return res.status(400).send({
+    if (!isPasswordCorrect) {
+      return res.status(401).json({
         success: false,
-        message:
-          "Current password is incorrect",
+        message: "Current password is incorrect",
       });
     }
 
-    // ==============================
-    // HASH NEW PASSWORD
-    // ==============================
-
-    const hashedPassword =
-      await bcrypt.hash(
-        newPassword,
-        10
-      );
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(
+      newPassword,
+      10
+    );
 
     user.password = hashedPassword;
 
     await user.save();
 
-    return res.status(200).send({
+    return res.status(200).json({
       success: true,
-      message:
-        "Password Changed Successfully",
+      message: "Password changed successfully",
     });
   } catch (error) {
-    console.log(
-      "Change Password Error:",
-      error
-    );
+    console.error("Change Password Error:", error);
 
-    return res.status(500).send({
+    return res.status(500).json({
       success: false,
-      message:
-        "Password Change Failed",
+      message: "Password change failed",
       error: error.message,
     });
   }
-}
+};
 
 // ======================================
-// LOGOUT
+// LOGOUT USER
 // ======================================
 
-async function logout(req, res) {
+const logout = async (req, res) => {
   try {
-    // ==============================
-    // CLEAR JWT COOKIE
-    // ==============================
-
-    res.clearCookie("token", {
+    res.cookie("token", "", {
       httpOnly: true,
-
-      secure:
-        process.env.MODE === "production",
-
-      sameSite:
-        process.env.MODE === "production"
-          ? "none"
-          : "lax",
+      expires: new Date(0),
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
     });
 
-    return res.status(200).send({
+    return res.status(200).json({
       success: true,
-      message: "Logout Successfully",
+      message: "Logout successful",
     });
   } catch (error) {
-    console.log(
-      "Logout Error:",
-      error
-    );
+    console.error("Logout Error:", error);
 
-    return res.status(500).send({
+    return res.status(500).json({
       success: false,
-      message: "Logout Failed",
+      message: "Logout failed",
       error: error.message,
     });
   }
-}
+};
 
 // ======================================
-// EXPORT
+// EXPORT CONTROLLERS
 // ======================================
 
 module.exports = {

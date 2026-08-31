@@ -16,11 +16,13 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminOrderDetails from "./pages/admin/AdminOrderDetails";
 import AdminCategory from "./pages/admin/AdminCategory";
-
+import Dashboard from "./pages/admin/Dashboard";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
+import OrderDetails from "./pages/OrderDetails/OrderDetails";
 import Profile from "./pages/Profile";
+import ProductDetails from "./pages/ProductDetails";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
@@ -49,6 +51,11 @@ function App() {
   path="/orders"
   element={<Orders />}
 />
+<Route
+  path="/orders/:id"
+  element={<OrderDetails />}
+/>
+<Route path="/product/:productId" element={<ProductDetails />} />
 <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
 
@@ -62,7 +69,10 @@ function App() {
             path=""
             element={<Navigate to="/admin/products" />}
           />
-
+<Route
+  path="/admin/dashboard"
+  element={<Dashboard />}
+/>
           <Route
             path="products"
             element={<AdminProducts />}

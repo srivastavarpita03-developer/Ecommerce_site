@@ -1,8 +1,10 @@
+
 const express = require("express");
 
 const {
   getAllOrders,
   getUserOrders,
+  getUserSingleOrder,
   createOrder,
   updateOrder,
   getSingleOrder,
@@ -10,46 +12,75 @@ const {
 
 const asyncHandler = require("../utils/asyncHandler");
 const authMiddleware = require("../middlewares/authMiddleware");
-const checkAdminMiddleware = require("../middlewares/checkAdminMiddleware");
 
 const router = express.Router();
 
-// ADMIN - ALL ORDERS
-router.get(
-  "/all",
+
+// ======================================
+// CUSTOMER - CREATE ORDER
+// ======================================
+
+router.post(
+  "/",
   asyncHandler(authMiddleware),
-  asyncHandler(checkAdminMiddleware),
-  asyncHandler(getAllOrders)
+  asyncHandler(createOrder)
 );
 
-// USER - MY ORDERS
+
+// ======================================
+// CUSTOMER - ALL MY ORDERS
+// ======================================
+
 router.get(
   "/user-orders",
   asyncHandler(authMiddleware),
   asyncHandler(getUserOrders)
 );
 
-// ADMIN - SINGLE ORDER
+
+// ======================================
+// CUSTOMER - SINGLE MY ORDER
+// ======================================
+
 router.get(
-  "/:id",
+  "/user-orders/:id",
   asyncHandler(authMiddleware),
-  asyncHandler(checkAdminMiddleware),
-  asyncHandler(getSingleOrder)
+  asyncHandler(getUserSingleOrder)
 );
 
-// USER - CREATE ORDER
-router.post(
-  "/create",
+
+// ======================================
+// ADMIN - ALL ORDERS
+// ======================================
+
+router.get(
+  "/all",
   asyncHandler(authMiddleware),
-  asyncHandler(createOrder)
+  asyncHandler(getAllOrders)
 );
 
-// ADMIN - UPDATE ORDER
+
+// ======================================
+// ADMIN - UPDATE ORDER STATUS
+// ======================================
+
 router.put(
-  "/update",
+  "/status",
   asyncHandler(authMiddleware),
-  asyncHandler(checkAdminMiddleware),
   asyncHandler(updateOrder)
 );
 
+
+// ======================================
+// ADMIN - SINGLE ORDER
+// ======================================
+
+router.get(
+  "/:id",
+  asyncHandler(authMiddleware),
+  asyncHandler(getSingleOrder)
+);
+
+
 module.exports = router;
+

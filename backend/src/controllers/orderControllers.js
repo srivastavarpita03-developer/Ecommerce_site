@@ -67,6 +67,87 @@ async function getUserOrders(req, res) {
   }
 }
 
+
+// ======================================
+// GET SINGLE ORDER - USER
+// ======================================
+
+async function getUserSingleOrder(req, res) {
+  try {
+
+    // URL se order ID
+    const { id } = req.params;
+
+    // Login user ki ID
+    const userId = req.user._id;
+
+    console.log("USER ID:", userId);
+    console.log("ORDER ID:", id);
+
+
+    // ======================================
+    // ORDER FIND KARO
+    // ======================================
+
+    const order = await Order.findOne({
+      _id: id,
+      userId: userId,
+    })
+      .populate("userId")
+      .populate("items.productId");
+
+
+    // ======================================
+    // ORDER NAHI MILA
+    // ======================================
+
+    if (!order) {
+
+      return res.status(404).send({
+        success: false,
+        message: "Order not found",
+      });
+
+    }
+
+
+    // ======================================
+    // RESPONSE
+    // ======================================
+
+    return res.status(200).send({
+
+      success: true,
+
+      message: "Order Details Fetched Successfully",
+
+      data: order,
+
+    });
+
+  } catch (error) {
+
+    console.log(
+      "Get User Single Order Error:",
+      error
+    );
+
+
+    return res.status(500).send({
+
+      success: false,
+
+      message: "Failed To Get Order Details",
+
+      error: error.message,
+
+    });
+
+  }
+}
+
+
+
 // ======================================
 // CREATE ORDER
 // ======================================
@@ -424,6 +505,7 @@ async function getSingleOrder(req, res) {
 module.exports = {
   getAllOrders,
   getUserOrders,
+  getUserSingleOrder,
   createOrder,
   updateOrder,
   getSingleOrder,

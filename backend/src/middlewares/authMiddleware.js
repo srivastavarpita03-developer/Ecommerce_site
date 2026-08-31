@@ -5,7 +5,8 @@ async function authMiddleware(req, res, next) {
   try {
     const token = req.cookies?.token;
 
-    console.log("Auth Token:", token ? "Token Present" : "Token Missing");
+    // console.log("Auth Token:", token ? "Token Present" : "Token Missing");
+    // console.log(token);
 
     if (!token) {
       return res.status(401).send({

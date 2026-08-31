@@ -1,192 +1,895 @@
-.productDeleteBtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #fff;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-    color: #252529;
-}
+/* =====================================================
+   ADMIN PRODUCTS PAGE
+===================================================== */
 
 .adminProducts {
-    padding: 40px 0px;
-    padding-right: 40px;
+  padding: 40px;
+  padding-right: 40px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
 
 .adminProductsHeader {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 35px;
 }
 
-.adminProductsHeader>button {
-    width: 150px;
-    background-color: #252529;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 10px;
+.adminProductsHeader h1 {
+  margin: 0;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #252529;
+  letter-spacing: -0.5px;
 }
+
+.adminProductsHeader p {
+  margin: 6px 0 0;
+
+  font-size: 14px;
+
+  color: #777;
+}
+
+
+/* =====================================================
+   ADD PRODUCT MAIN BUTTON
+===================================================== */
+
+.adminProductsHeader > button {
+  height: 46px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  background: #252529;
+  color: #fff;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.adminProductsHeader > button:hover {
+  background: #000;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px
+    rgba(0, 0, 0, 0.18);
+}
+
+.adminProductsHeader > button:active {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   PRODUCT DELETE BUTTON
+===================================================== */
+
+.productDeleteBtn {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: none;
+
+  border-radius: 50%;
+
+  color: #252529;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 12px
+    rgba(0, 0, 0, 0.15);
+
+  transition: all 0.2s ease;
+
+  z-index: 5;
+}
+
+.productDeleteBtn:hover {
+  background: #dc3545;
+  color: #fff;
+
+  transform: scale(1.08);
+}
+
+
+/* =====================================================
+   PRODUCT CATEGORY
+===================================================== */
+
+.productCategory {
+  display: inline-block;
+
+  margin-top: 5px;
+
+  color: #777;
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   MODAL OVERLAY
+===================================================== */
 
 .addProductOverlay {
-    background-color: rgba(0, 0, 0, 0.8);
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background:
+    rgba(0, 0, 0, 0.72);
+
+  backdrop-filter: blur(7px);
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  padding: 25px;
+
+  box-sizing: border-box;
 }
+
+
+/* =====================================================
+   PRODUCT FORM
+===================================================== */
 
 .addProductForm {
-    height: 70%;
-    width: 60%;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    overflow: auto;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  width: min(900px, 95vw);
+
+  max-height: 90vh;
+
+  background: #fff;
+
+  border-radius: 16px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0, 0, 0, 0.35);
+
+  animation:
+    modalOpen 0.25s ease;
 }
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    transform: translateY(15px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
 
 .addProductHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  position: sticky;
+
+  top: 0;
+
+  z-index: 10;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 22px 28px;
+
+  background: #fff;
+
+  border-bottom:
+    1px solid #eeeeee;
 }
 
-.closeButton {
-    font-size: 25px;
-    cursor: pointer;
+.addProductHeader h1 {
+  margin: 0;
+
+  color: #252529;
+
+  font-size: 22px;
+  font-weight: 700;
 }
 
+.addProductHeader p {
+  margin: 5px 0 0;
+
+  color: #888;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.closeBtn {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  background: #f4f4f4;
+
+  color: #252529;
+
+  border-radius: 50%;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: #252529;
+
+  color: #fff;
+
+  transform: rotate(90deg);
+}
+
+
+/* =====================================================
+   FORM BODY
+===================================================== */
 
 .formBody {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 20px;
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 20px;
+
+  padding: 25px 28px 30px;
 }
+
+
+/* =====================================================
+   FORM ROW
+===================================================== */
 
 .formRow {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+  display: flex;
 
-.formRow>input {
-    height: 30px;
-    border-radius: 5px;
-    font-size: 17px;
-}
+  flex-direction: column;
 
-/* Label */
+  gap: 8px;
+
+  min-width: 0;
+}
 
 .formRow label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #252529;
 }
 
-/* Common Inputs */
+
+/* =====================================================
+   INPUTS
+===================================================== */
 
 .formRow input,
 .formRow textarea,
 .formRow select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #dcdcdc;
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    transition: .3s;
-    box-sizing: border-box;
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border:
+    1px solid #dedede;
+
+  border-radius: 7px;
+
+  background: #fff;
+
+  color: #252529;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.formRow input,
+.formRow select {
+  height: 43px;
 }
 
 .formRow textarea {
-    resize: vertical;
-    min-height: 120px;
+  min-height: 105px;
+
+  resize: vertical;
 }
 
 .formRow input:focus,
 .formRow textarea:focus,
 .formRow select:focus {
-    border-color: #252529;
+  border-color: #252529;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(37, 37, 41, 0.07);
 }
 
-/* File Input */
 
-.formRow input[type="file"] {
-    padding: 8px;
-    border: 1px dashed #aaa;
-    cursor: pointer;
+/* =====================================================
+   PRICE / DISCOUNT INPUT
+===================================================== */
+
+.inputWithSymbol {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
 }
 
-/* Section */
+.inputWithSymbol span {
+  position: absolute;
 
-.section {
-    grid-column: 1 / -1;
-    margin-top: 10px;
+  right: 13px;
+
+  color: #777;
+
+  font-size: 14px;
+
+  pointer-events: none;
 }
 
-.section h3 {
-    margin-bottom: 15px;
-    color: #252529;
+.inputWithSymbol input {
+  padding-right: 35px;
 }
 
-/* Feature Row */
 
-.featureRow,
-.variantRow {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+/* =====================================================
+   FULL WIDTH
+===================================================== */
+
+.fullWidth {
+  grid-column: 1 / -1;
 }
 
-.featureRow input,
-.variantRow input {
-    flex: 1;
+
+/* =====================================================
+   FILE UPLOAD
+===================================================== */
+
+.fileUpload {
+  min-height: 80px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  border:
+    1.5px dashed #bdbdbd;
+
+  border-radius: 8px;
+
+  background: #fafafa;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
 }
 
-/* Add Button */
+.fileUpload:hover {
+  border-color: #252529;
 
-.featureRow button,
-.variantRow button {
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 8px;
-    background: #252529;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
+  background: #f6f6f6;
 }
 
-.featureRow button:hover,
-.variantRow button:hover {
-    background: #444;
+.fileUpload span {
+  color: #252529;
+
+  font-size: 14px;
+
+  font-weight: 600;
 }
 
-/* Submit Button */
+.fileUpload small {
+  color: #999;
+
+  font-size: 12px;
+}
+
+.fileUpload input {
+  display: none;
+}
+
+
+/* =====================================================
+   DYNAMIC SECTION
+===================================================== */
+
+.dynamicSection {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 18px;
+
+  background: #fafafa;
+
+  border:
+    1px solid #e6e6e6;
+
+  border-radius: 10px;
+}
+
+
+/* =====================================================
+   DYNAMIC SECTION HEADER
+===================================================== */
+
+.dynamicSectionHeader {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 16px;
+}
+
+.dynamicSectionHeader h3 {
+  margin: 0;
+
+  color: #252529;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+.dynamicSectionHeader p {
+  margin: 4px 0 0;
+
+  color: #999;
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   ADD FEATURE / ADD VARIANT BUTTON
+===================================================== */
+
+.addSmallBtn {
+  height: 36px;
+
+  padding: 0 13px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+
+  background: #252529;
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.addSmallBtn:hover {
+  background: #000;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px
+    rgba(0, 0, 0, 0.15);
+}
+
+.addSmallBtn:active {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   DYNAMIC ROW
+===================================================== */
+
+.dynamicRow {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr auto;
+
+  gap: 9px;
+
+  align-items: center;
+
+  margin-bottom: 9px;
+}
+
+
+/* =====================================================
+   DYNAMIC INPUT
+===================================================== */
+
+.dynamicRow input {
+  width: 100%;
+
+  height: 40px;
+
+  box-sizing: border-box;
+
+  padding: 9px 11px;
+
+  background: #fff;
+
+  border:
+    1px solid #dedede;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  font-size: 13px;
+
+  color: #252529;
+
+  transition: all 0.2s ease;
+}
+
+.dynamicRow input:focus {
+  border-color: #252529;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(37, 37, 41, 0.07);
+}
+
+.dynamicRow input::placeholder {
+  color: #aaa;
+}
+
+
+/* =====================================================
+   REMOVE BUTTON
+===================================================== */
+
+.removeSmallBtn {
+  height: 40px;
+
+  min-width: 82px;
+
+  padding: 0 11px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  background: #fff;
+
+  color: #dc3545;
+
+  border:
+    1px solid #dc3545;
+
+  border-radius: 6px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.removeSmallBtn:hover {
+  background: #dc3545;
+
+  color: #fff;
+
+  transform: translateY(-1px);
+}
+
+.removeSmallBtn:active {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   SUBMIT AREA
+===================================================== */
+
+.submitArea {
+  grid-column: 1 / -1;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 5px;
+
+  padding-top: 20px;
+
+  border-top:
+    1px solid #eeeeee;
+}
+
+
+/* =====================================================
+   CANCEL BUTTON
+===================================================== */
+
+.cancelBtn {
+  height: 46px;
+
+  padding: 0 20px;
+
+  background: #fff;
+
+  color: #252529;
+
+  border:
+    1px solid #d5d5d5;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.cancelBtn:hover {
+  border-color: #252529;
+
+  background: #f5f5f5;
+}
+
+
+/* =====================================================
+   SUBMIT BUTTON
+===================================================== */
 
 .submitBtn {
-    grid-column: 1 / -1;
-    margin-top: 20px;
-    height: 50px;
-    border: none;
-    border-radius: 10px;
-    background: #252529;
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: .3s;
+  height: 46px;
+
+  min-width: 170px;
+
+  padding: 0 22px;
+
+  background: #252529;
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
 }
 
 .submitBtn:hover {
-    background: #111;
+  background: #000;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px
+    rgba(0, 0, 0, 0.18);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+.addProductForm::-webkit-scrollbar {
+  width: 7px;
+}
+
+.addProductForm::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+.addProductForm::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+
+  border-radius: 10px;
+}
+
+.addProductForm::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .adminProducts {
+    padding: 20px;
+  }
+
+  .adminProductsHeader {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .adminProductsHeader > button {
+    width: 100%;
+  }
+
+  .addProductOverlay {
+    padding: 10px;
+  }
+
+  .addProductForm {
+    width: 100%;
+
+    max-height: 94vh;
+  }
+
+  .formBody {
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+  }
+
+  .fullWidth {
+    grid-column: 1;
+  }
+
+  .dynamicSection {
+    padding: 14px;
+  }
+
+  .dynamicSectionHeader {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .addSmallBtn {
+    width: 100%;
+  }
+
+  .dynamicRow {
+    grid-template-columns: 1fr;
+  }
+
+  .removeSmallBtn {
+    width: 100%;
+  }
+
+  .submitArea {
+    grid-column: 1;
+
+    flex-direction: column;
+  }
+
+  .cancelBtn,
+  .submitBtn {
+    width: 100%;
+  }
 }
