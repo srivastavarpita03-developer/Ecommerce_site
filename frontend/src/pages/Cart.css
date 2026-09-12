@@ -195,3 +195,37 @@
         max-height: 200px;
     }
 }
+
+/* VestiQ cart refresh */
+.cartPage { min-height: 100vh; max-width: 1100px; padding: 90px 20px 46px; background: linear-gradient(135deg, #f8fafc, #eef2f7); }
+.cartPage h1 { margin: 0 0 22px; color: #111827; font: 700 2rem/1.15 Georgia, "Times New Roman", serif; letter-spacing: -.5px; }
+.cartContainer { grid-template-columns: minmax(0, 1.8fr) minmax(260px, .75fr); gap: 22px; }
+.cartCard { padding: 14px; margin-bottom: 13px; border: 1px solid #e7ebf0; border-radius: 13px; box-shadow: 0 7px 18px rgba(15, 23, 42, .05); transition: transform .2s ease, box-shadow .2s ease; }
+.cartCard:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(15, 23, 42, .1); }
+.cartCard img { width: 92px; height: 108px; flex: 0 0 auto; border-radius: 9px; background: #f1f5f9; }
+.cartInfo { min-width: 0; }
+.cartInfo h3 { margin: 0 0 6px; color: #162033; font-size: .98rem; line-height: 1.35; }
+.cartInfo p { color: #6c788d; font-size: .9rem; }
+.cartInfo .price { margin-bottom: 7px; color: #111827; font-size: 1rem; font-weight: 800; }
+.cartActions { align-items: flex-end; }
+.quantityBox { border-color: #dce2e9; background: #fff; }
+.quantityBox button { background: #f7f9fb; color: #263247; }
+.quantityBox button:hover:not(:disabled) { background: #111827; color: #fff; }
+.quantityBox button:disabled { cursor: not-allowed; opacity: .4; }
+.quantityBox span { color: #111827; font-weight: 800; }
+.cartActions > button { border: 1px solid #fee2e2; background: #fff5f5; transition: all .2s ease; }
+.summary { top: 88px; padding: 20px; border: 1px solid #e5e9ef; border-radius: 13px; box-shadow: 0 8px 22px rgba(15, 23, 42, .07); }
+.summary h2 { margin: 0 0 17px; color: #111827; font-size: 1.1rem; }
+.summaryRow { margin: 12px 0; color: #667287; font-size: .9rem; }
+.summaryRow span:last-child { color: #263247; font-weight: 700; text-align: right; }
+.summary hr { border-top-color: #e9edf2; margin: 17px 0; }
+.summaryRow.total { color: #111827; font-size: 1rem; }
+.summaryRow.total span:last-child { color: #111827; font-size: 1.12rem; }
+.checkoutBtn { height: 45px; margin-top: 12px; border-radius: 8px; background: #111827; font-size: .9rem; font-weight: 700; transition: transform .2s ease, background .2s ease; }
+.checkoutBtn:hover { background: #273548; transform: translateY(-1px); }
+.emptyCart, .cartLoading { padding: 68px 28px; background: #fff; border: 1px solid #e5e9ef; border-radius: 17px; box-shadow: 0 12px 30px rgba(15, 23, 42, .06); color: #657187; text-align: center; }
+.emptyCart h2 { padding: 0; background: none; box-shadow: none; color: #111827; font-family: Georgia, "Times New Roman", serif; }
+.emptyCart button { margin-top: 22px; padding: 11px 18px; border: 0; border-radius: 9px; background: #111827; color: #fff; font-weight: 700; cursor: pointer; }
+
+@media (max-width: 980px) { .cartContainer { grid-template-columns: 1fr; } .summary { position: static; } }
+@media (max-width: 640px) { .cartPage { padding: 82px 14px 35px; } .cartPage h1 { font-size: 1.7rem; } .cartCard { display: grid; grid-template-columns: 78px minmax(0, 1fr); gap: 12px; padding: 13px; } .cartCard img { width: 78px; height: 94px; } .cartInfo h3 { font-size: .94rem; } .cartActions { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; align-items: center; padding-top: 3px; } .summary { padding: 18px; } }

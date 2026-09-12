@@ -510,3 +510,36 @@
   }
 
 }
+
+/* Customer order details — align with the VestiQ customer order list */
+.orderDetailsPage { background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%); }
+.orderDetailsHeader { padding: 0 4px; }
+.orderDetailsHeader h1 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -1px; }
+.orderDetailsHeader p { margin: 8px 0 0; color: #64748b; overflow-wrap: anywhere; }
+.orderInfoCard { margin-bottom: 20px; padding: 24px; background: #fff; border: 1px solid #e6e9ee; border-radius: 16px; box-shadow: 0 10px 28px rgba(15, 23, 42, .06); }
+.orderInfoCard h2 { margin: 0 0 18px; color: #111827; font-size: 1.1rem; }
+.infoGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.infoGrid > div { min-width: 0; padding: 14px; background: #f8fafc; border: 1px solid #edf0f3; border-radius: 10px; }
+.infoGrid .fullWidth { grid-column: 1 / -1; }
+.infoGrid span { display: block; margin-bottom: 6px; color: #758196; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.infoGrid strong { color: #263247; font-size: .92rem; word-break: break-word; text-transform: capitalize; }
+.productsList { display: grid; gap: 12px; }
+.productDetailItem { display: grid; grid-template-columns: 82px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 13px; border: 1px solid #edf0f3; border-radius: 12px; }
+.productImageBox img, .productImageBox .noImage { width: 82px; height: 94px; border-radius: 9px; object-fit: cover; background: #f1f5f9; }
+.productImageBox .noImage { display: grid; place-items: center; color: #64748b; font-size: .75rem; }
+.productDetailInfo h3 { margin: 0 0 8px; color: #162033; font-size: 1rem; }
+.productDetailInfo p { margin: 4px 0; color: #69758a; font-size: .87rem; }
+.productItemTotal { color: #111827; font-weight: 800; white-space: nowrap; }
+.orderFinalTotal { display: flex; justify-content: space-between; align-items: center; padding: 22px 25px; color: #fff; background: linear-gradient(135deg, #111827, #283548); border-radius: 15px; }
+.orderFinalTotal strong { font-size: 1.4rem; }
+.backToOrdersButton { width: auto; margin-top: 20px; border: 0; border-radius: 9px; padding: 11px 17px; background: #fff; color: #1e293b; box-shadow: 0 3px 10px rgba(15,23,42,.08); font-weight: 700; cursor: pointer; }
+
+@media (max-width: 640px) {
+  .orderInfoCard { padding: 18px; }
+  .infoGrid { grid-template-columns: 1fr; }
+  .infoGrid .fullWidth { grid-column: auto; }
+  .productDetailItem { grid-template-columns: 65px minmax(0, 1fr); gap: 12px; }
+  .productImageBox img, .productImageBox .noImage { width: 65px; height: 78px; }
+  .productItemTotal { grid-column: 2; }
+  .orderFinalTotal { padding: 19px; }
+}

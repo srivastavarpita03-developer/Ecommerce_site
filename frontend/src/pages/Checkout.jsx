@@ -7,7 +7,17 @@ import StripePaymentForm from "../components/StripePaymentForm";
 import "./Checkout.css";
 
 const stripeKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
-const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
+// Hide Stripe's sandbox Testing Assistant (the floating Stripe button).
+// This changes only the developer widget; payment processing is unaffected.
+const stripePromise = stripeKey
+  ? loadStripe(stripeKey, {
+      developerTools: {
+        assistant: {
+          enabled: false,
+        },
+      },
+    })
+  : null;
 
 function Checkout() {
   const navigate = useNavigate();
