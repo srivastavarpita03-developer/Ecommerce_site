@@ -12,6 +12,7 @@ const aiProductSuggestion = require("./services/ai");
 const cookieParser = require("cookie-parser");
 const { stripeWebhook } = require("./controllers/paymentControllers");
 const paymentRoutes = require("./routes/paymentRoutes");
+const supportTicketRoutes = require("./routes/supportTicketRoutes");
 
 const app = express();
 connectToDB(); // Connect to db
@@ -40,6 +41,7 @@ app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes); // Get : http://localhost:4000/api/v1/dashboard
 app.use("/api/v1/ai", aiProductSuggestion);
 app.use("/api/v1/payments", paymentRoutes);
+app.use("/api/v1/support-tickets", supportTicketRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

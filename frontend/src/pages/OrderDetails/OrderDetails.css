@@ -543,3 +543,15 @@
   .productItemTotal { grid-column: 2; }
   .orderFinalTotal { padding: 19px; }
 }
+
+.supportIntro, .noTickets { margin: -7px 0 16px; color: #6b7280; font-size: .9rem; }
+.supportActions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.supportActions button { border: 1px solid #dbe2ea; border-radius: 8px; padding: 9px 12px; background: #fff; color: #1e293b; font-weight: 700; cursor: pointer; }
+.supportActions button:hover { border-color: #111827; background: #111827; color: #fff; }
+.ticketList { display: grid; gap: 8px; }
+.ticketRow { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 13px; background: #f8fafc; border: 1px solid #edf0f3; border-radius: 9px; }
+.ticketRow strong, .ticketRow span { display: block; }
+.ticketRow strong { color: #1e293b; font-size: .87rem; }
+.ticketRow div span { margin-top: 3px; color: #718096; font-size: .8rem; text-transform: capitalize; }
+.ticketStatus { border-radius: 999px; padding: 5px 9px; font-size: .72rem; font-weight: 700; text-transform: capitalize; }
+.ticketStatus.open { color: #a16207; background: #fef3c7; }.ticketStatus.approved { color: #166534; background: #dcfce7; }.ticketStatus.rejected { color: #b91c1c; background: #fee2e2; }.ticketStatus.resolved { color: #1d4ed8; background: #dbeafe; }

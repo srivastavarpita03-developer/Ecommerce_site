@@ -10,7 +10,8 @@ async function getAllOrders(req, res) {
   try {
     const allOrders = await Order.find({})
       .populate("userId")
-      .populate("items.productId");
+      .populate("items.productId")
+      .sort({ createdAt: -1 });
 
     return res.send({
       success: true,

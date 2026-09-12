@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import api from "../utils/api";
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Auth() {
   const [authMode, setAuthMode] = useState("register");
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isAdminLogin = location.pathname === "/admin/login";
   const [data, setData] = useState({
     name: "",
     contactNumber: "",
@@ -60,7 +63,7 @@ function Auth() {
         // Login responds with `user`; `/auth/me` responds with `data`.
         // Keeping this state in sync lets Header update without a page reload.
         setUser(response.data.user || response.data.data || null);
-        navigate("/products", { replace: true });
+        navigate(response.data.user?.role === "admin" && isAdminLogin ? "/admin/dashboard" : "/products", { replace: true });
       } else {
         alert(response.data?.message || "Unable to complete authentication");
       }

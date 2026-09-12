@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../utils/api";
+import Swal from "sweetalert2";
 import "./OrderDetails.css";
 
 function OrderDetails() {
@@ -11,6 +12,7 @@ function OrderDetails() {
 
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [tickets, setTickets] = useState([]);
 
   // ======================================
   // GET ORDER DETAILS
@@ -40,6 +42,8 @@ function OrderDetails() {
 
       if (res.success) {
         setOrder(res.data);
+        const ticketsResponse = await api.get(`/support-tickets/order/${id}`);
+        setTickets(ticketsResponse.data.data || []);
       } else {
         alert(
           res.message ||
@@ -70,6 +74,27 @@ function OrderDetails() {
       );
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function createSupportTicket(type) {
+    const { value: reason } = await Swal.fire({
+      title: `Request ${type}`,
+      input: "textarea",
+      inputLabel: "Tell us why you need help",
+      inputPlaceholder: "Write your reason here...",
+      showCancelButton: true,
+      confirmButtonText: "Create ticket",
+      inputValidator: (value) => !value?.trim() && "A reason is required",
+    });
+    if (!reason) return;
+    try {
+      const response = await api.post("/support-tickets", { orderId: id, type, reason });
+      await Swal.fire({ icon: "success", title: "Ticket created", text: response.data.message });
+      const ticketsResponse = await api.get(`/support-tickets/order/${id}`);
+      setTickets(ticketsResponse.data.data || []);
+    } catch (error) {
+      await Swal.fire({ icon: "error", title: "Request not created", text: error.response?.data?.message || "Please try again." });
     }
   }
 
@@ -232,6 +257,24 @@ function OrderDetails() {
 
           </div>
 
+        </div>
+
+        <div className="orderInfoCard supportCard">
+          <h2>Order Support</h2>
+          <p className="supportIntro">Create a support request and track it with the ticket ID.</p>
+          <div className="supportActions">
+            {['pending', 'shipped'].includes(order.orderStatus) && <button type="button" onClick={() => createSupportTicket("cancellation")}>Request cancellation</button>}
+            {order.orderStatus === 'delivered' && <button type="button" onClick={() => createSupportTicket("return")}>Request return</button>}
+            {order.paymentStatus === 'paid' && <button type="button" onClick={() => createSupportTicket("refund")}>Request refund</button>}
+          </div>
+          {tickets.length > 0 ? (
+            <div className="ticketList">
+              {tickets.map((ticket) => <div className="ticketRow" key={ticket._id}>
+                <div><strong>{ticket.ticketId}</strong><span>{ticket.type} request</span></div>
+                <span className={`ticketStatus ${ticket.status}`}>{ticket.status}</span>
+              </div>)}
+            </div>
+          ) : <p className="noTickets">No support tickets for this order.</p>}
         </div>
 
         {/* ======================================

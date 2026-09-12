@@ -1,7 +1,7 @@
 const Category = require("../models/categoryModel");
 
 async function getCategories(req, res) {
-  const allCategories = await Category.find({});
+  const allCategories = await Category.find({}).sort({ createdAt: -1 });
   res.send({ success: true, message: "Success", data: allCategories });
 }
 

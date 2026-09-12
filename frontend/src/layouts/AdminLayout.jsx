@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { HiOutlineSquares2X2, HiOutlineShoppingBag, HiOutlineClipboardDocumentList, HiOutlineTag } from "react-icons/hi2";
+import { HiOutlineSquares2X2, HiOutlineShoppingBag, HiOutlineClipboardDocumentList, HiOutlineTag, HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 import { BiSolidStore } from "react-icons/bi";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useState } from "react";
@@ -9,6 +9,7 @@ const navLinks = [
   { to: "/admin/dashboard", label: "Dashboard", icon: HiOutlineSquares2X2 },
   { to: "/admin/products", label: "Products", icon: HiOutlineShoppingBag },
   { to: "/admin/orders", label: "Orders", icon: HiOutlineClipboardDocumentList },
+  { to: "/admin/tickets", label: "Support Tickets", icon: HiOutlineChatBubbleLeftRight },
   { to: "/admin/category", label: "Category", icon: HiOutlineTag },
 ];
 

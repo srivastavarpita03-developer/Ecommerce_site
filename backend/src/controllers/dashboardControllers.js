@@ -89,6 +89,18 @@ async function getDashboardData(req, res) {
         ? revenueData[0].totalRevenue
         : 0;
 
+    const paymentSummary = await Order.aggregate([
+      { $group: { _id: "$paymentStatus", count: { $sum: 1 }, amount: { $sum: "$totalOrderValue" } } },
+    ]);
+    const paymentStats = paymentSummary.reduce((result, item) => {
+      result[item._id] = { count: item.count, amount: item.amount };
+      return result;
+    }, {});
+    const [onlinePayments, codPayments] = await Promise.all([
+      Order.countDocuments({ paymentProvider: "stripe" }),
+      Order.countDocuments({ paymentProvider: "cod" }),
+    ]);
+
     // ==============================
     // RECENT ORDERS
     // ==============================
@@ -122,6 +134,9 @@ async function getDashboardData(req, res) {
         pendingOrders,
         deliveredOrders,
         cancelledOrders,
+        paymentStats,
+        onlinePayments,
+        codPayments,
 
         recentOrders,
       },
