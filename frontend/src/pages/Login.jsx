@@ -36,13 +36,39 @@ function Auth() {
             password: data.password,
           }
         : data;
-    const response = await api.post(url, payload);
-    console.log(response.data);
-    if (response.data?.success) {
-      alert(response.data?.message);
-      setUser(response.data?.data);
-      navigate("/products");
-      window.location.reload();
+    try {
+      const response = await api.post(url, payload);
+
+      if (response.data?.success) {
+        alert(response.data.message);
+
+        if (authMode === "register") {
+          // Registration creates an account but intentionally does not issue a JWT.
+          // Send the customer to the login form instead of showing a false signed-in UI.
+          setData({
+            name: "",
+            contactNumber: "",
+            address: "",
+            email: data.email,
+            password: "",
+            confirmPassword: "",
+          });
+          setAuthMode("login");
+          return;
+        }
+
+        // Login responds with `user`; `/auth/me` responds with `data`.
+        // Keeping this state in sync lets Header update without a page reload.
+        setUser(response.data.user || response.data.data || null);
+        navigate("/products", { replace: true });
+      } else {
+        alert(response.data?.message || "Unable to complete authentication");
+      }
+    } catch (error) {
+      alert(
+        error.response?.data?.message ||
+          "Unable to connect to the server. Please try again."
+      );
     }
   }
 

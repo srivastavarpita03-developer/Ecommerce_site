@@ -297,3 +297,14 @@
     font-size: 18px;
   }
 }
+.stripePaymentForm {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.stripePaymentError {
+  color: #b42318;
+  font-size: 0.9rem;
+  margin: 12px 0;
+}

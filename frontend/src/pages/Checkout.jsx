@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/api";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import StripePaymentForm from "../components/StripePaymentForm";
 import "./Checkout.css";
+
+const stripeKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
 
 function Checkout() {
   const navigate = useNavigate();
@@ -13,6 +19,8 @@ function Checkout() {
   const [shippingAddress, setShippingAddress] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [paymentMode, setPaymentMode] = useState("COD");
+  const [clientSecret, setClientSecret] = useState("");
+  const [stripeOrderId, setStripeOrderId] = useState("");
 
   // =====================================
   // GET CART
@@ -177,13 +185,7 @@ function Checkout() {
 
         contactNumber: contact,
 
-        totalOrderValue: totalAmount,
-
-        // IMPORTANT
-        // Backend field name is paymentMode
         paymentMode: paymentMode,
-
-        paymentStatus: "pending",
       };
 
       console.log(
@@ -195,10 +197,19 @@ function Checkout() {
       // API CALL
       // -------------------------------------
 
-      const response = await api.post(
-        "/orders",
-        orderData
-      );
+      if (paymentMode !== "COD") {
+        const response = await api.post("/payments/stripe/create-intent", orderData);
+        const res = response.data;
+        if (res.success) {
+          setClientSecret(res.clientSecret);
+          setStripeOrderId(res.orderId);
+        } else {
+          alert(res.message || "Unable to start secure payment");
+        }
+        return;
+      }
+
+      const response = await api.post("/orders/cod", orderData);
 
       const res = response.data;
 
@@ -379,11 +390,7 @@ function Checkout() {
                   checked={
                     paymentMode === "COD"
                   }
-                  onChange={(e) =>
-                    setPaymentMode(
-                      e.target.value
-                    )
-                  }
+                  onChange={(e) => { setPaymentMode(e.target.value); setClientSecret(""); }}
                 />
 
                 <span>
@@ -401,11 +408,7 @@ function Checkout() {
                   checked={
                     paymentMode === "UPI"
                   }
-                  onChange={(e) =>
-                    setPaymentMode(
-                      e.target.value
-                    )
-                  }
+                  onChange={(e) => { setPaymentMode(e.target.value); setClientSecret(""); }}
                 />
 
                 <span>
@@ -423,11 +426,7 @@ function Checkout() {
                   checked={
                     paymentMode === "Card"
                   }
-                  onChange={(e) =>
-                    setPaymentMode(
-                      e.target.value
-                    )
-                  }
+                  onChange={(e) => { setPaymentMode(e.target.value); setClientSecret(""); }}
                 />
 
                 <span>
@@ -517,16 +516,25 @@ function Checkout() {
 
           {/* PLACE ORDER BUTTON */}
 
-          <button
-            className="placeOrderBtn"
-            type="button"
-            onClick={handlePlaceOrder}
-            disabled={placingOrder}
-          >
-            {placingOrder
-              ? "Placing Order..."
-              : "Place Order"}
-          </button>
+          {clientSecret && stripePromise ? (
+            <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: "stripe" } }}>
+              <StripePaymentForm orderId={stripeOrderId} />
+            </Elements>
+          ) : (
+            <>
+              {paymentMode !== "COD" && !stripePromise && (
+                <p className="stripePaymentError">Online payments are not configured yet. Add VITE_STRIPE_PUBLISHABLE_KEY to frontend/.env.</p>
+              )}
+              <button
+                className="placeOrderBtn"
+                type="button"
+                onClick={handlePlaceOrder}
+                disabled={placingOrder || (paymentMode !== "COD" && !stripePromise)}
+              >
+                {placingOrder ? "Starting payment..." : paymentMode === "COD" ? "Place Order" : "Continue to secure payment"}
+              </button>
+            </>
+          )}
 
         </div>
 

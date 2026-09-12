@@ -5,13 +5,14 @@ const {
   getAllOrders,
   getUserOrders,
   getUserSingleOrder,
-  createOrder,
   updateOrder,
   getSingleOrder,
 } = require("../controllers/orderControllers");
 
 const asyncHandler = require("../utils/asyncHandler");
 const authMiddleware = require("../middlewares/authMiddleware");
+const checkAdminMiddleware = require("../middlewares/checkAdminMiddleware");
+const { createCashOnDeliveryOrder } = require("../controllers/paymentControllers");
 
 const router = express.Router();
 
@@ -21,10 +22,13 @@ const router = express.Router();
 // ======================================
 
 router.post(
-  "/",
+  "/cod",
   asyncHandler(authMiddleware),
-  asyncHandler(createOrder)
+  asyncHandler(createCashOnDeliveryOrder)
 );
+
+// Backward-compatible COD route for existing clients. Online payments use /payments/stripe/create-intent.
+router.post("/", asyncHandler(authMiddleware), asyncHandler(createCashOnDeliveryOrder));
 
 
 // ======================================
@@ -56,6 +60,7 @@ router.get(
 router.get(
   "/all",
   asyncHandler(authMiddleware),
+  asyncHandler(checkAdminMiddleware),
   asyncHandler(getAllOrders)
 );
 
@@ -67,6 +72,7 @@ router.get(
 router.put(
   "/status",
   asyncHandler(authMiddleware),
+  asyncHandler(checkAdminMiddleware),
   asyncHandler(updateOrder)
 );
 
@@ -78,6 +84,7 @@ router.put(
 router.get(
   "/:id",
   asyncHandler(authMiddleware),
+  asyncHandler(checkAdminMiddleware),
   asyncHandler(getSingleOrder)
 );
 

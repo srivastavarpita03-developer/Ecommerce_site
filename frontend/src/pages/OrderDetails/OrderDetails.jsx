@@ -26,7 +26,9 @@ function OrderDetails() {
       );
 
       const response = await api.get(
-        `/orders/${id}`
+        // Customer orders must use the ownership-checked customer endpoint.
+        // `/orders/:id` is intentionally reserved for admins.
+        `/orders/user-orders/${id}`
       );
 
       console.log(
@@ -50,14 +52,15 @@ function OrderDetails() {
         error
       );
 
-      if (
-        error.response?.status === 401 ||
-        error.response?.status === 400
-      ) {
-        alert("Please login first");
-
+      if (error.response?.status === 401) {
+        alert("Your session has expired. Please log in again.");
         navigate("/login");
+        return;
+      }
 
+      if (error.response?.status === 404) {
+        alert("This order was not found or does not belong to your account.");
+        navigate("/orders");
         return;
       }
 

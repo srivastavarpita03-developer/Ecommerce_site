@@ -26,6 +26,7 @@ import Profile from "./pages/Profile";
 import ProductDetails from "./pages/ProductDetails";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import PaymentComplete from "./pages/PaymentComplete";
 
 function AppRoutes() {
   const location = useLocation();
@@ -48,6 +49,7 @@ function AppRoutes() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/payment/complete" element={<PaymentComplete />} />
 
         {/* ADMIN ROUTES */}
         <Route path="/admin" element={<AdminLayout />}>

@@ -5,6 +5,7 @@ import { FiUploadCloud, FiPlus, FiTrash2 } from "react-icons/fi";
 import { BsBoxSeam, BsTag, BsLayers, BsImage } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import api from "../../utils/api";
+import Swal from "sweetalert2";
 
 function AdminProducts() {
   let [productsData, setProductsData] = useState([]);
@@ -223,7 +224,16 @@ function AdminProducts() {
   // ======================================
 
   async function deleteProduct(id) {
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    const confirmation = await Swal.fire({
+      icon: "warning",
+      title: "Delete product?",
+      text: "This action cannot be undone.",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#d33",
+    });
+    if (!confirmation.isConfirmed) return;
 
     try {
       const response = await api.delete("/products", { data: { productId: id } });

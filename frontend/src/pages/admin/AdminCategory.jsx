@@ -3,6 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import api from "../../utils/api";
+import Swal from "sweetalert2";
 
 const categories = [
   {
@@ -98,11 +99,17 @@ function AdminCategory() {
   }
 
   async function handleDelete(id) {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this category?",
-    );
+    const confirmation = await Swal.fire({
+      icon: "warning",
+      title: "Delete category?",
+      text: "This action cannot be undone.",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#d33",
+    });
 
-    if (!confirmDelete) return;
+    if (!confirmation.isConfirmed) return;
 
     try {
       const response = await api.delete(`/category`, {

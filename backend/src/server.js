@@ -10,10 +10,14 @@ const orderRoutes = require("./routes/orderRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const aiProductSuggestion = require("./services/ai");
 const cookieParser = require("cookie-parser");
+const { stripeWebhook } = require("./controllers/paymentControllers");
+const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
 connectToDB(); // Connect to db
 
+// Stripe needs the untouched body to verify the webhook signature. Keep this before express.json().
+app.post("/api/v1/payments/stripe/webhook", express.raw({ type: "application/json" }), stripeWebhook);
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -35,6 +39,7 @@ app.use("/api/v1/products", productRoutes); //POST:  http://localhost:4000/api/v
 app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes); // Get : http://localhost:4000/api/v1/dashboard
 app.use("/api/v1/ai", aiProductSuggestion);
+app.use("/api/v1/payments", paymentRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

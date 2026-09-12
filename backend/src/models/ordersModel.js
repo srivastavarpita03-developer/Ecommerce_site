@@ -86,7 +86,11 @@ const orderSchema = mongoose.Schema(
 
       enum: [
         "pending",
+        "processing",
         "completed",
+        "paid",
+        "failed",
+        "refunded",
       ],
 
       default: "pending",
@@ -115,6 +119,33 @@ const orderSchema = mongoose.Schema(
       ],
 
       required: true,
+    },
+
+    paymentProvider: {
+      type: String,
+      enum: ["cod", "stripe"],
+      default: "cod",
+    },
+
+    stripePaymentIntentId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
+
+    stripePaymentStatus: {
+      type: String,
+      default: null,
+    },
+
+    paymentFailureReason: {
+      type: String,
+      default: null,
+    },
+
+    paidAt: {
+      type: Date,
+      default: null,
     },
 
     // ======================================
