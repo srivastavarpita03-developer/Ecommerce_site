@@ -8,7 +8,7 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
-const aiProductSuggestion = require("./routes/aiProductSuggesionRoutes");
+const aiProductSuggestion = require("./services/ai");
 const cookieParser = require("cookie-parser");
 
 const app = express();

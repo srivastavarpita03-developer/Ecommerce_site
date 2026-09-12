@@ -59,12 +59,13 @@ function Header() {
         {/* LOGO */}
 
         <h1
-          className="header-logo"
-          onClick={() => navigate("/")}
-          style={{ cursor: "pointer" }}
-        >
-        VestiQ Nexus
-        </h1>
+  className="header-logo"
+  onClick={() => navigate("/")}
+  style={{ cursor: "pointer" }}
+>
+  <span className="logo-main">VestiQ Nexus</span>
+  <span className="logo-tagline">AI Multi Vendor</span>
+</h1>
 
         {/* NAVIGATION */}
 

@@ -1,36 +1,278 @@
+/* =====================================================
+   ADMIN LAYOUT — Light Collapsible Sidebar
+   ===================================================== */
+
 .adminLayout {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 40px;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  background: var(--background);
+  transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.adminSidebar {
-    background-color: var(--surface);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    padding: 40px 20px;
+.layoutCollapsed {
+  grid-template-columns: 72px 1fr;
 }
 
-.adminLinks {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 40px;
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.adminLinks>a {
-    font-size: 25px;
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    padding: 10px;
-    border: 2px solid var(--text-primary);
-    border-left: 10px solid var(--warning);
-    border-radius: 10px;
-    background-color: #252529;
+.sidebarCollapsed {
+  width: 72px;
 }
 
-.adminLinks>a:hover {
-    transform: scale(1.03);
+/* =====================================================
+   BRAND
+   ===================================================== */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px 18px;
+  min-height: 72px;
+}
+
+.brandIcon {
+  font-size: 26px;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: margin 0.3s ease;
+}
+
+.sidebarCollapsed .brand {
+  justify-content: center;
+  padding: 24px 0 18px;
+}
+
+.sidebarCollapsed .brandIcon {
+  margin: 0;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.brandName {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.brandSub {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* =====================================================
+   DIVIDER
+   ===================================================== */
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 0 16px;
+}
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 10px;
+  flex: 1;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.navLink:hover {
+  color: var(--text-primary);
+  background: var(--secondary);
+}
+
+.navLinkActive {
+  color: var(--accent) !important;
+  background: var(--accent-light) !important;
+  font-weight: 600;
+}
+
+.navIcon {
+  font-size: 19px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.navLinkActive .navIcon {
+  color: var(--accent);
+}
+
+.activeIndicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 0 3px 3px 0;
+}
+
+/* Collapsed nav — center icons */
+.sidebarCollapsed .navLink {
+  justify-content: center;
+  padding: 11px;
+}
+
+.sidebarCollapsed .navLink span:not(.activeIndicator) {
+  display: none;
+}
+
+/* Tooltip on hover when collapsed */
+.sidebarCollapsed .navLink::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary);
+  color: var(--text-white);
+  padding: 6px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  transform: translateY(-50%) translateX(-4px);
+  z-index: 200;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebarCollapsed .navLink:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* =====================================================
+   SIDEBAR FOOTER
+   ===================================================== */
+
+.sidebarFooter {
+  padding-bottom: 16px;
+}
+
+.backLink {
+  display: block;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--text-primary);
+}
+
+/* =====================================================
+   COLLAPSE TOGGLE
+   ===================================================== */
+
+.collapseToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 8px auto 4px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.collapseToggle:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.08);
+}
+
+.sidebarCollapsed .collapseToggle {
+  margin: 8px auto 4px;
+}
+
+/* =====================================================
+   MAIN CONTENT
+   ===================================================== */
+
+.adminContent {
+  grid-column: 2;
+  min-height: 100vh;
+  overflow-y: auto;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+  .adminLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .adminContent {
+    grid-column: 1;
+  }
 }

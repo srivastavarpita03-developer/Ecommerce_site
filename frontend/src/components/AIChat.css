@@ -1,0 +1,516 @@
+/* ===================================================
+   AI CHAT ASSISTANT — VestiQ Nexus
+   =================================================== */
+
+/* --- Floating Action Button --- */
+.ai-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--accent) 0%, #0d9440 100%);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 16px rgba(22, 163, 74, 0.35),
+    0 0 0 0 rgba(22, 163, 74, 0.3);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fabPulse 2.5s ease-in-out infinite;
+}
+
+.ai-fab:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 6px 24px rgba(22, 163, 74, 0.45),
+    0 0 0 8px rgba(22, 163, 74, 0.1);
+}
+
+.ai-fab:active {
+  transform: scale(0.95);
+}
+
+.ai-fab-open {
+  animation: none;
+  background: var(--primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.ai-fab-open:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ===================================================
+   CHAT WINDOW
+   =================================================== */
+
+.ai-chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  width: 400px;
+  height: 560px;
+  max-height: calc(100vh - 140px);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  z-index: 9997;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-chat-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* ===================================================
+   HEADER
+   =================================================== */
+
+.ai-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+}
+
+.ai-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.ai-chat-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ai-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.ai-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  display: inline-block;
+}
+
+.ai-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.ai-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===================================================
+   MESSAGES
+   =================================================== */
+
+.ai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--background);
+}
+
+.ai-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ai-messages::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.ai-bubble-row {
+  display: flex;
+  gap: 10px;
+  max-width: 92%;
+  animation: bubbleIn 0.3s ease;
+}
+
+.ai-bubble-user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.ai-bubble-assistant {
+  align-self: flex-start;
+}
+
+.ai-bubble-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ai-user-avatar {
+  background: var(--primary);
+  color: white;
+}
+
+.ai-bubble-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ai-bubble-text {
+  margin: 0;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  border-radius: var(--radius-md);
+  word-break: break-word;
+}
+
+.ai-bubble-user .ai-bubble-text {
+  background: var(--primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.ai-bubble-assistant .ai-bubble-text {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-bottom-left-radius: 4px;
+}
+
+/* ===================================================
+   TYPING INDICATOR
+   =================================================== */
+
+.ai-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  border-bottom-left-radius: 4px;
+}
+
+.ai-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-light);
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+
+.ai-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.ai-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* ===================================================
+   PRODUCT CARDS IN CHAT
+   =================================================== */
+
+.ai-products {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.ai-products::-webkit-scrollbar {
+  width: 3px;
+}
+
+.ai-products::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.ai-product-card {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-product-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.1);
+  transform: translateX(4px);
+}
+
+.ai-product-img {
+  width: 64px;
+  height: 80px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--secondary);
+}
+
+.ai-product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ai-product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ai-product-info h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ai-product-price {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.ai-product-cat {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ===================================================
+   SUGGESTIONS
+   =================================================== */
+
+.ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 20px 12px;
+  background: var(--background);
+}
+
+.ai-suggestion-chip {
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.ai-suggestion-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* ===================================================
+   INPUT AREA
+   =================================================== */
+
+.ai-input-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--border-light);
+  background: var(--surface);
+}
+
+.ai-input-area input {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--secondary);
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.ai-input-area input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.ai-input-area input::placeholder {
+  color: var(--text-light);
+}
+
+.ai-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.ai-send-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.ai-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+
+@media (max-width: 600px) {
+  .ai-fab {
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+    font-size: 20px;
+  }
+
+  .ai-chat-window {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .ai-messages {
+    padding: 16px;
+  }
+
+  .ai-input-area {
+    padding: 12px;
+  }
+}
+
+/* ===================================================
+   ANIMATIONS
+   =================================================== */
+
+@keyframes fabPulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 16px rgba(22, 163, 74, 0.35),
+      0 0 0 0 rgba(22, 163, 74, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 4px 16px rgba(22, 163, 74, 0.35),
+      0 0 0 10px rgba(22, 163, 74, 0);
+  }
+}
+
+@keyframes bubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}

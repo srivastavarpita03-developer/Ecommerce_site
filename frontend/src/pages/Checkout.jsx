@@ -196,7 +196,7 @@ function Checkout() {
       // -------------------------------------
 
       const response = await api.post(
-        "/orders/create",
+        "/orders",
         orderData
       );
 

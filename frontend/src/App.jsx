@@ -3,13 +3,14 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
-
+import AIChat from "./components/AIChat";
 
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminLayout from "./layouts/AdminLayout";
@@ -26,76 +27,48 @@ import ProductDetails from "./pages/ProductDetails";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
-function App() {
-  const loc = window.location.pathname;
-  const isAdminRoute = loc.includes("admin");
+function AppRoutes() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   return (
-    <BrowserRouter>
+    <>
       {!isAdminRoute && <Header />}
 
       <Routes>
-
         {/* USER ROUTES */}
         <Route path="/" element={<Home />} />
-
         <Route path="/login" element={<Login />} />
-
         <Route path="/products" element={<Products />} />
-
         <Route path="/cart" element={<Cart />} />
-
-        {/* CHECKOUT */}
         <Route path="/checkout" element={<Checkout />} />
-<Route
-  path="/orders"
-  element={<Orders />}
-/>
-<Route
-  path="/orders/:id"
-  element={<OrderDetails />}
-/>
-<Route path="/product/:productId" element={<ProductDetails />} />
-<Route path="/profile" element={<Profile />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders/:id" element={<OrderDetails />} />
+        <Route path="/product/:productId" element={<ProductDetails />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
-
         <Route path="/contact" element={<Contact />} />
-
 
         {/* ADMIN ROUTES */}
         <Route path="/admin" element={<AdminLayout />}>
-
-          <Route
-            path=""
-            element={<Navigate to="/admin/products" />}
-          />
-<Route
-  path="/admin/dashboard"
-  element={<Dashboard />}
-/>
-          <Route
-            path="products"
-            element={<AdminProducts />}
-          />
-
-          <Route
-            path="orders"
-            element={<AdminOrders />}
-          />
-
-          <Route
-            path="orders/:id"
-            element={<AdminOrderDetails />}
-          />
-
-          <Route
-            path="category"
-            element={<AdminCategory />}
-          />
-
+          <Route path="" element={<Navigate to="/admin/products" />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="orders/:id" element={<AdminOrderDetails />} />
+          <Route path="category" element={<AdminCategory />} />
         </Route>
-
       </Routes>
+
+      {!isAdminRoute && <AIChat />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

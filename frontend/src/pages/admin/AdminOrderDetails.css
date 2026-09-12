@@ -1,68 +1,312 @@
+/* =====================================================
+   ADMIN ORDER DETAILS PAGE
+   ===================================================== */
+
 .adminOrderDetails {
   width: 100%;
-  padding: 30px;
+  padding: 28px 32px;
   box-sizing: border-box;
 }
 
+/* --- Header --- */
 .orderDetailsHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
+}
+
+.orderHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.backBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--secondary);
 }
 
 .orderDetailsHeader h2 {
   margin: 0;
-  font-size: 28px;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
 }
 
-.backBtn {
-  border: none;
-  background: #111;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 7px;
-  cursor: pointer;
+.orderHeaderCode {
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-family: monospace;
+  color: var(--text-muted);
 }
+
+/* --- Status Badge --- */
+.statusBadge {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.statusBadge.pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.statusBadge.shipped {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+}
+
+.statusBadge.delivered {
+  background: rgba(22, 163, 74, 0.1);
+  color: #16a34a;
+}
+
+.statusBadge.cancelled {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.statusBadge.returned {
+  background: rgba(107, 114, 128, 0.1);
+  color: #4b5563;
+}
+
+
+/* =====================================================
+   TOP GRID — Customer + Payment
+   ===================================================== */
+
+.orderTopGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   DETAILS CARD
+   ===================================================== */
 
 .detailsCard {
   width: 100%;
-  background: white;
-  padding: 25px;
-  margin-bottom: 25px;
-  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  padding: 22px 24px;
+  border-radius: var(--radius-md);
   box-sizing: border-box;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.detailsCard h3 {
-  margin-top: 0;
   margin-bottom: 20px;
 }
 
-.detailRow {
+.detailsCard:last-child {
+  margin-bottom: 0;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cardIcon {
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.cardHeader h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.productCount {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--secondary);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+
+/* =====================================================
+   DETAIL ROWS
+   ===================================================== */
+
+.detailRows {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
 .detailItem {
   min-width: 0;
 }
 
-.detailItem label {
-  display: block;
-  font-size: 13px;
-  color: #777;
+.detailItem.full {
+  grid-column: 1 / -1;
+}
+
+.detailLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
   margin-bottom: 6px;
 }
 
-.detailItem p {
+.detailLabel svg {
+  font-size: 13px;
+}
+
+.detailValue {
   margin: 0;
   font-size: 15px;
   font-weight: 500;
+  color: var(--text-primary);
   word-break: break-word;
+  line-height: 1.5;
+}
+
+.detailValue.price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+
+/* =====================================================
+   PAYMENT BADGE
+   ===================================================== */
+
+.paymentBadge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.paymentBadge.completed {
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--accent);
+}
+
+.paymentBadge.pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+
+/* =====================================================
+   STATUS UPDATE CARD
+   ===================================================== */
+
+.statusUpdateCard {
+  border: 1.5px solid var(--accent);
+  border-color: rgba(22, 163, 74, 0.2);
+}
+
+.statusUpdateRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusSelectWrap {
+  flex: 1;
+}
+
+.statusSelectWrap select {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2371717A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.statusSelectWrap select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.updateStatusBtn {
+  height: 46px;
+  padding: 0 28px;
+  background: var(--accent);
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.updateStatusBtn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.updateStatusBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   PRODUCT TABLE
+   ===================================================== */
+
+.productTableWrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .productTable {
@@ -72,83 +316,151 @@
 
 .productTable th,
 .productTable td {
-  padding: 14px;
-  border-bottom: 1px solid #eee;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-light);
   text-align: left;
 }
 
 .productTable th {
-  background: #f5f5f5;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--secondary);
+}
+
+.productTable tbody tr {
+  transition: background 0.15s ease;
+}
+
+.productTable tbody tr:hover {
+  background: var(--secondary);
+}
+
+.productTable tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .productImage {
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--secondary);
+  padding: 4px;
 }
 
-.paymentCompleted {
-  color: green;
-  font-weight: 600;
+.noImage {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
-.paymentPending {
-  color: #d39e00;
-  font-weight: 600;
+.productTitle {
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
-/* Tablet */
-@media (max-width: 768px) {
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.orderLoading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 16px;
+}
+
+.orderLoader {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.orderLoading p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+  .orderTopGrid {
+    grid-template-columns: 1fr;
+  }
+
   .adminOrderDetails {
     padding: 20px;
   }
+}
 
-  .detailRow {
+@media (max-width: 768px) {
+  .orderDetailsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .detailRows {
     grid-template-columns: 1fr;
-    gap: 15px;
   }
 
-  .productTable {
-    min-width: 700px;
+  .statusUpdateRow {
+    flex-direction: column;
   }
 
-  .detailsCard {
-    overflow-x: auto;
+  .statusSelectWrap {
+    width: 100%;
+  }
+
+  .updateStatusBtn {
+    width: 100%;
   }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
   .adminOrderDetails {
-    padding: 15px 10px;
+    padding: 16px;
   }
 
   .orderDetailsHeader h2 {
     font-size: 22px;
   }
 
-  .backBtn {
-    padding: 8px 13px;
-    font-size: 13px;
-  }
-
   .detailsCard {
-    padding: 16px;
-    border-radius: 8px;
+    padding: 18px 16px;
+    border-radius: var(--radius-sm);
   }
 
-  .detailsCard h3 {
-    font-size: 18px;
-  }
-
-  .detailItem p {
-    font-size: 14px;
+  .cardHeader h3 {
+    font-size: 15px;
   }
 
   .productTable th,
   .productTable td {
-    padding: 10px;
+    padding: 12px 10px;
     font-size: 13px;
   }
 
